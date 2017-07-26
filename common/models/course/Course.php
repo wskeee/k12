@@ -13,30 +13,32 @@ use yii\db\ActiveRecord;
  * This is the model class for table "{{%course}}".
  *
  * @property string $id
- * @property string $parent_cat_id
- * @property string $cat_id
- * @property integer $type
- * @property string $name
- * @property string $img
- * @property string $path
- * @property string $learning_objectives
- * @property string $introduction
- * @property string $teacher_id
- * @property integer $is_recommend
- * @property integer $is_publish
- * @property string $content
- * @property integer $order
- * @property string $play_count
- * @property string $zan_count
- * @property string $favorites_count
- * @property string $comment_count
- * @property string $publish_time
- * @property string $publisher_id
- * @property string $keywords
- * @property string $create_by
- * @property string $created_at
- * @property string $updated_at
- * @property string $course_model_id
+ * @property string $parent_cat_id              分类
+ * @property string $cat_id                     学科
+ * @property integer $type                      课件类型：flash、视频、实训
+ * @property string $name                       课程名称
+ * @property string $courseware_name            课件名称
+ * @property string $img                        课件图片
+ * @property string $path                       课件路径
+ * @property string $learning_objectives        学习目标
+ * @property string $introduction               课程简介
+ * @property string $synopsis                   课件摘要
+ * @property string $teacher_id                 教师ID
+ * @property integer $is_recommend              是否推荐
+ * @property integer $is_publish                是否发布
+ * @property string $content                    详细内容
+ * @property integer $order                     排序
+ * @property string $play_count                 播放次数
+ * @property string $zan_count                  点赞数
+ * @property string $favorites_count            收藏数
+ * @property string $comment_count              评论数
+ * @property string $publish_time               发布时间
+ * @property string $publisher_id               发布人ID
+ * @property string $keywords                   索引关键字
+ * @property string $create_by                  创建人ID
+ * @property string $created_at                 创建时间
+ * @property string $updated_at                 更新时间
+ * @property string $course_model_id            课件模型ID
  * 
  * @property CourseCategory $parentCategory     分类
  * @property CourseCategory $category           学科
@@ -65,7 +67,7 @@ class Course extends ActiveRecord
     {
         return [
             [['parent_cat_id','cat_id', 'type', 'teacher_id', 'is_recommend', 'is_publish', 'order', 'play_count', 'zan_count', 'favorites_count', 'comment_count', 'publish_time', 'publisher_id', 'create_by', 'created_at', 'updated_at', 'course_model_id'], 'integer'],
-            [['learning_objectives', 'introduction', 'content'], 'string'],
+            [['learning_objectives', 'introduction','courseware_name','synopsis','content'], 'string'],
             [['name', 'img', 'path', 'keywords'], 'string', 'max' => 255],
         ];
     }
@@ -86,11 +88,13 @@ class Course extends ActiveRecord
             'parent_cat_id' => Yii::t('app', 'Parent Cat'),
             'cat_id' => Yii::t('app', 'Cat'),
             'type' => Yii::t('app', 'Type'),
-            'name' => Yii::t('app', 'Name'),
+            'name' => Yii::t('app', 'Course Name'),
+            'courseware_name' => Yii::t('app', 'Courseware Name'),
             'img' => Yii::t('app', 'Course Img'),
             'path' => Yii::t('app', 'Course Path'),
             'learning_objectives' => Yii::t('app', 'Learning Objectives'),
             'introduction' => Yii::t('app', 'Introduction'),
+            'synopsis' => Yii::t('app', 'Synopsis'),
             'teacher_id' => Yii::t('app', 'Teacher'),
             'is_recommend' => Yii::t('app', 'Is Recommend'),
             'is_publish' => Yii::t('app', 'Is Publish'),

@@ -70,7 +70,7 @@ class CourseAttributeSearch extends CourseAttribute
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'values', $this->values]);
         
-        $query->orderBy('course_model_id');
+        $query->orderBy('course_model_id,order');
 
         return $dataProvider;
     }

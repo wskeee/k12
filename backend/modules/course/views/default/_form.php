@@ -35,15 +35,20 @@ $isNew = $model->getIsNewRecord();
     <?= $form->field($model, 'parent_cat_id')->dropDownList($parentCats, ['prompt' => $prompt, 'onchange' => 'changeParentCat(this)']) ?>
 
     <?= $form->field($model, 'cat_id')->dropDownList($childCats, ['prompt' => $prompt]) ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
+    
     <div class="course_att_container">
 
     </div>
+    
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'courseware_name')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'learning_objectives')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'introduction')->textarea(['rows' => 6]) ?>
+    
+    <?= $form->field($model, 'synopsis')->textarea(['rows' => 6]) ?>
 
     <?=
     $form->field($model, 'teacher_id')->widget(Select2::classname(), [

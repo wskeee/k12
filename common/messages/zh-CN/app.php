@@ -120,4 +120,7 @@ return [
     'Keywords' => '关键字',    
     'Course Path' => '课程路径',    
     'Course Img' => '课程图片',    
+    'Course Name' => '课程名称',    
+    'Courseware Name' => '课件名称',    
+    'Synopsis' => '内容摘要',    
 ];

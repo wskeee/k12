@@ -34,8 +34,10 @@ $attributes = [
         'value' => $model->category->name,
     ],
     'name',
+    'courseware_name',
     'learning_objectives:ntext',
     'introduction:ntext',
+    'synopsis:ntext',
     [
         'attribute' => 'teacher_id',
         'value' => isset($model->teacher) ? $model->teacher->name : null,
