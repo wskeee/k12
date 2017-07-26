@@ -21,7 +21,7 @@ $head = '<div class="head" style="padding:5px 0px;">'
         .'</div>';
 $content = $head.$content;
 
-echo $this->render('main',['content' => $content]);
+echo $this->render('@app/views/layouts/main',['content' => $content]);
 
 //注册基础数据资源
 RbacAsset::register($this);

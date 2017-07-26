@@ -4,6 +4,10 @@ use common\wskeee\rbac\assets\RouteAsset;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\View;
+$this->title = Yii::t('app', '{Route}{Admin}',[
+    'Route' => Yii::t('app/rbac', 'Route'),
+    'Admin' => Yii::t('app', 'Admin'),
+]);
 ?>
 
 <?php

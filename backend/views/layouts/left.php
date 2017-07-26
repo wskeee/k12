@@ -41,8 +41,11 @@ use common\widgets\Menu;
                         'icon' => 'bars',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
+                            ['label' => '用户角色', 'icon' => 'circle-o', 'url' => ['/rbac/user-role'],],
+                            ['label' => '角色管理', 'icon' => 'circle-o', 'url' => ['/rbac/role'],],
+                            ['label' => '权限管理', 'icon' => 'circle-o', 'url' => ['/rbac/permission'],],
+                            ['label' => '路由管理', 'icon' => 'circle-o', 'url' => ['/rbac/route'],],
+                            ['label' => '分组管理', 'icon' => 'circle-o', 'url' => ['/rbac/auth-group'],],
                         ],
                     ],
                     [
