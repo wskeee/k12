@@ -7,6 +7,7 @@ use common\models\course\CourseAttr;
 use common\models\course\CourseAttribute;
 use common\models\course\CourseCategory;
 use common\models\course\CourseModel;
+use common\models\course\CourseTemplate;
 use common\models\course\searchs\CourseSearch;
 use common\models\Teacher;
 use Yii;
@@ -87,8 +88,9 @@ class DefaultController extends BaseController
             $model->loadDefaultValues();
             return $this->render('create', [
                 'model' => $model,
-                'parentCats' => CourseCategory::getCats(['level' => 1]),//父级分类
-                'childCats' => $model->parent_cat_id > 0 ? CourseCategory::getCats(['parent_id' => $model->parent_cat_id]) : [],//子级分类
+                'parentCats' => CourseCategory::getCats(['level' => 1]),                                                            //父级分类
+                'childCats' => $model->parent_cat_id > 0 ? CourseCategory::getCats(['parent_id' => $model->parent_cat_id]) : [],    //子级分类
+                'templates' => $model->cat_id > 0 ? CourseTemplate::getTemplate(['cat_id' => $model->cat_id]) : [],                 //模板
                 'course_models' => ArrayHelper::map(CourseModel::find()->all(), 'id', 'name'),
                 'teachers' => ArrayHelper::map(Teacher::find()->all(), 'id', 'name'),
             ]);
@@ -113,7 +115,8 @@ class DefaultController extends BaseController
             return $this->render('update', [
                 'model' => $model,
                 'parentCats' => CourseCategory::getCats(['level' => 1]),//父级分类
-                'childCats' => $model->parent_cat_id > 0 ? CourseCategory::getCats(['parent_id' => $model->parent_cat_id]) : [],//子级分类
+                'childCats' => $model->parent_cat_id > 0 ? CourseCategory::getCats(['parent_id' => $model->parent_cat_id]) : [],    //子级分类
+                'templates' => $model->cat_id > 0 ? CourseTemplate::getTemplate(['cat_id' => $model->cat_id]) : [],                 //模板
                 'course_models' => ArrayHelper::map(CourseModel::find()->all(), 'id', 'name'),
                 'teachers' => ArrayHelper::map(Teacher::find()->all(), 'id', 'name'),
             ]);
@@ -131,6 +134,18 @@ class DefaultController extends BaseController
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    /**
+     * 预览
+     * @param int $id  课程id
+     */
+    public function actionPreview($id){
+        $model = $this->findModel($id);
+        
+        return $this->render('preview', [
+            'model' => $model,
+        ]);    
     }
     
     /**

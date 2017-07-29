@@ -2,11 +2,9 @@
 
 namespace common\models\course\searchs;
 
-use common\models\course\CourseCategory;
 use common\models\course\CourseTemplate;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yii\db\Query;
 
 /**
  * CourseTemplateSearch represents the model behind the search form about `common\models\course\CourseTemplate`.
@@ -20,7 +18,7 @@ class CourseTemplateSearch extends CourseTemplate
     {
         return [
             [['id', 'parent_cat_id'], 'integer'],
-            [['sn', 'version', 'path'], 'safe'],
+            [['sn','name'], 'safe'],
         ];
     }
 
@@ -63,6 +61,10 @@ class CourseTemplateSearch extends CourseTemplate
             'id' => $this->id,
             'parent_cat_id' => $this->parent_cat_id,
         ]);
+        
+        $query->andFilterWhere(['like', 'name', $this->name]);
+        
+        $query->orderBy('sort_order');
 
         return $dataProvider;
     }

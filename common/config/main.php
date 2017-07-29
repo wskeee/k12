@@ -1,6 +1,7 @@
 <?php
 return [
     'language' => 'zh-CN',
+    'name' => 'K12 第一课堂',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [

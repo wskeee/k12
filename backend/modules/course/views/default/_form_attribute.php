@@ -19,7 +19,11 @@ use yii\widgets\ActiveForm;
             $input_name = "CourseAtts[$attribute->id][value]";
             $input_id = "course-attribute-$attribute->id";
             $input_value = isset($course_attrs[$attribute->id]) ? $course_attrs[$attribute->id] : null;
-            $input_items = explode("\r\n", $attribute->values);
+            $input_items = $attribute->values !='' ?  explode("\r\n", $attribute->values) : [];
+            foreach ($input_items as $key => $value){
+                $input_items[$value] = $value;
+                unset($input_items[$key]);
+            }
             ?>
             <div class="form-group course-attribute-<?= $attribute->id ?> required">
 

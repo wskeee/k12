@@ -106,6 +106,7 @@ return [
     'Sn' => '编号',    
     'Version' => '版本',    
     'Template Path' => '模版路径',    
+    'Player' => '播放器',    
     //课程数据管理
     'Learning Objectives' => '学习目标',    
     'Introduction' => '课程简介',    
@@ -123,4 +124,8 @@ return [
     'Course Name' => '课程名称',    
     'Courseware Name' => '课件名称',    
     'Synopsis' => '内容摘要',    
+    'Preview' => '预览',    
+    //课程导入
+    'Import' => '课程导入',
+    'Result' => '结果',
 ];

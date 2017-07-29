@@ -1,6 +1,7 @@
 <?php
 
 use common\models\course\Course;
+use common\models\course\CourseTemplate;
 use kartik\widgets\Select2;
 use kartik\widgets\SwitchInput;
 use yii\helpers\Html;
@@ -14,6 +15,8 @@ use yii\widgets\ActiveForm;
 
 //获取分类路径
 $getCatUrl = Url::to(['/course/category/search-children'], true);
+//获取模板路径
+$getTemplateUrl = Url::to(['/course/template/search'],true);
 //获取课程模型属性路径
 $getCourseAttrUrl = Url::to(['search-attr'], true);
 
@@ -34,7 +37,9 @@ $isNew = $model->getIsNewRecord();
 
     <?= $form->field($model, 'parent_cat_id')->dropDownList($parentCats, ['prompt' => $prompt, 'onchange' => 'changeParentCat(this)']) ?>
 
-    <?= $form->field($model, 'cat_id')->dropDownList($childCats, ['prompt' => $prompt]) ?>
+    <?= $form->field($model, 'cat_id')->dropDownList($childCats, ['prompt' => $prompt,'onchange' => 'changeCat(this)']) ?>
+    
+    <?= $form->field($model, 'template_sn')->dropDownList($templates, ['prompt' => $prompt]) ?>
     
     <div class="course_att_container">
 
@@ -122,6 +127,21 @@ $isNew = $model->getIsNewRecord();
             $("<option/>").val(null).text("<?= $prompt ?>").appendTo($('#course-cat_id'));
             $.each(data.data, function () {
                 $("<option/>").val(this.id).text(this.name).appendTo($('#course-cat_id'));
+            })
+        });
+    }
+    
+    /**
+     * 更换父级分类
+     * @param {type} obj
+     * @returns {void}
+     */
+    function changeCat(obj) {
+        $.get("<?= $getTemplateUrl ?>", {cat_id: $(obj).val()}, function (data) {
+            $('#course-template_sn').empty();
+            $("<option/>").val(null).text("<?= $prompt ?>").appendTo($('#course-template_sn'));
+            $.each(data.data, function () {
+                $("<option/>").val(this.sn).text(this.name).appendTo($('#course-template_sn'));
             })
         });
     }

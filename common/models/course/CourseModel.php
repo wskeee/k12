@@ -8,6 +8,8 @@ use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%course_model}}".
+ * 
+ * 定义一个课程所带的自义属性
  *
  * @property string $id
  * @property string $name

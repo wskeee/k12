@@ -15,6 +15,7 @@ use yii\db\ActiveRecord;
  * @property string $id
  * @property string $parent_cat_id              分类
  * @property string $cat_id                     学科
+ * @property string $template_sn                模板编号：s_00、s_01...
  * @property integer $type                      课件类型：flash、视频、实训
  * @property string $name                       课程名称
  * @property string $courseware_name            课件名称
@@ -46,6 +47,7 @@ use yii\db\ActiveRecord;
  * @property CourseModel $courseModel           课程模型
  * @property User $creater                      创建人
  * @property User $publisher                    发布人
+ * @property CourseTemplate $template           模板
  */
 class Course extends ActiveRecord
 {
@@ -66,8 +68,8 @@ class Course extends ActiveRecord
     public function rules()
     {
         return [
-            [['parent_cat_id','cat_id', 'type', 'teacher_id', 'is_recommend', 'is_publish', 'order', 'play_count', 'zan_count', 'favorites_count', 'comment_count', 'publish_time', 'publisher_id', 'create_by', 'created_at', 'updated_at', 'course_model_id'], 'integer'],
-            [['learning_objectives', 'introduction','courseware_name','synopsis','content'], 'string'],
+            [['parent_cat_id','cat_id', 'type', 'teacher_id', 'is_recommend', 'is_publish', 'order', 'play_count', 'zan_count', 'favorites_count', 'comment_count', 'publish_time', 'created_at', 'updated_at', 'course_model_id'], 'integer'],
+            [['learning_objectives', 'introduction','courseware_name','synopsis','content','publisher_id', 'create_by','template_sn'], 'string'],
             [['name', 'img', 'path', 'keywords'], 'string', 'max' => 255],
         ];
     }
@@ -87,6 +89,7 @@ class Course extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'parent_cat_id' => Yii::t('app', 'Parent Cat'),
             'cat_id' => Yii::t('app', 'Cat'),
+            'template_sn' => Yii::t('app', 'Template'),
             'type' => Yii::t('app', 'Type'),
             'name' => Yii::t('app', 'Course Name'),
             'courseware_name' => Yii::t('app', 'Courseware Name'),
@@ -173,5 +176,13 @@ class Course extends ActiveRecord
      */
     public function getPublisher(){
         return $this->hasOne(User::className(), ['id'=>'publisher_id']);
+    }
+    
+    /**
+     * 模板
+     * @return ActiveQuery
+     */
+    public function getTemplate(){
+        return $this->hasOne(CourseTemplate::className(), ['sn'=>'template_sn']);
     }
 }

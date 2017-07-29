@@ -24,10 +24,12 @@ $this->title = Yii::t('app', 'Templates');
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions' => ['class' => 'table table-striped table-bordered', 'style' => ['table-layout' => 'fixed']],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn','options' => ['style' => ['width' => '60px']],],
             [
                 'attribute' => 'parent_cat_id',
+                'options' => ['style' => ['width' => '140px']],
                 'value' => function($model) use($parentCats){
                     return $parentCats[$model->parent_cat_id];
                 },
@@ -35,18 +37,46 @@ $this->title = Yii::t('app', 'Templates');
             ],
             [
                 'attribute' => 'cat_id',
+                'options' => ['style' => ['width' => '140px']],
                 'value' => function($model) use($childCats){
                     /* @var $model CourseTemplate */
                     return $childCats[$model->cat_id];
                 },
             ],
-            'sn',
-            'version',
+            [
+                'attribute' => 'name',
+                'options' => ['style' => ['width' => '140px']],
+                'class' => common\widgets\GridViewChangeSelfColumn::className(),
+                'plugOptions' => [
+                    'type' => 'input',
+                ]
+            ],
+            [
+                'attribute' => 'sn',
+                'options' => ['style' => ['width' => '70px']],
+            ],
+            [
+                'attribute' => 'version',
+                'options' => ['style' => ['width' => '180px']],
+                'class' => common\widgets\GridViewChangeSelfColumn::className(),
+                'plugOptions' => [
+                    'type' => 'input',
+                ]
+            ], 
             'path',
+            'player',
+            [
+                'attribute' => 'sort_order',
+                'options' => ['style' => ['width' => '70px']],
+                'class' => common\widgets\GridViewChangeSelfColumn::className(),
+                'plugOptions' => [
+                    'type' => 'input',
+                ]
+            ], 
             // 'created_at',
             // 'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn','options' => ['style' => ['width' => '70px']],],
         ],
     ]); ?>
 </div>

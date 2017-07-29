@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'sn',
             'version',
             'path',
+            'player',
             'created_at:datetime',
             'updated_at:datetime',
         ],

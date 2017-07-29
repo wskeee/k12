@@ -7,11 +7,12 @@ use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%course_attr}}".
- *
+ * 记录课程与属性关系以及值
+ * 
  * @property string $course_attr_id
- * @property string $course_id
- * @property integer $attr_id
- * @property string $value
+ * @property string $course_id          课程id
+ * @property integer $attr_id           属性id
+ * @property string $value              值
  */
 class CourseAttr extends ActiveRecord
 {

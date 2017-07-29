@@ -1,5 +1,9 @@
-<?php 
+<?php
+
+use common\models\User;
 use common\widgets\Menu;
+
+/* @var $user User */
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
@@ -7,10 +11,10 @@ use common\widgets\Menu;
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                <img src="<?= WEB_ROOT.$user->avatar?>" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?= $user->nickname ?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -59,6 +63,7 @@ use common\widgets\Menu;
                             ['label' => '课程属性', 'icon' => 'circle-o', 'url' => ['/course/attribute'],],
                             ['label' => '模板列表', 'icon' => 'circle-o', 'url' => ['/course/template'],],
                             ['label' => '教师列表', 'icon' => 'circle-o', 'url' => ['/course/teacher'],],
+                            ['label' => '课程导入', 'icon' => 'circle-o', 'url' => ['/course/import'],],
                         ],
                     ],
                     [

@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 /* @var $this View */
 /* @var $model Course */
 
-$this->title = $model->name;
+$this->title = $model->courseware_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '{Course}{List}', [
         'Course' => Yii::t('app', 'Course'),
         'List' => Yii::t('app', 'List'),
@@ -32,6 +32,10 @@ $attributes = [
     [
         'attribute' => 'cat_id',
         'value' => $model->category->name,
+    ],
+    [
+        'attribute' => 'template_sn',
+        'value' => $model->template->name . "（ $model->template_sn ）",
     ],
     'name',
     'courseware_name',
@@ -78,6 +82,7 @@ array_splice($attributes, 4, 0, $attr_itmes);
 <div class="course-view">
 
     <p>
+        <?= Html::a(Yii::t('app', 'Preview'), ['preview', 'id' => $model->id], ['class' => 'btn btn-success','target' => '_blank']) ?>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?=
         Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [

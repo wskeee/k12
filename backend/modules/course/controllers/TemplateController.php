@@ -14,7 +14,7 @@ use yii\web\NotFoundHttpException;
 /**
  * TemplateController implements the CRUD actions for CourseTemplate model.
  */
-class TemplateController extends Controller
+class TemplateController extends BaseController
 {
     /**
      * @inheritdoc
@@ -111,6 +111,18 @@ class TemplateController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    /**
+     * 获取子级分类
+     * @param type $cat_id      学科id
+     */
+    public function actionSearch($cat_id){
+        Yii::$app->getResponse()->format = 'json';
+        return [
+            'result' => 1,
+            'data' => CourseTemplate::find()->where(['cat_id' => $cat_id])->asArray()->all(),
+        ];
     }
 
     /**

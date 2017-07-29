@@ -18,8 +18,8 @@ class CourseSearch extends Course
     public function rules()
     {
         return [
-            [['id', 'parent_cat_id', 'cat_id', 'type', 'teacher_id', 'is_recommend', 'is_publish', 'order', 'play_count', 'zan_count', 'favorites_count', 'comment_count', 'publish_time', 'publisher', 'create_by', 'created_at', 'updated_at', 'course_model_id'], 'integer'],
-            [['name', 'img', 'path', 'learning_objectives', 'introduction', 'content', 'keywords'], 'safe'],
+            [['id', 'parent_cat_id', 'type', 'teacher_id', 'is_recommend', 'is_publish', 'zan_count', 'favorites_count', 'comment_count', 'publish_time', 'publisher', 'create_by', 'created_at', 'updated_at', 'course_model_id'], 'integer'],
+            [['courseware_name', 'img', 'path', 'learning_objectives', 'introduction', 'content', 'keywords'], 'safe'],
         ];
     }
 
@@ -79,7 +79,7 @@ class CourseSearch extends Course
             'course_model_id' => $this->course_model_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'courseware_name', $this->courseware_name])
             ->andFilterWhere(['like', 'img', $this->img])
             ->andFilterWhere(['like', 'path', $this->path])
             ->andFilterWhere(['like', 'learning_objectives', $this->learning_objectives])

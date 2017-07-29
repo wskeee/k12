@@ -20,10 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
-        'parentCats' => $parentCats,//父级分类
-        'childCats' => $childCats,//子级分类
-        'course_models' => $course_models,//课程模型
-        'teachers' => $teachers,//教师
+        'parentCats' => $parentCats,        //父级分类
+        'childCats' => $childCats,          //学科
+        'templates' => $templates,          //模板
+        'course_models' => $course_models,  //课程模型
+        'teachers' => $teachers,            //教师
     ]) ?>
 
 </div>

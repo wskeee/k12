@@ -25,6 +25,8 @@ if (Yii::$app->controller->action->id === 'login') {
     dmstr\web\AdminLteAsset::register($this);
 
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+    /* @var $user User */
+    $user = Yii::$app->user->identity;
     ?>
     <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -42,12 +44,12 @@ if (Yii::$app->controller->action->id === 'login') {
 
         <?= $this->render(
             'header.php',
-            ['directoryAsset' => $directoryAsset]
+            ['directoryAsset' => $directoryAsset,'user' => $user]
         ) ?>
 
         <?= $this->render(
             'left.php',
-            ['directoryAsset' => $directoryAsset]
+            ['directoryAsset' => $directoryAsset,'user' => $user]
         )
         ?>
 

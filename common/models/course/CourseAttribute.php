@@ -7,15 +7,17 @@ use Yii;
 /**
  * This is the model class for table "{{%course_attribute}}".
  *
- * @property string $id
- * @property string $name
- * @property string $course_model_id
- * @property integer $type
- * @property integer $input_type
- * @property integer $order
- * @property integer $index_type
- * @property string $values
- * @property integer $is_delete
+ * 定义一个属性，一个课程可带多个数据，属性可以有输入型、选择型
+ * 
+ * @property string $id                              
+ * @property string $name                   属性名
+ * @property string $course_model_id        所属模型id
+ * @property integer $type                  类型：0唯一属性、1多行输入、2复选属性       
+ * @property integer $input_type            输入类型：0手工输入、1多行输入、2列表选择
+ * @property integer $order                 排序
+ * @property integer $index_type            检索类型：0不参与检索、1关键字检索、2范围检索
+ * @property string $values                 后选值，以换行符分隔
+ * @property integer $is_delete             是否逻辑删除
  */
 class CourseAttribute extends \yii\db\ActiveRecord
 {

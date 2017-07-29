@@ -10,16 +10,16 @@ use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "{{%course_category}}".
  *
- * @property string $id
- * @property string $name
- * @property string $mobile_name
- * @property string $parent_id
- * @property string $parent_id_path
- * @property integer $level
- * @property integer $sort_order
- * @property integer $is_show
- * @property string $image
- * @property integer $is_hot
+ * @property string $id         
+ * @property string $name                   分类名称
+ * @property string $mobile_name            移动端名称
+ * @property string $parent_id              父级id
+ * @property string $parent_id_path         继承id路径
+ * @property integer $level                 等级：1分类、2学科
+ * @property integer $sort_order            排序
+ * @property integer $is_show               是否显示
+ * @property string $image                  图片
+ * @property integer $is_hot                是否热门
  * 
  * @property CourseCategory $Parent      分类
  */
