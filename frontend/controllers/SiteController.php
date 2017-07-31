@@ -72,6 +72,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = '@app/views/layouts/_main_home';
         return $this->render('index');
     }
 

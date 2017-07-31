@@ -56,4 +56,13 @@ class DefaultController extends Controller
     {
         return $this->render('view');
     }
+    
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionSearch()
+    {
+        return $this->render('_search');
+    }
 }

@@ -1,0 +1,189 @@
+body .k12 {
+    margin: -76px auto 0px;
+    padding: 76px 0 0px;
+}
+
+body .k12 > .container {
+    padding: 0px 15px 20px;
+}
+
+.site-index .banner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.banner .banner-background {
+    min-height: 578px;
+    margin-right: -33.466%;
+    margin-left: -33.466%;
+    background-image: url("/filedata/site/image/background.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center 0;
+}
+
+.banner .banner-search {
+    position: relative;
+    top:  -289px;
+    width: 720px;
+    margin: 0 auto;
+}
+.banner .search-background {
+    width: 700px;
+    height: 60px;
+    margin: 0px auto;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+    background-repeat: no-repeat;
+}
+
+.banner .search-form {
+    width: 690px;
+    height: 50px;
+    position: relative;
+    background-color: #fff;
+    background-repeat: no-repeat;
+}
+
+.search-form .search-input{
+    width: 630px;
+    height: 50px;
+}
+.search-input .form-control{
+    height: 50px;
+    font-size: 16px;
+    border-radius: 0px;
+}
+
+.search-form .search-button{
+    width: 60px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #21b7f1;
+    background-repeat: no-repeat;
+}
+
+.search-form .search-button:hover {
+    cursor:pointer;
+}
+
+/*.banner .background-img {
+    width: 100%;
+    height: 100%;
+    min-height: 578px
+}*/
+
+.body-content {
+    width: 100%;
+    height: 100%;
+}
+
+.body-content .row {
+    position: relative;
+    top: -60px;
+    margin-right: -35.5px;
+    margin-left: -32px;
+}
+
+.body-memu {
+    width: 236px;
+    height: 100%;
+    position: relative;
+    top: 0px;
+    min-height: 150px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 5.4px;
+    
+}
+
+/*.icon-small {
+    width: 40px;
+    height: 32px;
+}
+
+.icon-big {
+    width: 89px;
+    height: 71px;
+}*/
+
+.body-memu-1 {
+    background-color: #ffb400;
+}
+
+.body-memu-2 {
+    background-color: #74b749;
+}
+
+.body-memu-3 {
+    background-color: #00a489;
+}
+
+.body-memu-4 {
+    background-color: #847cc5;
+}
+
+.body-memu-5 {
+    background-color: #ab8465;
+}
+
+.memu-leave {
+    display: block;
+    opacity: 1;
+}
+
+/*.memu-leave-icon {
+    padding-top: 26px;
+    padding-left: 22px;
+    padding-bottom: 15px;
+}
+
+.memu-leave-name {
+    padding-left: 22px;
+    font-size: 20px;
+    color: #fff;
+}*/
+
+.memu-hover {
+    position: absolute;
+    top: 0;
+    display: none;
+    opacity: 0;
+}
+
+/*.memu-hover-des {
+    height: 107px;
+    padding-top: 29px;
+    font-size: 20px;
+    color: #4b3100;
+    text-align: center;
+}
+
+.memu-hover-more {
+    height: 43px;
+    padding-top: 6px;
+    padding-left: 20px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.hover-more-1 {
+    background-color: #b87900;
+}
+.hover-more-2 {
+    background-color: #4c7f2b;
+}
+.hover-more-3 {
+    background-color: #00715e;
+}
+.hover-more-4 {
+    background-color: #585288;
+}
+.hover-more-5 {
+    background-color: #6c523d;
+}*/
