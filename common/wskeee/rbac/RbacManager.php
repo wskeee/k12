@@ -132,7 +132,7 @@ class RbacManager extends DbManager{
         }
         
         if(!is_array($userId) && !is_array($role)){
-            $role = ($role instanceof Role) ? : $this->getRole($role);
+            $role = ($role instanceof Role) ? $role : $this->getRole($role);
             return parent::assign($role, $userId);
         }else{
             $rows =[];
