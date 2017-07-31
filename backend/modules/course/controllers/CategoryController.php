@@ -2,6 +2,7 @@
 
 namespace backend\modules\course\controllers;
 
+use backend\components\BaseController;
 use common\models\course\CourseCategory;
 use common\models\course\searchs\CourseCategorySearch;
 use Yii;

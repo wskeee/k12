@@ -2,6 +2,7 @@
 
 namespace backend\modules\course\controllers;
 
+use backend\components\BaseController;
 use common\models\course\CourseAttribute;
 use common\models\course\CourseModel;
 use common\models\course\searchs\CourseAttributeSearch;

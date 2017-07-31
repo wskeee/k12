@@ -2,12 +2,12 @@
 
 namespace backend\modules\course\controllers;
 
-use Yii;
-use common\models\Teacher;
 use common\models\searchs\TeacherSearch;
+use common\models\Teacher;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * TeacherController implements the CRUD actions for Teacher model.

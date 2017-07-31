@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace backend\modules\course\controllers;
+namespace backend\components;
 
 use Yii;
 use yii\db\ActiveRecord;

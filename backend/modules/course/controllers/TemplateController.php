@@ -2,13 +2,12 @@
 
 namespace backend\modules\course\controllers;
 
+use backend\components\BaseController;
 use common\models\course\CourseCategory;
 use common\models\course\CourseTemplate;
 use common\models\course\searchs\CourseTemplateSearch;
 use Yii;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
