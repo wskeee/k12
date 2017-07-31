@@ -128,4 +128,10 @@ return [
     //课程导入
     'Import' => '课程导入',
     'Result' => '结果',
+    
+    /****************frontend title***********************/
+    //Site <title>
+    'My Yii Application' => '我的Yii应用程序',
+    //Study <title>
+    '' => '',
 ];
