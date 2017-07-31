@@ -92,126 +92,105 @@ $this->title = Yii::t('app', 'My Yii Application');
             </div>
             <!--条件选择-->
             <!--过滤器-->
-            <div class="filter-column">
-                <div class="fc-selector"><a href="#" class="active">默认</a></div>
-                <div class="fc-selector"><a href="#">播放最多</a></div>
-            </div>
+            <?= $this->render('/layouts/_filter') ?>
             <!--过滤器-->
             <!--课程课件-->
             <div class="goods-column">
-                <div class="row">
                     
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
-                    
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                </div>
+
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
-                    
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                </div>
+
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
-                    
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                </div>
+
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
-                    
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                </div>
+
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
-                    
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                </div>
+
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
-                    
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                </div>
+
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
-                    
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                </div>
+
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
-                    
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                </div>
+
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
-                    
-                    <div class="gc-item">
-                        <a href="/study/default/view"><div class="gc-img"></div></a>
-                        <div class="gc-name course-name">课程名称课程名称课程名称</div>
-                        <div class="gc-see">
-                            <i class="glyphicon glyphicon-play-circle"></i>
-                            <span>123456</span>
-                        </div>
+                </div>
+
+                <div class="gc-item">
+                    <a href="/study/default/view"><div class="gc-img"></div></a>
+                    <div class="gc-name course-name">课程名称课程名称课程名称</div>
+                    <div class="gc-see">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <span>123456</span>
                     </div>
+                </div>
                     
-                </div>    
             </div>
             <!--课程课件-->
             <!--分页-->
-            <div class="page">
-                <div class="p-wrap">
-                    <div class="p-num">
-                        <a class="pn-prev disabled"><i>&lt;</i>上一页</a>
-                        <a href="javascript:;" class="active">1</a>
-                        <a  href="javascript:;">2</a>
-                        <a href="javascript:;">3</a>
-                        <b class="pn-break">...</b>
-                        <a href="javascript:;">10</a>
-                        <a class="pn-next" href="javascript:;" title="使用方向键右键也可翻到下一页哦！">下一页<i>&gt;</i></a>
-                    </div>
-                    <div class="p-skip">
-                        共<b>100</b>页&nbsp;&nbsp;到第<input class="input-txt" type="text" value="1">页
-                        <a class="btn btn-default" href="javascript:;">确定</a>
-                    </div>
-                </div>
-            </div>
+            <?= $this->render('/layouts/_page') ?>
             <!--分页-->
             
             

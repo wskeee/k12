@@ -15,9 +15,6 @@ $config = [
         'study' => [
             'class' => 'frontend\modules\study\Module',
         ],
-        'search' => [
-            'class' => 'frontend\modules\search\Module',
-        ],
     ],
 ];
 

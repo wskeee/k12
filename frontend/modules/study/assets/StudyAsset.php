@@ -20,6 +20,7 @@ class StudyAsset extends AssetBundle
     public $css = [
         'css/_index.css',
         'css/_view.css',
+        'css/_error.css',
     ];
     public $js = [
         
