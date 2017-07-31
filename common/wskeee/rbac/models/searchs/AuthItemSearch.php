@@ -65,7 +65,7 @@ class AuthItemSearch extends Model
                     $targets [] = new self([
                         'name' => $item->name,
                         'type' => $item->type,
-                        'group_id' => $groupMap[$name],
+                        'group_id' => isset($groupMap[$name]) ? $groupMap[$name] : null,
                         'description' => $item->description,
                     ]);
                 }

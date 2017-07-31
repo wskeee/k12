@@ -19,7 +19,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div id="course-view" class="c-skin-green">
     <div class="title">
         <p><?= $model->courseware_name ?></p>
-        <p>新分支测试!</p>
     </div>
     <div class="content">
         <div id="main">

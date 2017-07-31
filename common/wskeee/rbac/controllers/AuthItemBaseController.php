@@ -184,7 +184,6 @@ class AuthItemBaseController extends Controller
         $categorys = (new Query())
                     ->select(['id', 'name'])
                     ->from(AuthGroup::tableName())
-                    ->where(['is_delete' => 'N'])
                     ->orderBy('order')
                     ->all();
         
