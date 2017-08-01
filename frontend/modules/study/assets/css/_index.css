@@ -35,36 +35,35 @@ body .footer {
 .selector-column {
     width: 100%;
     height: 100%;
-    padding: 0px 20px;
+    padding: 0px 35px;
     font-size: 14px;
 }
 
 .sc-key {
-    width: 105px;
-    position: relative;
-    left: 0px;
+    margin-bottom: 10px;
+    display: inline-block;
+    float: left;
     color: #666;
-    text-align: center;
+    line-height: 20px;
+    text-align: right;
 }
 
 .sc-value {
-    width: 100%;
-    position: relative;
-    top: -15px;
-    bottom: 0px;
-    right: -150px;
-    left: 105px;
+    margin-bottom: 10px;
+    display: inline-table;
+    line-height: 20px;
 }
 
 .sc-value ul {
+    float: left;
     margin-bottom: 0px;
     list-style-type: none;
 }
 
 .sc-value ul > li {
-    margin-top: -5px;
     margin-right: 15px;
     float: left;
+    display: block;
 }
 
 .sc-value ul > li > a{
