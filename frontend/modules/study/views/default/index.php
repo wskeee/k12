@@ -36,7 +36,7 @@ $this->title = Yii::t('app', 'My Yii Application');
             <!--条件选择-->
             <div class="selector-column">
 
-                <div class="k12-column sc-subject">
+                <div class="k12-column">
                     <div class="sc-key">
                         <span>选择学科：</span>
                     </div>
@@ -49,7 +49,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                     </div>
                 </div>
 
-                <div class="k12-column sc-edition">
+                <div class="k12-column">
                     <div class="sc-key">
                         <span>教材版本：</span>
                     </div>
@@ -61,7 +61,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                     </div>
                 </div>
 
-                <div class="k12-column sc-number">
+                <div class="k12-column">
                     <div class="sc-key">
                         <span>所属册数：</span>
                     </div>
@@ -73,7 +73,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                     </div>
                 </div>
 
-                <div class="k12-column sd-grade">
+                <div class="k12-column">
                     <div class="sc-key">
                         <span>所属年级：</span>
                     </div>
