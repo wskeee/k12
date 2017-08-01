@@ -2,6 +2,8 @@
 
 namespace frontend\modules\study\controllers;
 
+use common\models\course\searchs\CourseListSearch;
+use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -45,7 +47,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $search = new CourseListSearch();
+        $result = $search->search(Yii::$app->request->queryParams);
+        return $this->render('index',$result);
     }
     
     /**

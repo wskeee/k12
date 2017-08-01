@@ -49,7 +49,7 @@ class ExcelUtil {
                 $columnVal = [];
                 $lastValue = null;
                 foreach ($cellIterator as $cell) {
-                    $value = $cell->getValue();
+                    $value = trim($cell->getValue());
                     $columnVal[] = $value ? $value : ($fillLastForNullValue ? $lastValue : null);
                     if($fillLastForNullValue && $value)
                         $lastValue = $value;
@@ -79,7 +79,7 @@ class ExcelUtil {
                 $lineVal = [];
                 $lastValue;
                 foreach ($cellIterator as $cell) {
-                    $value = $cell->getValue();
+                    $value = trim($cell->getValue());
                     $lineVal[] = $value;
                 }
                 $result [] = $lineVal;
