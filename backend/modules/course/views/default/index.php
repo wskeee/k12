@@ -56,6 +56,13 @@ $this->title = Yii::t('app', '{Course}{List}', [
             ],
             'courseware_name',
             [
+                'attribute' => 'path',
+                'class' => GridViewChangeSelfColumn::className(),
+                'plugOptions' => [
+                    'type' => 'input',
+                ]
+            ],
+            [
                 'attribute' => 'keywords',
                 'class' => GridViewChangeSelfColumn::className(),
                 'plugOptions' => [

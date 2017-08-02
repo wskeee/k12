@@ -30,11 +30,20 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<?php
+    $coursePlath = trim($model->path);
+    if(substr($coursePlath, 0, 1) != '/'){
+        $coursePlath = '/'.$coursePlath;
+    }
+    if(substr($coursePlath, -1, 1) != '/'){
+        $coursePlath = $coursePlath.'/';
+    }
+?>
 <script type="text/javascript">
-        var domain = 'http://v.eecn.cn/';
+        var domain = 'http://course.tutor.eecn.cn';
 	var id = encodeURIComponent("x")                                                    //用户id
 	var name = encodeURIComponent("e")                                                  //用户名
-	var netpath = encodeURIComponent(domain+"<?= trim($model->path) ?>")                      //课程资源网络路径
+	var netpath = encodeURIComponent(domain+"<?= $coursePlath ?>")                                        //课程资源网络路径
 	var templetNetPath = encodeURIComponent(domain+"<?= trim($model->template->path) ?>")         //课程资源网络路径
 	var webserver = encodeURIComponent("x")                                                 //webservice 服务路径
         var player = domain + "<?= trim($model->template->player) ?>";                                //播放器路径 
