@@ -33,11 +33,11 @@ class CourseListSearch {
         //      'attrs' => [
         //          [
         //              'attr_id' => 1,                                             //{int} 属性id
-        //              'value' => '初级',                                          //{string} 属性的值
+        //              'attr_value' => '初级',                                          //{string} 属性的值
         //          ],
         //          [
         //              'attr_id' => 2_3_15,                                        //{string} 属性id组合以'_'连接
-        //              'value' => '一年级_二年级',                                  //{array} 属性值组合以'_'连接
+        //              'attr_value' => '一年级_二年级',                                  //{array} 属性值组合以'_'连接
         //          ],
         //      ]
         // ]
@@ -57,8 +57,7 @@ class CourseListSearch {
                 ->select(['Course.id', 'Course.parent_cat_id', 'Course.cat_id',
                     'Course.img', 'Course.courseware_name as name', 'Course.play_count'
                 ])
-                ->from(['Course' => Course::tableName()])
-                ->leftJoin(['CourseAtt' => CourseAttr::tableName()], 'CourseAtt.course_id = id');
+                ->from(['Course' => Course::tableName()]);
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -66,13 +65,17 @@ class CourseListSearch {
             //如果cat_id是'_'组合即为id组合
             'Course.cat_id' => $cat_id == null ? null : (strpos($cat_id, '_') ? explode('_', $cat_id) : $cat_id),
         ]);
-        foreach ($attrs as $attr_arr){
-            $query->andFilterWhere([
-                'CourseAtt.attr_id' => explode('_', $attr_arr['attr_id']),          //拆分属性id
-                'CourseAtt.value' => explode('_', $attr_arr['attr_value'])          //拆分属性值
-            ]);
-            //合并所有已经选择的属性id
-            $attr_has_filter_ids = array_merge($attr_has_filter_ids,explode('_', $attr_arr['attr_id']));
+        //添加属性过滤条件
+        if(count($attrs)>0){
+            $query->leftJoin(['CourseAtt' => CourseAttr::tableName()], 'CourseAtt.course_id = Course.id');
+            foreach ($attrs as $attr_arr){
+                $query->andFilterWhere([
+                    'CourseAtt.attr_id' => explode('_', $attr_arr['attr_id']),          //拆分属性id
+                    'CourseAtt.value' => explode('_', $attr_arr['attr_value'])          //拆分属性值
+                ]);
+                //合并所有已经选择的属性id
+                $attr_has_filter_ids = array_merge($attr_has_filter_ids,explode('_', $attr_arr['attr_id']));
+            }
         }
 
         $query->orderBy("Course.$sort_order DESC");                                 //设置排序
