@@ -2,11 +2,21 @@
 
 namespace frontend\modules\study\controllers;
 
+use common\models\course\Course;
+use common\models\course\CourseAttr;
+use common\models\course\CourseAttribute;
+use common\models\course\CourseCategory;
 use common\models\course\searchs\CourseListSearch;
+use common\models\Menu;
+use frontend\components\MenuUtil;
 use Yii;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * Default controller for the `study` module
@@ -47,9 +57,14 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        $params = Yii::$app->request->queryParams;
         $search = new CourseListSearch();
-        $result = $search->search(Yii::$app->request->queryParams);
-        return $this->render('index',$result);
+        $results = $search->search($params);
+        $filters = $this->getFilterSearch($params);
+        
+        return $this->render('index', array_merge($results, 
+            array_merge(['filters' => $filters], ['category' => CourseCategory::findOne($results['filter']['parent_cat_id'])])
+        ));
     }
     
     /**
@@ -58,7 +73,16 @@ class DefaultController extends Controller
      */
     public function actionView()
     {
-        return $this->render('view');
+        $params = Yii::$app->request->queryParams;
+        $parent_cat_id = ArrayHelper::getValue($params, 'parent_cat_id');
+        $id = ArrayHelper::getValue($params, 'id');
+        $link = Url::to(['index', 'parent_cat_id' => $parent_cat_id]);
+        $controllerId = '/'.Yii::$app->controller->id;
+        
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+            'menu' => MenuUtil::getMenus(Menu::POSITION_FRONTEND)->where(['link' => strstr($link, $controllerId)])->one(),
+        ]);
     }
     
     /**
@@ -67,6 +91,73 @@ class DefaultController extends Controller
      */
     public function actionSearch()
     {
-        return $this->render('_search');
+        $search = new CourseListSearch();
+        $result = $search->searchKeywords(Yii::$app->request->queryParams);
+        
+        if(isset($result['result']['courses']) && !empty($result['result']['courses']))
+            return $this->render('_search', $result);
+        else{
+            $this->layout = '@frontend/modules/study/views/layouts/_main';
+            return $this->render('/layouts/_prompt', $result);
+        }
+    }
+    
+    /**
+     * Finds the WorksystemTask model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return WorksystemTask the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Course::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException(\Yii::t('app', 'The requested page does not exist.'));
+        }
+    }
+    
+    public function getFilterSearch($params)
+    {
+        //var_dump($params);exit;
+        $cat_id = ArrayHelper::getValue($params, 'cat_id');
+        $attrs = ArrayHelper::getValue($params, 'attrs', []);
+        $catItems = [];         //学科
+        $attrItems = [];        //属性
+        
+        //学科
+        if($cat_id != null){
+            $courseCats = (new Query())
+                    ->select(['CourseCat.id AS cat_id', 'CourseCat.name AS filter_value'])
+                    ->from(['CourseCat' => CourseCategory::tableName()])
+                    ->filterWhere(['id' => $cat_id])
+                    ->one();
+            $catItems = [Yii::t('app', 'Cat') => $courseCats];
+        }
+        //属性
+        if($attrs != null){
+            $courseAttrs = (new Query())
+                ->select(['CourseAttValue.attr_id', 'CourseAttValue.value AS filter_value', 'CourseAttr.name AS attr_name'])
+                ->from(['CourseAttValue' => CourseAttr::tableName()])
+                ->leftJoin(['CourseAttr' => CourseAttribute::tableName()], 'CourseAttr.id = CourseAttValue.attr_id');
+
+            foreach ($attrs as $attr_arr){
+                $courseAttrs->orFilterWhere([
+                    'CourseAttValue.attr_id' => explode('_', $attr_arr['attr_id']),          //拆分属性id
+                    'CourseAttValue.value' => explode('_', $attr_arr['attr_value'])          //拆分属性值
+                ]);
+            }
+            $courseAttrs = $courseAttrs->groupBy('CourseAttValue.attr_id')->all();
+
+            //重组
+            foreach ($courseAttrs as $courseAttr) {
+                $attrItems[$courseAttr['attr_name']] = $courseAttr;
+                unset($attrItems[$courseAttr['attr_name']]['attr_name']);
+            }
+        }
+        
+        $resultItems = array_merge($catItems, $attrItems);
+        return $resultItems;
     }
 }

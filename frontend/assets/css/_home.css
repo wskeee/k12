@@ -9,12 +9,10 @@ body .k12 > .container {
 
 .site-index .banner {
     width: 100%;
-    height: 100%;
-    position: relative;
 }
 
 .banner .banner-background {
-    min-height: 578px;
+    height: 578px;
     margin-right: -33.466%;
     margin-left: -33.466%;
     background-image: url("/filedata/site/image/background.jpg");
@@ -25,13 +23,11 @@ body .k12 > .container {
 
 .banner .banner-search {
     position: relative;
-    top:  -289px;
-    width: 720px;
-    margin: 0 auto;
+    top: -340px;
+    margin-bottom: -60px;
 }
 .banner .search-background {
     width: 700px;
-    height: 60px;
     margin: 0px auto;
     padding: 5px;
     background-color: rgba(0, 0, 0, 0.4);
@@ -39,16 +35,11 @@ body .k12 > .container {
 }
 
 .banner .search-form {
-    width: 690px;
-    height: 50px;
     position: relative;
-    background-color: #fff;
-    background-repeat: no-repeat;
 }
 
 .search-form .search-input{
     width: 630px;
-    height: 50px;
 }
 .search-input .form-control{
     height: 50px;
@@ -80,26 +71,22 @@ body .k12 > .container {
 
 .body-content {
     width: 100%;
-    height: 100%;
+    position: relative;
+    top: 0px;
 }
 
 .body-content .row {
-    position: relative;
-    top: -60px;
-    margin-right: -35.5px;
+    margin-right: -35.9px;
     margin-left: -32px;
 }
 
 .body-memu {
-    width: 236px;
-    height: 100%;
+    width: 236.2px;
     position: relative;
-    top: 0px;
-    min-height: 150px;
     padding-right: 0px;
     padding-left: 0px;
     margin-right: 5.4px;
-    
+    margin-bottom: 22px;
 }
 
 /*.icon-small {
@@ -133,7 +120,6 @@ body .k12 > .container {
 }
 
 .memu-leave {
-    display: block;
     opacity: 1;
 }
 
@@ -152,7 +138,6 @@ body .k12 > .container {
 .memu-hover {
     position: absolute;
     top: 0;
-    display: none;
     opacity: 0;
 }
 

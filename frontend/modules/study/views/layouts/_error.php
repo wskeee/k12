@@ -8,7 +8,7 @@ use yii\web\View;
 $this->title = Yii::t('app', 'My Yii Application');
 ?>
 
-<div class="study-default-error">
+<div class="study-default-error _error">
     
     <div class="body-content">
         <div class="row">

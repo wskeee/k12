@@ -1,21 +1,23 @@
-.study-default-view .body-content {
+.study-default-view 
+.body-content {
     width: 100%;
     height: 100%;
     margin-top: 88px;
 }
 
+.study-default-view 
 .crumbs-bar {
     width: 100%;
     padding: 0px 20px;
     background-color: #f0f0f0;
 }
 
-.cb-nav {
+.study-default-view 
+.crumbs-bar .cb-nav {
     height: 45px;
 }
 
 .cn-icon {
-    width: 41px;
     float: left;
     padding: 7px 0px;
     margin-right: 18px;
@@ -27,10 +29,8 @@
     display: block;
 }
 
-.icon-book {
-    background-image: url('/filedata/study/icon/courseware-1.png');
-}
-
+.study-default-view 
+.crumbs-bar .cb-nav 
 .cn-item {
     float: left;
     margin-right: 5px;
@@ -39,13 +39,8 @@
     line-height: 45px;
 }
 
-.cn-item .position {
-    color: #ef740a;
-}
-
 .cn-item a, 
 .cn-item i {
-    color: #ef740a;
     font-style: normal;
 }
 
@@ -73,5 +68,4 @@
 .vp-play {
     width: 100%;
     height: 590px;
-    background-color: #c49501;
 }

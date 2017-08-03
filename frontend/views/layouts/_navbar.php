@@ -1,13 +1,20 @@
 <?php
 
+use common\models\Menu;
+use frontend\components\MenuUtil;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
+
 /* @var $this View */
 /* @var $content string */
 
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\helpers\Html;
-use yii\web\View;
-
+$moduleId = Yii::$app->controller->module->id;   //模块ID
+$menus = MenuUtil::__getMenus(Menu::POSITION_FRONTEND);
+$link = Url::to(['index', 'parent_cat_id' => ArrayHelper::getValue(Yii::$app->request->queryParams, 'parent_cat_id')]);
 ?>
 
 <?php 
@@ -19,13 +26,13 @@ use yii\web\View;
         ],
     ]);  
     $menuItems = [['label' => '首页', 'url' => ['/site/index']]];
-
-    $menuItems[] = ['label' => '小学学科同步', 'url' => ['/site/about']];
-    $menuItems[] = ['label' => '中学学科同步', 'url' => ['/site/about']];
-    $menuItems[] = ['label' => '高中学科同步', 'url' => ['/site/about']];
-    $menuItems[] = ['label' => '小学培优', 'url' => ['/site/about']];
-    $menuItems[] = ['label' => '素质提升', 'url' => ['/site/about']];   
-
+    
+    foreach ($menus as $item) {        
+        if($item['url'][0] == $link)
+            $item['options'] = ['class' => 'active'];
+        $menuItems[] = $item;
+    }
+    
     $menuItems[] = [
         'label' => Html::img(['/filedata/site/image/feedback.png']), 
         'url' => '',
@@ -47,7 +54,16 @@ use yii\web\View;
         'options' => ['class' => 'navbar-nav navbar-left container'],
         'encodeLabels' => false,
         'items' => $menuItems,
+        'activateParents' => true,
+        //'route' => $route,
     ]);
     
     NavBar::end();
+?>
+
+<?php
+$js = <<<JS
+    
+JS;
+    //$this->registerJs($js, View::POS_READY);
 ?>

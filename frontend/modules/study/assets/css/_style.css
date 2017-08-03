@@ -1,0 +1,261 @@
+/*********************yellow主题start********************/
+.yellow .header, 
+.yellow .footer,
+.yellow .gc-img,
+.yellow .pagination > .active > a, 
+.yellow .pagination > .active > span, 
+.yellow .pagination > .active > a:hover, 
+.yellow .pagination > .active > span:hover, 
+.yellow .pagination > .active > a:focus, 
+.yellow .pagination > .active > span:focus,
+.yellow .vp-play {
+    background-color: #fdc006;
+}
+
+.yellow .navbar-nav > li:hover,
+.yellow .navbar-nav > .active > a,
+.yellow .navbar-nav > .active > a:hover,
+.yellow .navbar-nav > .active > a:focus {
+    background-color: #c59400;
+}
+
+.yellow .banner-background {
+    background-image: url("/filedata/site/memu/banner/banner-1.jpg");
+}
+
+.yellow .fc-selector .active,
+.yellow .fc-selector > a:hover,
+.yellow .cn-item .position,
+.yellow .cn-item a, 
+.yellow .cn-item i {
+    color: #fdc006;
+}
+
+.yellow .fc-selector .active,
+.yellow .fc-selector > a:hover {
+    border-bottom-color: #fdc006;
+}
+
+.yellow .pagination > .active > a, 
+.yellow .pagination > .active > span, 
+.yellow .pagination > .active > a:hover, 
+.yellow .pagination > .active > span:hover, 
+.yellow .pagination > .active > a:focus, 
+.yellow .pagination > .active > span:focus {
+    border-color: #fdc006;
+    color: #fff;
+}
+
+.yellow .icon-book {
+    background-image: url('/filedata/study/icon/courseware-1.png');
+}
+/*********************yellow主题end********************/
+/*********************green主题start********************/
+.green .header, 
+.green .footer,
+.green .gc-img,
+.green .pagination > .active > a, 
+.green .pagination > .active > span, 
+.green .pagination > .active > a:hover, 
+.green .pagination > .active > span:hover, 
+.green .pagination > .active > a:focus, 
+.green .pagination > .active > span:focus,
+.green .vp-play {
+    background-color: #74b749;
+}
+
+.green .navbar-nav > li:hover,
+.green .navbar-nav > .active > a,
+.green .navbar-nav > .active > a:hover,
+.green .navbar-nav > .active > a:focus {
+    background-color: #47801f;
+}
+
+.green .banner-background {
+    background-image: url("/filedata/site/memu/banner/banner-2.jpg");
+}
+
+.green .fc-selector .active,
+.green .fc-selector > a:hover,
+.green .cn-item .position,
+.green .cn-item a, 
+.green .cn-item i {
+    color: #74b749;
+}
+
+.green .fc-selector .active,
+.green .fc-selector > a:hover {
+    border-bottom-color: #74b749;
+}
+
+.green .pagination > .active > a, 
+.green .pagination > .active > span, 
+.green .pagination > .active > a:hover, 
+.green .pagination > .active > span:hover, 
+.green .pagination > .active > a:focus, 
+.green .pagination > .active > span:focus {
+    border-color: #74b749;
+    color: #fff;
+}
+
+.green .icon-book {
+    background-image: url('/filedata/study/icon/courseware-2.png');
+}
+/*********************green主题end********************/
+/*********************blue主题start********************/
+.blue .header, 
+.blue .footer,
+.blue .gc-img,
+.blue .pagination > .active > a, 
+.blue .pagination > .active > span, 
+.blue .pagination > .active > a:hover, 
+.blue .pagination > .active > span:hover, 
+.blue .pagination > .active > a:focus, 
+.blue .pagination > .active > span:focus,
+.blue .vp-play {
+    background-color: #00a489;
+}
+
+.blue .navbar-nav > li:hover,
+.blue .navbar-nav > .active > a,
+.blue .navbar-nav > .active > a:hover,
+.blue .navbar-nav > .active > a:focus {
+    background-color: #00715f;
+}
+
+.blue .banner-background {
+    background-image: url("/filedata/site/memu/banner/banner-3.jpg");
+}
+
+.blue .fc-selector .active,
+.blue .fc-selector > a:hover,
+.blue .cn-item .position,
+.blue .cn-item a, 
+.blue .cn-item i {
+    color: #00a489;
+}
+
+.blue .fc-selector .active,
+.blue .fc-selector > a:hover {
+    border-bottom-color: #00a489;
+}
+
+.blue .pagination > .active > a, 
+.blue .pagination > .active > span, 
+.blue .pagination > .active > a:hover, 
+.blue .pagination > .active > span:hover, 
+.blue .pagination > .active > a:focus, 
+.blue .pagination > .active > span:focus {
+    border-color: #00a489;
+    color: #fff;
+}
+
+.blue .icon-book {
+    background-image: url('/filedata/study/icon/courseware-3.png');
+}
+/*********************blue主题end********************/
+/*********************purple主题start********************/
+.purple .header, 
+.purple .footer,
+.purple .gc-img,
+.purple .pagination > .active > a, 
+.purple .pagination > .active > span, 
+.purple .pagination > .active > a:hover, 
+.purple .pagination > .active > span:hover, 
+.purple .pagination > .active > a:focus, 
+.purple .pagination > .active > span:focus,
+.purple .vp-play {
+    background-color: #847cc5;
+}
+
+.purple .navbar-nav > li:hover,
+.purple .navbar-nav > .active > a,
+.purple .navbar-nav > .active > a:hover,
+.purple .navbar-nav > .active > a:focus {
+    background-color: #4c4398;
+}
+
+.purple .banner-background {
+    background-image: url("/filedata/site/memu/banner/banner-4.jpg");
+}
+
+.purple .fc-selector .active,
+.purple .fc-selector > a:hover,
+.purple .cn-item .position,
+.purple .cn-item a, 
+.purple .cn-item i {
+    color: #847cc5;
+}
+
+.purple .fc-selector .active,
+.purple .fc-selector > a:hover {
+    border-bottom-color: #847cc5;
+}
+
+.purple .pagination > .active > a, 
+.purple .pagination > .active > span, 
+.purple .pagination > .active > a:hover, 
+.purple .pagination > .active > span:hover, 
+.purple .pagination > .active > a:focus, 
+.purple .pagination > .active > span:focus {
+    border-color: #847cc5;
+    color: #fff;
+}
+
+.purple .icon-book {
+    background-image: url('/filedata/study/icon/courseware-4.png');
+}
+/*********************purple主题end********************/
+/*********************brown主题start********************/
+.brown .header, 
+.brown .footer,
+.brown .gc-img,
+.brown .pagination > .active > a, 
+.brown .pagination > .active > span, 
+.brown .pagination > .active > a:hover, 
+.brown .pagination > .active > span:hover, 
+.brown .pagination > .active > a:focus, 
+.brown .pagination > .active > span:focus,
+.brown .vp-play {
+    background-color: #ab8465;
+}
+
+.brown .navbar-nav > li:hover,
+.brown .navbar-nav > .active > a,
+.brown .navbar-nav > .active > a:hover,
+.brown .navbar-nav > .active > a:focus {
+    background-color: #805737;
+}
+
+.brown .banner-background {
+    background-image: url("/filedata/site/memu/banner/banner-5.jpg");
+}
+
+.brown .fc-selector .active,
+.brown .fc-selector > a:hover,
+.brown .cn-item .position,
+.brown .cn-item a, 
+.brown .cn-item i {
+    color: #ab8465;
+}
+
+.brown .fc-selector .active,
+.brown .fc-selector > a:hover {
+    border-bottom-color: #ab8465;
+}
+
+.brown .pagination > .active > a, 
+.brown .pagination > .active > span, 
+.brown .pagination > .active > a:hover, 
+.brown .pagination > .active > span:hover, 
+.brown .pagination > .active > a:focus, 
+.brown .pagination > .active > span:focus {
+    border-color: #ab8465;
+    color: #fff;
+}
+
+.brown .icon-book {
+    background-image: url('/filedata/study/icon/courseware-5.png');
+}
+/*********************brown主题end********************/
+

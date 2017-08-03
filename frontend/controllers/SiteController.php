@@ -1,17 +1,20 @@
 <?php
 namespace frontend\controllers;
 
-use Yii;
 use common\models\LoginForm;
+use common\models\Menu;
+use frontend\components\MenuUtil;
+use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+use Yii;
 use yii\base\InvalidParamException;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
+use const YII_ENV_TEST;
 
 /**
  * Site controller
@@ -67,13 +70,18 @@ class SiteController extends Controller
 
     /**
      * Displays homepage.
-     *
+     * @param MenuUtil $menuUtil
      * @return mixed
      */
     public function actionIndex()
     {
         $this->layout = '@app/views/layouts/_main_home';
-        return $this->render('index');
+        
+        $menuUtil = MenuUtil::getInstance();
+        
+        return $this->render('index', [
+            'menus' => $menuUtil::getMenus(Menu::POSITION_FRONTEND)->all(),
+        ]);
     }
 
     /**

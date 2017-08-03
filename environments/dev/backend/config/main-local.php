@@ -14,6 +14,9 @@ $config = [
         'user' => [
             'class' => 'backend\modules\user\Module',
         ],
+        'menu' => [
+            'class' => 'backend\modules\menu\Module',
+        ],
     ],
 ];
 

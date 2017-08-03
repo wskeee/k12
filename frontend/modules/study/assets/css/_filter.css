@@ -18,7 +18,8 @@
 
 .fc-selector  .active {
     color: #3aa9db;
-    border-bottom: 2px solid #3aa9db;
+    border-bottom: 2px solid;
+    border-bottom-color: #3aa9db;
 }
 
 .fc-selector > a{
@@ -31,5 +32,6 @@
 .fc-selector > a:hover {
     color: #3aa9db;
     text-decoration: none;
-    border-bottom: 2px solid #3aa9db;
+    border-bottom: 2px solid;
+    border-bottom-color: #3aa9db;
 }
