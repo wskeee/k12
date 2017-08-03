@@ -1,38 +1,54 @@
 <?php
 
 use frontend\modules\study\assets\LayoutsAsset;
+use yii\data\Pagination;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
+use yii\widgets\LinkPager;
 
 /* @var $this View */
+/* @var $pages Pagination */
 
 //$this->title = Yii::t('app', 'My Yii Application');
+//$prevLinks = Url::to(array_merge(['index'], array_merge($filter, ['page' => $pages->page])));
+//$nextLinks = Url::to(array_merge(['index'], array_merge($filter, ['page' => $pages->page+2])));
 ?>
 
 <div class="page">
     <div class="p-wrap">
         <div class="p-num">
-            <a class="pn-prev disabled"><i>&lt;</i>上一页</a>
-            <a href="javascript:;" class="active">1</a>
-            <a  href="javascript:;">2</a>
-            <a href="javascript:;">3</a>
-            <b class="pn-break">...</b>
-            <a href="javascript:;">10</a>
-            <a class="pn-next" href="javascript:;" title="使用方向键右键也可翻到下一页哦！">下一页<i>&gt;</i></a>
+            <?= LinkPager::widget([
+                'pagination' => $pages,
+                'options' => ['class' => 'pagination', 'style' => 'margin: 0px;border-radius: 0px;'],
+                'prevPageCssClass' => 'pn-prev',
+                'nextPageCssClass' => 'pn-next',
+                'prevPageLabel' => '<i>&lt;</i>'.Yii::t('app', 'Prev Page'),
+                'nextPageLabel' => Yii::t('app', 'Prev Page').'<i>&gt;</i>',
+                'maxButtonCount' => 8,
+            ]); ?>
         </div>
         <div class="p-skip">
-            共<b>100</b>页&nbsp;&nbsp;到第<input class="input-txt" type="text" value="1">页
-            <a class="btn btn-default" href="javascript:;">确定</a>
+            <?php if($pages->pageCount >= 2): ?>
+            共<b><?= $pages->pageCount; ?></b>页&nbsp;&nbsp;到第<?= Html::textInput('page', $pages->page+1, ['class' => 'input-txt']) ?>页
+            <?= Html::a(Yii::t('app', 'Save'), "javascript:;", ['id' => 'submit', 'class' => 'btn btn-default']) ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>
 
 <?php
-$js = <<<JS
+unset($filter['page']);
+$url = Url::to(array_merge([Yii::$app->controller->action->id], array_merge($filter)));
 
-   
-        
+$js = <<<JS
+    $("#submit").click(function(){
+        var pageValue = $(".input-txt").val();
+        window.location.href="$url&page="+pageValue;
+    });
+    
 JS;
-    //$this->registerJs($js, View::POS_READY);
+    $this->registerJs($js, View::POS_READY);
 ?>
 
 <?php 

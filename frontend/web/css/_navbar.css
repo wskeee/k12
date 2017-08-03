@@ -4,42 +4,31 @@
 }
 
 .k12 .navbar-inverse {
-    background-color: #0a223a;
-    border-color: #0a223a;
-}
-
-.k12 .navbar-fixed-top {
-    position: absolute;
-    top: 76px;
+    position: relative;
     border-width: 0px;
-}
-
-.k12 .navbar-inverse 
-.navbar-nav > li > a {
-    color: #fff;
+    border-color: #0a223a;
+    background-color: #0a223a;
 }
 
 .k12 .navbar-nav {
     padding-right: 0px;
-}
-
-.k12 .navbar-nav .feedback {
-    padding-top: 5px;
-    padding-bottom: 4px;
-}
-
-.k12 .navbar-inverse 
-.navbar-nav > .active > a, 
-.navbar-inverse .navbar-nav > .active > a:hover, 
-.navbar-inverse .navbar-nav > .active > a:focus {
-    background-color: #a94442;
+    margin-top: -10px;
 }
 
 .k12 .navbar-nav > li > a {
-    padding-top: 9px;
-    padding-bottom: 9px;
+    color: #fff;
+}
+
+.k12 .navbar-nav 
+.navbar-right:hover {
+    background-color: transparent;
+}
+
+.k12 .navbar-nav .feedback {
+    padding-top: 4.5px;
+    padding-bottom: 4.5px;
 }
 
 .k12 .nav > li > a {
-    padding: 10px 25px;
+    padding: 9px 25px 9px;
 }

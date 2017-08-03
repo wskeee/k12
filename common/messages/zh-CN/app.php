@@ -52,6 +52,10 @@ return [
     'Delete' => '删除',
     'Search' => '搜索',
     'Back' => '返回',
+    'Save' => '确定',
+    'Cancel' => '取消',
+    'Submit' => '提交',
+    'Close' => '关闭',
     'View' => '查看',
     'Detail' => '详情',
     'Deploy' => '配置',
@@ -60,11 +64,11 @@ return [
     'Y' => '是',
     'N' => '否',
     'Is Deleted' => '是否已删除',
-    'Submit' => '提交',
-    'Close' => '关闭',
     'Order' => '排序',
     'Success' => '成功',
     'Fail' => '失败',
+    'Prev Page' => '上一页',
+    'Next Page' => '下一页',
     'Yes' => '是',
     'No' => '否',
     
@@ -73,6 +77,12 @@ return [
     'The requested page does not exist.' => '所请求的页面不存在。',
     'Select Placeholder' => '请选择...',
     
+    //菜单管理
+    'Menus' => '菜单',
+    'Alias' => '别名',
+    'Module' => '模块',
+    'Is Jump' => '是否跳转',
+    'Position' => '位置',
     //课程分类管理
     'Course' => '课程',
     'Courses' => '课程',

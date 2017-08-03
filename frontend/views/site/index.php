@@ -1,11 +1,13 @@
 <?php
 
+use common\models\Menu;
 use frontend\assets\HomeAsset;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 
 /* @var $this View */
+/* @var $item Menu */
 
 $this->title = Yii::t('app', 'My Yii Application');
 ?>
@@ -26,8 +28,10 @@ $this->title = Yii::t('app', 'My Yii Application');
                             'options'=>[
                                 'id' => 'search-form',
                                 'class'=>'form-horizontal',
+                                'onsubmit' => 'submit();',
                             ],
                             'action' => ['study/default/search'],
+                            'method' => 'get'
                         ]) ?>
                         
                         <?= Html::textInput('keyword', null, ['class' => 'form-control', 'placeholder' => '请输入你想搜索的关键词']) ?>
@@ -35,7 +39,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                         <?php ActiveForm::end(); ?>
                         
                     </div>
-                    <a id="submit">
+                    <a id="submit" onclick="submit();">
                         <div class="search-button">
                             <?= Html::img(['/filedata/site/image/search-icon.png']) ?>
                         </div>
@@ -48,53 +52,19 @@ $this->title = Yii::t('app', 'My Yii Application');
     <div class="body-content">
 
         <div class="row">
+            <?php foreach ($menus as $index => $item): $index = $index+1?>
+            <div class="col-lg-5 body-memu body-memu-<?= $index ?>">
+                <div class="memu-leave">
+                    <?= Html::img(["/filedata/site/memu/image/memu-leave-{$index}.png"]) ?>
+                </div>
+                <div class="memu-hover">
+                    <?= Html::a(Html::img(["/filedata/site/memu/image/memu-hover-{$index}.png"]), [$item->module.$item->link]) ?>
+                </div>
+            </div>
+            <?php endforeach; ?>
             
+            <!--
             <div class="col-lg-5 body-memu body-memu-1">
-                <div class="memu-leave">
-                    <?= Html::img(['/filedata/site/memu/image/memu-leave-1.png']) ?>
-                </div>
-                <div class="memu-hover">
-                    <a href="#"><?= Html::img(['/filedata/site/memu/image/memu-hover-1.png']) ?></a>
-                </div>
-            </div>
-            
-            <div class="col-lg-5 body-memu body-memu-2">
-                <div class="memu-leave">
-                    <?= Html::img(['/filedata/site/memu/image/memu-leave-2.png']) ?>
-                </div>
-                <div class="memu-hover">
-                    <a href="#"><?= Html::img(['/filedata/site/memu/image/memu-hover-2.png']) ?></a>
-                </div>
-            </div>
-            
-            <div class="col-lg-5 body-memu body-memu-3">
-                <div class="memu-leave">
-                    <?= Html::img(['/filedata/site/memu/image/memu-leave-3.png']) ?>
-                </div>
-                <div class="memu-hover">
-                    <a href="#"><?= Html::img(['/filedata/site/memu/image/memu-hover-3.png']) ?></a>
-                </div>
-            </div>
-            
-            <div class="col-lg-5 body-memu body-memu-4">
-                <div class="memu-leave">
-                    <?= Html::img(['/filedata/site/memu/image/memu-leave-4.png']) ?>
-                </div>
-                <div class="memu-hover">
-                    <a href="#"><?= Html::img(['/filedata/site/memu/image/memu-hover-4.png']) ?></a>
-                </div>
-            </div>
-            
-            <div class="col-lg-5 body-memu body-memu-5">
-                <div class="memu-leave">
-                    <?= Html::img(['/filedata/site/memu/image/memu-leave-5.png']) ?>
-                </div>
-                <div class="memu-hover">
-                    <a href="#"><?= Html::img(['/filedata/site/memu/image/memu-hover-5.png']) ?></a>
-                </div>
-            </div>
-            
-            <!--<div class="col-lg-5 body-memu body-memu-1">
                 <div class="memu-leave">
                     <div class="memu-leave-icon">
                         <?= Html::img(['/filedata/site/memu/elementary_school.png'], ['class' => 'icon-big']) ?>
@@ -197,7 +167,8 @@ $this->title = Yii::t('app', 'My Yii Application');
                         <span style="margin-left: 25px">立即选课</span>
                     </div>
                 </div>
-            </div>-->
+            </div>
+            -->
             
         </div>
 
@@ -206,6 +177,11 @@ $this->title = Yii::t('app', 'My Yii Application');
 
 <?php
 $js = <<<JS
+    
+    /** 单击提交表单 */
+    window.submit = function(){
+        $('#search-form').submit();
+    }
         
     /** 鼠标经过换图标背景颜色 */      
     $('.body-content .row .body-memu').each(function(){

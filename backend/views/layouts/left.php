@@ -40,6 +40,7 @@ use common\widgets\Menu;
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => '菜单管理', 'icon' => 'bars', 'url' => ['/menu/default']],
                     [
                         'label' => '权限与用户管理',
                         'icon' => 'bars',
