@@ -146,10 +146,8 @@ class CourseListSearch {
         
         //关联表查询
         $query = (new Query())
-                ->select(['Course.id', 'Course.parent_cat_id', 'Course.cat_id', 'Course.img', 'Course.play_count',
-                    'Course.name', 'Course.courseware_name', 'Course.keywords',
-                    'CourseParentCat.name AS parentCatName', 'CourseCat.name AS catName',
-                    'CourseAtt.value'
+                ->select(['Course.id', 'Course.parent_cat_id', 'Course.cat_id', 
+                    'Course.img', 'Course.play_count', 'Course.courseware_name'
                 ])
                 ->from(['Course' => Course::tableName()])
                 ->leftJoin(['CourseAtt' => CourseAttr::tableName()], 'CourseAtt.course_id = id')
@@ -165,7 +163,7 @@ class CourseListSearch {
         $query->orFilterWhere(['like', 'CourseAtt.value', $keyword]);
         
         $query->groupBy("Course.id");                                   //分组
-        $query->orderBy("Course.$sort_order");                          //排序
+        $query->orderBy("Course.$sort_order DESC");                     //排序
         $queryPage = clone $query;
         $course_result = $query->all();                                 //课程查询结果
         //分页

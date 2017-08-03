@@ -3,11 +3,11 @@
 namespace frontend\modules\study\controllers;
 
 use common\models\course\Course;
-use common\models\course\CourseAttr;
 use common\models\course\CourseAttribute;
 use common\models\course\CourseCategory;
 use common\models\course\searchs\CourseListSearch;
 use common\models\Menu;
+use common\models\SearchLog;
 use frontend\components\MenuUtil;
 use Yii;
 use yii\db\Query;
@@ -96,7 +96,9 @@ class DefaultController extends Controller
     public function actionSearch()
     {
         $search = new CourseListSearch();
-        $result = $search->searchKeywords(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->queryParams;
+        $result = $search->searchKeywords($params);        
+        $this->saveSearchLog($params);
         
         if(isset($result['result']['courses']) && !empty($result['result']['courses']))
             return $this->render('_search', $result);
@@ -174,5 +176,22 @@ class DefaultController extends Controller
         
         $resultItems = array_merge($catItems, $attrItems);
         return $resultItems;
+    }
+    
+    /**
+     * 保存搜索日志数据
+     * @param type $params
+     */
+    public function saveSearchLog($params)
+    {
+        $keyword = ArrayHelper::getValue($params, 'keyword');
+        $Logs = [
+            'keyword' => ArrayHelper::getValue($params, 'keyword'),
+            'created_at' => time(),
+            'updated_at' => time()
+        ];
+        
+        /** 添加$Logs数组到表里 */
+        Yii::$app->db->createCommand()->insert(SearchLog::tableName(), $Logs)->execute();        
     }
 }
