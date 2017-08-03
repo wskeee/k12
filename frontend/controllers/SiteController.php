@@ -161,6 +161,16 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    
+     /**
+     * Logs out the current user.
+     *
+     * @return mixed
+     */
+    public function actionUnauthorized($ip)
+    {
+        echo "IP：$ip 未授权！";
+    }
 
     /**
      * Signs user up.
