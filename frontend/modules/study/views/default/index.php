@@ -33,7 +33,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                     <?php foreach ($filters as $filter_name => $filter_value): ?>
                     <div class="cn-item">
                         <i class="cnbi-arrow">&gt;</i>
-                        <a href="#" class="cni-key"><b><?= $filter_name ?>：</b><em><?= $filter_value['filter_value'] ?></em><i>×</i></a>
+                        <?= Html::a("<b>$filter_name</b><em>{$filter_value['filter_value']}</em><i>×</i>", $filter_value['url'], ['class' => 'class="cni-key']) ?>
                     </div>
                    <?php endforeach; ?>
                     

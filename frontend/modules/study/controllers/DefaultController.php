@@ -120,7 +120,6 @@ class DefaultController extends Controller
     
     public function getFilterSearch($params)
     {
-        //var_dump($params);exit;
         $cat_id = ArrayHelper::getValue($params, 'cat_id');
         $attrs = ArrayHelper::getValue($params, 'attrs', []);
         $catItems = [];         //学科
@@ -129,32 +128,39 @@ class DefaultController extends Controller
         //学科
         if($cat_id != null){
             $courseCats = (new Query())
-                    ->select(['CourseCat.id AS cat_id', 'CourseCat.name AS filter_value'])
+                    ->select(['CourseCat.name AS filter_value'])
                     ->from(['CourseCat' => CourseCategory::tableName()])
                     ->filterWhere(['id' => $cat_id])
                     ->one();
-            $catItems = [Yii::t('app', 'Cat') => $courseCats];
+            $paramsCopy = $params;
+            unset($paramsCopy['cat_id']);
+            $catItems = [Yii::t('app', 'Cat') => array_merge($courseCats, ['url' => Url::to(array_merge(['index'], $paramsCopy))])];
         }
+        
         //属性
         if($attrs != null){
             $courseAttrs = (new Query())
-                ->select(['CourseAttValue.attr_id', 'CourseAttValue.value AS filter_value', 'CourseAttr.name AS attr_name'])
-                ->from(['CourseAttValue' => CourseAttr::tableName()])
-                ->leftJoin(['CourseAttr' => CourseAttribute::tableName()], 'CourseAttr.id = CourseAttValue.attr_id');
+                ->select(['id', 'name'])
+                ->from(CourseAttribute::tableName());
 
             foreach ($attrs as $attr_arr){
                 $courseAttrs->orFilterWhere([
-                    'CourseAttValue.attr_id' => explode('_', $attr_arr['attr_id']),          //拆分属性id
-                    'CourseAttValue.value' => explode('_', $attr_arr['attr_value'])          //拆分属性值
+                    'id' => explode('_', $attr_arr['attr_id'])[0],          //拆分属性id
                 ]);
             }
-            $courseAttrs = $courseAttrs->groupBy('CourseAttValue.attr_id')->all();
-
-            //重组
-            foreach ($courseAttrs as $courseAttr) {
-                $attrItems[$courseAttr['attr_name']] = $courseAttr;
-                unset($attrItems[$courseAttr['attr_name']]['attr_name']);
+            
+            $courseAttrsItems = ArrayHelper::map($courseAttrs->orderBy('order')->all(), 'id', 'name');
+            
+            foreach($attrs as $key => $attr){
+                $attrrCopy =  $attrs;
+                unset($attrrCopy[$key]);
+                $attrItems[$courseAttrsItems[$attr['attr_id']]] = [
+                    'filter_value' => $attr['attr_value'],
+                    'url' => Url::to(array_merge(['index'], array_merge($params ,['attrs' =>$attrrCopy]))),
+                ];
             }
+            
+           
         }
         
         $resultItems = array_merge($catItems, $attrItems);
