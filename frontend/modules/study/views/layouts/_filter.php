@@ -8,8 +8,8 @@ use yii\web\View;
 /* @var $this View */
 
 //$this->title = Yii::t('app', 'My Yii Application');
-$defaultUrl = Url::to(array_merge([Yii::$app->controller->action->id], array_merge($filter, ['order' => 'order'])));
-$mostUrl = Url::to(array_merge([Yii::$app->controller->action->id], array_merge($filter, ['order' => 'play_count'])));
+$defaultUrl = Url::to(array_merge([Yii::$app->controller->action->id], array_merge($filter, ['sort_order' => 'order'])));
+$mostUrl = Url::to(array_merge([Yii::$app->controller->action->id], array_merge($filter, ['sort_order' => 'play_count'])));
 ?>
 
 <div class="filter-column">

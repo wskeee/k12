@@ -75,7 +75,7 @@ class CourseListSearch {
             $attr_has_filter_ids = array_merge($attr_has_filter_ids,explode('_', $attr_arr['attr_id']));
         }
 
-        $query->orderBy("Course.$sort_order");                                      //设置排序
+        $query->orderBy("Course.$sort_order DESC");                                 //设置排序
         $query->groupBy("Course.id");
         
         $queryPage = clone $query;

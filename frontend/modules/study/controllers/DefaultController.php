@@ -73,9 +73,13 @@ class DefaultController extends Controller
      */
     public function actionView()
     {
+        
         $params = Yii::$app->request->queryParams;
         $parent_cat_id = ArrayHelper::getValue($params, 'parent_cat_id');
         $id = ArrayHelper::getValue($params, 'id');
+        $model = $this->findModel($id);
+        $model->play_count += 1;
+        $model->save(false, ['play_count']);
         $link = Url::to(['index', 'parent_cat_id' => $parent_cat_id]);
         $controllerId = '/'.Yii::$app->controller->id;
         
@@ -118,6 +122,11 @@ class DefaultController extends Controller
         }
     }
     
+    /**
+     * 获取过滤筛选的结果
+     * @param array $params                 传参数
+     * @return array
+     */
     public function getFilterSearch($params)
     {
         $cat_id = ArrayHelper::getValue($params, 'cat_id');
