@@ -2,6 +2,7 @@
 
 namespace frontend\modules\study\controllers;
 
+use common\models\Buyunit;
 use common\models\course\Course;
 use common\models\course\CourseAttribute;
 use common\models\course\CourseCategory;
@@ -52,7 +53,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * Renders the index view for the module
+     * Renders  the index view for the module
      * @return string
      */
     public function actionIndex()
@@ -68,37 +69,56 @@ class DefaultController extends Controller
     }
     
     /**
-     * Renders the index view for the module
+     * Renders View the index view for the module
      * @return string
      */
     public function actionView()
     {
-        
         $params = Yii::$app->request->queryParams;
-        $parent_cat_id = ArrayHelper::getValue($params, 'parent_cat_id');
-        $id = ArrayHelper::getValue($params, 'id');
-        $model = $this->findModel($id);
-        $model->play_count += 1;
-        $model->save(false, ['play_count']);
-        $link = Url::to(['index', 'parent_cat_id' => $parent_cat_id]);
-        $controllerId = '/'.Yii::$app->controller->id;
-        
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-            'menu' => MenuUtil::getMenus(Menu::POSITION_FRONTEND)->where(['link' => strstr($link, $controllerId)])->one(),
-        ]);
+        $cat_id = ArrayHelper::getValue($params, 'cat_id');
+        $isBuy = Buyunit::checkAuthorize($cat_id);
+        if($isBuy){
+            $parent_cat_id = ArrayHelper::getValue($params, 'parent_cat_id');
+            $id = ArrayHelper::getValue($params, 'id');
+            $model = $this->findModel($id);
+            $model->play_count += 1;
+            $model->save(false, ['play_count']);
+            $link = Url::to(['index', 'parent_cat_id' => $parent_cat_id]);
+            $controllerId = '/'.Yii::$app->controller->id;
+            
+            return $this->render('view', [
+                'model' => $model,
+                'menu' => MenuUtil::getMenus(Menu::POSITION_FRONTEND)->where(['link' => strstr($link, $controllerId)])->one(),
+            ]);
+        }else{
+            $this->layout = '@frontend/modules/study/views/layouts/_main';
+            return $this->render('/layouts/_error');
+        }
+            
     }
     
     /**
-     * Renders the index view for the module
+     * Renders Search the index view for the module
      * @return string
      */
     public function actionSearch()
     {
+        $params = Yii::$app->request->queryParams;
+        $keyword = ArrayHelper::getValue($params, 'keyword');
+        $this->saveSearchLog($keyword);
+        
+        return $this->redirect(['search-result', 'keyword' => $keyword]);
+    }    
+    
+    /**
+     * Renders SearchResult the index view for the module
+     * @return string
+     */
+    public function actionSearchResult()
+    {
         $search = new CourseListSearch();
         $params = Yii::$app->request->queryParams;
-        $result = $search->searchKeywords($params);        
-        $this->saveSearchLog($params);
+        $result = $search->searchKeywords($params);
         
         if(isset($result['result']['courses']) && !empty($result['result']['courses']))
             return $this->render('_search', $result);
@@ -141,7 +161,7 @@ class DefaultController extends Controller
             $courseCats = (new Query())
                     ->select(['CourseCat.name AS filter_value'])
                     ->from(['CourseCat' => CourseCategory::tableName()])
-                    ->filterWhere(['id' => $cat_id])
+                    ->where(['id' => $cat_id])
                     ->one();
             $paramsCopy = $params;
             unset($paramsCopy['cat_id']);
@@ -180,18 +200,16 @@ class DefaultController extends Controller
     
     /**
      * 保存搜索日志数据
-     * @param type $params
+     * @param array $params
      */
     public function saveSearchLog($params)
     {
-        $keyword = ArrayHelper::getValue($params, 'keyword');
         $Logs = [
             'keyword' => ArrayHelper::getValue($params, 'keyword'),
             'created_at' => time(),
             'updated_at' => time()
         ];
-        
         /** 添加$Logs数组到表里 */
-        Yii::$app->db->createCommand()->insert(SearchLog::tableName(), $Logs)->execute();        
+        Yii::$app->db->createCommand()->insert(SearchLog::tableName(), $Logs)->execute();
     }
 }

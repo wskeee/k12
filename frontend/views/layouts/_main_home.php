@@ -1,12 +1,13 @@
 <?php
 
-/* @var $this View */
-/* @var $content string */
-
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\web\View;
+
+
+/* @var $this View */
+/* @var $content string */
 
 AppAsset::register($this);
 ?>
@@ -23,13 +24,21 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<header class="header">
-    <div class="container">
-        <p class="pull-left"><?= Html::img(['/filedata/site/image/logo.png']) ?></p>
-
-        <p class="pull-right"><?= Html::img(['/filedata/site/image/feedback.png']) ?></p>
-    </div>
-</header>
+<?php 
+    $params = [
+        [
+            'label' => Html::img(['/filedata/site/image/words.png']),
+            'options' => ['class' => 'pull-right'],
+            'childs' => [
+                [
+                    'label' => Html::img(['/filedata/site/image/feedback.png'], ['style' => 'margin-left: 10px;']),
+                ]
+            ],
+        ],
+    ];
+    
+    echo $this->render('_header', ['params' => $params]); 
+?>
     
 <div class="wrap k12">
         
@@ -39,6 +48,8 @@ AppAsset::register($this);
     </div>
 </div>
 
+<?php echo $this->render('_footer'); ?>   
+    
 <?php $this->endBody() ?>
 </body>
 </html>

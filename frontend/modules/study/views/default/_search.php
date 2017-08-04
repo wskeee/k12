@@ -2,13 +2,14 @@
 
 use frontend\modules\study\assets\SearchAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
+use yii\widgets\ActiveForm;
 
 /* @var $this View */
 
 $this->title = Yii::t('app', 'My Yii Application');
 ?>
-
 <div class="study-default-search _search">
     
     <div class="body-content">
@@ -50,9 +51,8 @@ $this->title = Yii::t('app', 'My Yii Application');
 
 <?php
 $js = <<<JS
-
    
-        
+    
 JS;
     //$this->registerJs($js, View::POS_READY);
 ?>

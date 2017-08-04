@@ -1,4 +1,14 @@
 /****************************搜索页样式start********************************/
+body .header {
+    height: 76px;
+    line-height: 76px;
+}
+
+body .k12 {
+    margin: -76px auto -120px;
+    padding: 76px 0 120px;
+}
+
 body .header,
 body .footer {
     background-color: #3aa9db;

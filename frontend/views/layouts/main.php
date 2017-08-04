@@ -1,15 +1,17 @@
 <?php
 
-/* @var $this View */
-/* @var $content string */
-
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
+/* @var $this View */
+/* @var $content string */
+
+
 AppAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -24,13 +26,16 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<header class="header">
-    <div class="container">
-        <p class="pull-left"><?= Html::img(['/filedata/site/image/logo.png']) ?></p>
-
-        <p class="pull-right"></p>
-    </div>
-</header>
+<?php 
+    $params = [
+        [
+            'label' => Html::img(['/filedata/site/image/logo.png']),
+            'options' => ['class' => 'pull-left'],
+        ],
+    ];
+    
+    echo $this->render('_header', ['params' => $params]); 
+?>
     
 <div class="wrap k12">
     
@@ -44,14 +49,8 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <span>
-            版权所有&copy;&nbsp;&nbsp;广州远程教育中心&nbsp;&nbsp;粤备ICP第8888888888号&nbsp;&nbsp;盗版必究
-        </span>
-    </div>
-</footer>
-
+<?php echo $this->render('_footer'); ?>   
+   
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -23,13 +23,16 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<header class="header">
-    <div class="container">
-        <p class="pull-left"><?= Html::img(['/filedata/site/image/logo.png']) ?></p>
-
-        <p class="pull-right"></p>
-    </div>
-</header>
+<?php 
+    $params = [
+        [
+            'label' => Html::img(['/filedata/site/image/logo.png']),
+            'options' => ['class' => 'pull-left'],
+        ],
+    ];
+    
+    echo $this->render('@frontend/views/layouts/_header', ['params' => $params]); 
+?>
     
 <div class="wrap k12">
     

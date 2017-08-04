@@ -28,13 +28,12 @@ $this->title = Yii::t('app', 'My Yii Application');
                             'options'=>[
                                 'id' => 'search-form',
                                 'class'=>'form-horizontal',
-                                'onsubmit' => 'submit();',
                             ],
                             'action' => ['study/default/search'],
                             'method' => 'get'
                         ]) ?>
                         
-                        <?= Html::textInput('keyword', null, ['class' => 'form-control', 'placeholder' => '请输入你想搜索的关键词']) ?>
+                        <?= Html::textInput('keyword', null, ['class' => 'form-control', 'placeholder' => '请输入你想搜索的关键词', 'keyDown' => 'submit();']) ?>
                         
                         <?php ActiveForm::end(); ?>
                         

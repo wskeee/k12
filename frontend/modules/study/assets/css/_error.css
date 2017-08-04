@@ -1,3 +1,12 @@
+body .header {
+    height: 76px;
+    line-height: 76px;
+}
+
+body .k12 {
+    margin: -76px auto -120px;
+    padding: 76px 0 120px;
+}
 ._error .body-content {
     width: 100%;
     height: 100%;
