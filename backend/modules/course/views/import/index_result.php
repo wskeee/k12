@@ -26,7 +26,7 @@ $validCount = count($courses);
     <div id="import-log-container"></div>
 </div>
 <?php 
-    $courses = json_encode($courses);
+    $courses = yii\helpers\Json::encode($courses);
     $pushURL = Url::toRoute('add-course',true);
     $js = <<<JS
             var _import = new Wskeee.course.Import({

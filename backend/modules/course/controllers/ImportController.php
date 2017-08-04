@@ -149,7 +149,7 @@ class ImportController extends Controller
                 $hasExits[$course['course']['cat_id'].'_'.$course['course']['courseware_name']] = true;
             }
         }
-        return $courses;
+        return array_values($courses);
     }
     
     /**
