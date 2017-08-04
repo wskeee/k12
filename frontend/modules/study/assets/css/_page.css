@@ -44,6 +44,15 @@
     font-size: 14px;
 }
 
+.page .pagination > .active > a, 
+.page .pagination > .active > span, 
+.page .pagination > .active > a:hover, 
+.page .pagination > .active > span:hover, 
+.page .pagination > .active > a:focus, 
+.page .pagination > .active > span:focus {
+    border-color: #337ab7;
+    color: #fff;
+}
 /*.page .p-num li.active {
     margin-left: 0px;
     border: 1px solid;
