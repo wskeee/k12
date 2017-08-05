@@ -11,10 +11,9 @@ use yii\web\View;
 $this->title = Yii::t('app', 'My Yii Application');
 ?>
 
-<div class="study-default-index">
+<div class="study-default-index _index">
 
     <div class="banner">
-
         <div class="banner-background">
             <?php //echo Html::img(['/filedata/site/image/background.jpg'], ['class' => 'background-img']) ?>
         </div>
@@ -25,15 +24,15 @@ $this->title = Yii::t('app', 'My Yii Application');
             <!--面包屑-->
             <div class="crumbs-bar">
                 <div class="cb-nav">
-                    <div class="cn-item">
+                    <div class="cbn-item">
                         <span>筛选条件：</span>
                         <b><?= $category->name ?></b>
                     </div>
                     
                     <?php foreach ($filters as $filter_name => $filter_value): ?>
-                    <div class="cn-item">
-                        <i class="cnbi-arrow">&gt;</i>
-                        <?= Html::a("<b>$filter_name</b><em>{$filter_value['filter_value']}</em><i>×</i>", $filter_value['url'], ['class' => 'class="cni-key']) ?>
+                    <div class="cbn-item">
+                        <i class="cbni-arrow">&gt;</i>
+                        <?= Html::a("<b>{$filter_name}：</b><em>{$filter_value['filter_value']}</em><i>×</i>", $filter_value['url'], ['class' => 'cnbi-key']) ?>
                     </div>
                    <?php endforeach; ?>
                     
@@ -43,14 +42,14 @@ $this->title = Yii::t('app', 'My Yii Application');
             <!--条件选择-->
             <div class="selector-column">
                 <?php if (!isset($filter['cat_id']) && count($result['cats'])>0): ?>
-                    <div class="k12-column sc-subject">
+                    <div class="sc-attribute">
                         <div class="sc-key">
                             <span><?= Yii::t('app', 'Cat') ?>：</span>
                         </div>
                         <div class="sc-value">
                             <ul>
                                 <?php foreach ($result['cats'] as $cat): ?>
-                                    <li><a><?= Html::a($cat['name'], Url::to(array_merge(['index'], array_merge($filter, ['cat_id' => $cat['id']])))) ?></a></li>
+                                    <li><?= Html::a($cat['name'], Url::to(array_merge(['index'], array_merge($filter, ['cat_id' => $cat['id']])))) ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -58,7 +57,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                 <?php endif; ?>
 
                 <?php foreach ($result['attrs'] as $attr_name => $attr_arr): ?>
-                    <div class="k12-column sc-subject">
+                    <div class="sc-attribute">
                         <div class="sc-key">
                             <span><?= $attr_name ?>：</span>
                         </div>
@@ -91,7 +90,6 @@ $this->title = Yii::t('app', 'My Yii Application');
             <!--课程课件-->
             <div class="goods-column">
                 <?php foreach ($result['courses'] as $course): ?>
-                
                 <div class="gc-item">
                     <?= Html::a('<div class="gc-img">'.Html::img([$course['img']], ['width' => '100%']).'</div>', ['view', 'parent_cat_id' => $course['parent_cat_id'], 'cat_id' => $course['cat_id'], 'id' => $course['id']]) ?>
                     <div class="gc-name course-name"><?= $course['name'] ?></div>
@@ -100,7 +98,6 @@ $this->title = Yii::t('app', 'My Yii Application');
                         <span><?= $course['play_count'] ?></span>
                     </div>
                 </div>
-
                 <?php endforeach; ?>
             </div>
             <!--课程课件-->

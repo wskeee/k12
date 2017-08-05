@@ -31,7 +31,7 @@ AppAsset::register($this);
             'options' => ['class' => 'pull-right'],
             'childs' => [
                 [
-                    'label' => Html::img(['/filedata/site/image/feedback.png'], ['style' => 'margin-left: 10px;']),
+                    'label' => Html::a(Html::img(['/filedata/site/image/feedback.png'], ['style' => 'margin-left: 10px;']), "javascript:;", ['title' => '反馈信息']),
                 ]
             ],
         ],

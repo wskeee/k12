@@ -1,8 +1,3 @@
-.k12 .navbar {
-    min-height: 38px;
-    margin-bottom: 0px;
-}
-
 .k12 .navbar-inverse {
     position: relative;
     border-width: 0px;
@@ -10,25 +5,29 @@
     background-color: #0a223a;
 }
 
-.k12 .navbar-nav {
-    padding-right: 0px;
-    margin-top: -10px;
+.k12 .navbar {
+    min-height: 38px;
+    margin-bottom: 0px;
 }
 
-.k12 .navbar-nav > li > a {
+.navbar-inverse .navbar-nav {
+    padding-right: 0px;
+    margin-top: -10px;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    padding: 9px 25px 9px;
     color: #fff;
 }
 
-.k12 .navbar-nav 
-.navbar-right:hover {
+.navbar-inverse .navbar-nav > .active > a,
+body .navbar-inverse .navbar-nav .navbar-right:hover {
     background-color: transparent;
 }
 
-.k12 .navbar-nav .feedback {
+.navbar-inverse .navbar-nav .feedback {
     padding-top: 4.5px;
     padding-bottom: 4.5px;
-}
-
-.k12 .nav > li > a {
-    padding: 9px 25px 9px;
 }
