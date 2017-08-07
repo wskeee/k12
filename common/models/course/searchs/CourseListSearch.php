@@ -25,6 +25,12 @@ class CourseListSearch {
     //put your code here
     public function search($params)
     {
+        /** 
+         * 查看php代码执行的时长
+         * $start_time = microtime(true);
+         * //这里放要执行的PHP代码
+         * $end_time = microtime(true);
+         */
         //参数格式
         // [
         //      'parent_cat_id' => 1 ,                                              //{int} 分类id
@@ -130,6 +136,7 @@ class CourseListSearch {
         $pages = new Pagination(['totalCount' => count($course_result), 'defaultPageSize' => $limit]);
         $queryPage->offset($pages->offset)->limit($pages->limit);           //每页显示的数量
         $course_result = $queryPage->all();
+        
         return [
             'filter' => $params,                //把原来参数也传到view，可以生成已经过滤的条件
             'pages' => $pages,                  //分页

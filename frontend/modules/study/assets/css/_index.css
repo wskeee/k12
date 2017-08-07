@@ -1,14 +1,4 @@
 /*********************************公共部分**************************************/
-body .header {
-    height: 76px;
-    line-height: 76px;
-}
-
-body .k12 {
-    margin: -76px auto -120px;
-    padding: 76px 0 120px;
-}
-
 body .k12 > .container {
     padding: 0px 15px 20px;
 }

@@ -1,6 +1,11 @@
+body .header {
+    height: 48px;
+    line-height: 48px;
+}
+
 body .k12 {
-    margin: -76px auto 0px;
-    padding: 76px 0 0px;
+    margin: -48px auto -120px;
+    padding: 48px 0 120px;
 }
 
 body .k12 > .container {
@@ -15,7 +20,7 @@ body .k12 > .container {
     height: 578px;
     margin-right: -33.466%;
     margin-left: -33.466%;
-    background-image: url("/filedata/site/image/background.jpg");
+    background-image: url("/filedata/site/image/home-background.jpg");
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center 0;

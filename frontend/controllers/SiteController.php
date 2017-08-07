@@ -169,7 +169,8 @@ class SiteController extends Controller
      */
     public function actionUnauthorized($ip)
     {
-        echo "IP：$ip 未授权！";
+        $this->layout = '@frontend/modules/study/views/layouts/_main';
+        return $this->render('unauthorized', ['ip' => $ip]);
     }
 
     /**
