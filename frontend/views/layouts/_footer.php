@@ -8,7 +8,7 @@ use yii\web\View;
 <footer class="footer">
     <div class="container">
         <span>
-            版权所有&copy;&nbsp;&nbsp;云服务提供商：广东易扬开泰网络课件有限公司
+            云服务提供商：广东易扬开泰网络科技有限公司
         </span>
     </div>
 </footer>
