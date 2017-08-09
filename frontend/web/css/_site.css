@@ -23,6 +23,7 @@ body {
 }
 
 .wrap > .container {
+    width: 1200px !important;
     padding: 70px 15px 20px;
 }
 

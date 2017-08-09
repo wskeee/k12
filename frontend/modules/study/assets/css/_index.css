@@ -116,14 +116,21 @@ _index .banner {
  }
  
 ._index .goods-column .gc-item {
-    float: left;
-    margin-right: 12px;
+    margin-left: 0px;
+    margin-right: 10px;
     margin-bottom: 20px;
+    display: inline-block;
+}
+
+._index .goods-column .none-margin {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
 ._index .goods-column .gc-img {
-    width: 222px;
-    height: 124px;
+    width: 230px;
 }
 
 ._index .goods-column .gc-name {

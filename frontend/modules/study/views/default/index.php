@@ -41,6 +41,7 @@ $this->title = Yii::t('app', 'My Yii Application');
             <!--面包屑-->
             <!--条件选择-->
             <div class="selector-column">
+                
                 <?php if (!isset($filter['cat_id']) && count($result['cats'])>0): ?>
                     <div class="sc-attribute">
                         <div class="sc-key">
@@ -63,8 +64,9 @@ $this->title = Yii::t('app', 'My Yii Application');
                         </div>
                         <div class="sc-value">
                             <ul>
-                                <?php foreach ($attr_arr['value'] as $attr_label):?>
-                                
+                                <?php sort($attr_arr['value']); ?>
+                                <?php foreach ($attr_arr['value'] as $attr_label): ?>
+                                    
                                     <li>
                                     <?php
                                         //合并之前已选择的属性过滤条件
@@ -89,8 +91,9 @@ $this->title = Yii::t('app', 'My Yii Application');
             <!--过滤器-->
             <!--课程课件-->
             <div class="goods-column">
-                <?php foreach ($result['courses'] as $course): ?>
-                <div class="gc-item">
+                <?php foreach ($result['courses'] as $index => $course): ?>
+                
+                <div class="<?= ($index % 5 == 4 ) ? 'none-margin' : 'gc-item'; ?>">
                     <?= Html::a('<div class="gc-img">'.Html::img([$course['img']], ['width' => '100%']).'</div>', ['view', 'parent_cat_id' => $course['parent_cat_id'], 'cat_id' => $course['cat_id'], 'id' => $course['id']]) ?>
                     <div class="gc-name course-name"><?= $course['name'] ?></div>
                     <div class="gc-see">
