@@ -75,17 +75,17 @@ class CourseListSearch {
         
         //添加属性过滤条件
         if(count($attrs)>0){
-            $query->leftJoin(['CourseAtt' => CourseAttr::tableName()], 'CourseAtt.course_id = Course.id');
-            foreach ($attrs as $attr_arr){
+            foreach ($attrs as $key => $attr_arrs){
+                $query->leftJoin(['CourseAtt_'.$key => CourseAttr::tableName()], "CourseAtt_{$key}.course_id = Course.id");
                 $query->andFilterWhere([
-                    'CourseAtt.attr_id' => explode('_', $attr_arr['attr_id']),          //拆分属性id
-                    'CourseAtt.value' => explode('_', $attr_arr['attr_value'])          //拆分属性值
+                    "CourseAtt_{$key}.attr_id" => $attr_arrs['attr_id'], 
+                    "CourseAtt_{$key}.value" => $attr_arrs['attr_value']
                 ]);
                 //合并所有已经选择的属性id
-                $attr_has_filter_ids = array_merge($attr_has_filter_ids,explode('_', $attr_arr['attr_id']));
+                $attr_has_filter_ids = array_merge($attr_has_filter_ids,explode('_', $attr_arrs['attr_id']));
             }
         }
-        
+       
         $query->orderBy("Course.$sort_order DESC");                                 //设置排序
         $query->groupBy("Course.id");
         
@@ -123,6 +123,7 @@ class CourseListSearch {
                 ->andFilterWhere (['not in','CourseAttr.attr_id',$attr_has_filter_ids])                          //过滤已经选择的属性
                 ->andFilterWhere (['Attribute.index_type' => 1])                                                //过滤已经选择的属性
                 ->groupBy('Attribute.name')
+                ->orderBy('CourseAttr.sort_order')
                 ->all();
         //用属性的 name 作键分组
         $attr_map = [];

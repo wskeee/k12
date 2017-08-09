@@ -77,9 +77,14 @@ _index .banner {
 }
 
 ._index .selector-column .sc-key {
-    width: 152px;
+    width: 13%;
     float: left;
     text-align: right;
+}
+
+._index .selector-column .sc-value {
+    width: 87%;
+    float: left;
 }
 
 ._index .selector-column .sc-key, 
