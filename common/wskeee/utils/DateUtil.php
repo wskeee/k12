@@ -80,6 +80,15 @@ class DateUtil {
 ;    }
     
     /**
+     * 获取当前豪秒数
+     * @return type
+     */
+    public static function getMillisecond() { 
+        list($s1, $s2) = explode(' ', microtime()); 
+        return (float)sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000); 
+    }
+    
+    /**
      * 小于9自动在数字前添加0
      * @param int $value
      */

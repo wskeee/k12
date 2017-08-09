@@ -10,6 +10,7 @@ use common\models\course\CourseModel;
 use common\models\Teacher;
 use wskeee\utils\ExcelUtil;
 use Yii;
+use yii\db\Query;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -24,6 +25,7 @@ class ImportController extends Controller
     private $courses = [];      //所有课程数据
     private $teachers = [];     //所有教师数据
     private $repeats = [];      //所有课程属性
+    private $hasExits = [];      //所有课程属性
     private $logs = [];
     private $success = 0;
     /**
@@ -60,9 +62,7 @@ class ImportController extends Controller
             $maxCount = count($courses);
             //去掉重复数据
             $courses = $this->unique($courses);
-            
             return $this->render('index_result',['maxCount' => $maxCount ,'courses' => $courses, 'repeats' => $this->repeats]);
-            
             //test
             
             //整理课程属性
@@ -138,15 +138,21 @@ class ImportController extends Controller
     private function unique($courses){
         $hasExits = [];
         foreach ($courses as $key => &$course){
+            isset($course['course']['name']) ? : $course['course']['name'] = '' ;
             //检查是否存在课件名，为空时指向课程名
             if($course['course']['courseware_name'] == null)
                 $course['course']['courseware_name'] = $course['course']['name'];
+            //cat_id__name__courseware_name__attr_name:attr_value
+            $keyName = $course['course']['cat_id'].'__'.$course['course']['name'].'__'.$course['course']['courseware_name'];
+            foreach ($course['attr'] as $attr_name => $attr_value){
+                $keyName .= '__'.$attr_name.':'.$attr_value;
+            }
             
-            if(isset($hasExits[$course['course']['cat_id'].'_'.$course['course']['courseware_name']])){
+            if(isset($hasExits[$keyName])){
                 $this->repeats []= $course;
                 unset($courses[$key]);
             }else{
-                $hasExits[$course['course']['cat_id'].'_'.$course['course']['courseware_name']] = true;
+                $hasExits[$keyName] = true;
             }
         }
         return array_values($courses);
@@ -198,7 +204,7 @@ class ImportController extends Controller
     private function createTeacher($courses){
         //查寻已经存在教师
         $hasExits = Teacher::find()
-                ->select(['id','name'])
+                ->select(['id','CONCAT(name,\'_\',school) as name'])
                 ->where(['name' => array_unique(ArrayHelper::getColumn($courses, 'teacher.name'))])
                 ->asArray()
                 ->all();
@@ -209,7 +215,7 @@ class ImportController extends Controller
         $rows = [];
         $now = time();
         foreach ($courses as $course){
-            if($course['teacher']['name']!=null && !isset($hasExit_name[$course['teacher']['name']]))
+            if($course['teacher']['name']!=null && !isset($hasExit_name[$course['teacher']['name'].'_'.$course['teacher']['school']]))
             {
                 $hasExit_name[$course['teacher']['name']] = true;
                 $rows []= [$course['teacher']['name'],$course['teacher']['school'],$course['teacher']['job_title'],$now,$now];
@@ -260,29 +266,40 @@ class ImportController extends Controller
             //学科名称 换 学科id
             $courseData['course']['cat_id'] = $categorys[$courseData['course']['parent_cat_id'].'_'.$courseData['course']['cat_id']];
         }
-        
         //查寻已经存的课程
-        $hasExits = ArrayHelper::map(Course::find()
-                ->select(['id','cat_id','courseware_name'])
-                ->where(['courseware_name' => array_unique(ArrayHelper::getColumn($courses, 'course.courseware_name')),'cat_id' => array_unique(ArrayHelper::getColumn($courses, 'course.cat_id'))])
-                ->asArray()
-                ->all(),function($e){return $e['cat_id'].'_'.$e['courseware_name'];},'id');
-        $this->addLog('查寻已经存的课程','已存在 '.  count($hasExits));         
+        // ['id','cat_id','name','courseware_name','attrs'=>'attr_id:attr_value,...']
+        //
+        $hasExits = (new Query())
+                ->select(['Course.id','Course.cat_id','Course.name','Course.courseware_name','GROUP_CONCAT(CourseAttr.attr_id,\':\',CourseAttr.value SEPARATOR \',\') as attrs'])
+                ->from(['Course' => Course::tableName()])
+                ->leftJoin(['CourseAttr' => CourseAttr::tableName()], 'CourseAttr.course_id = Course.id')
+                ->where(['Course.courseware_name' => array_unique(ArrayHelper::getColumn($courses, 'course.courseware_name')),'cat_id' => array_unique(ArrayHelper::getColumn($courses, 'course.cat_id'))])
+                ->groupBy('Course.id')
+                ->all();
+        
         //整理出需要创建的课程
         $rows = [];
         $now = time();
-        foreach ($courses as &$course){
-            if(!isset($hasExits[$course['course']['cat_id'].'_'.$course['course']['courseware_name']]))
+        $this->hasExits = [];
+        $cmd = Yii::$app->db->createCommand("SHOW TABLE STATUS LIKE 'k12_course'");
+        $result = $cmd->queryAll();
+        $start_id = (integer)$result[0]['Auto_increment'];
+        foreach ($courses as $index => &$course){
+            if(!$this->hasExit($hasExits, $course))
             {
-                $hasExits[$course['course']['cat_id'].'_'.$course['course']['courseware_name']] = true;
                 //手动添加以下字段
+                $course['course']['id'] = $start_id++;
                 $course['course']['created_at'] = $now;
                 $course['course']['updated_at'] = $now;
                 $course['course']['create_by'] = Yii::$app->user->id;
                 $course['course']['is_publish'] = 1;
                 $course['course']['publish_time'] = $now;
                 $course['course']['publisher_id'] = Yii::$app->user->id;;
+                $course['course']['order'] = $course['course']['order'] == '' ? 0 : $course['course']['order'];
                 $rows [] = $course['course'];
+            }else{
+                $this->hasExits [] = $course;
+                unset($courses[$index]);
             }
         }
         if(count($rows)>0){
@@ -292,21 +309,6 @@ class ImportController extends Controller
         }
         $this->addLog('插入课程数据', '成功插入：'.count($rows)); 
         $this->success = count($rows);
-        
-        //更新课程kd
-        $hasExits = ArrayHelper::map(Course::find()
-                ->select(['id','cat_id','courseware_name'])
-                ->where(['courseware_name' => array_unique(ArrayHelper::getColumn($courses, 'course.courseware_name')),'cat_id' => array_unique(ArrayHelper::getColumn($courses, 'course.cat_id'))])
-                ->asArray()
-                ->all(),function($e){return $e['cat_id'].'_'.$e['courseware_name'];},'id');
-  
-        foreach ($courses as &$course){
-            if(isset($hasExits[$course['course']['cat_id'].'_'.$course['course']['courseware_name']]))
-            {
-                //替换课程id
-                $course['course']['id'] = $hasExits[$course['course']['cat_id'].'_'.$course['course']['courseware_name']];
-            }
-        }
         return $courses;
     }
     
@@ -333,6 +335,41 @@ class ImportController extends Controller
             Yii::$app->db->createCommand()->batchInsert(CourseAttr::tableName(), $columns , $rows)->execute();
         }
         $this->addLog('插入课程属性数据！'); 
+    }
+    
+    /**
+     * 检查课程是否已经录入
+     * @param type $dbCourses            [['id','cat_id','name','courseware_name','attrs' => 'attr_id:attr_value,...']]
+     * @param type $importCourse        ['course'=>['cat_id','name','courseware_name'],attrs =>['attr_id','value']
+     */
+    private function hasExit($dbCourses,$importCourse){
+        foreach($dbCourses as $dbCourse){
+            //1、学科、课程名、课件名相同
+            if($dbCourse['cat_id'] == $importCourse['course']['cat_id']
+                    && (!isset($importCourse['course']['name']) || $dbCourse['name'] == $importCourse['course']['name'])
+                    && ($dbCourse['courseware_name'] == $importCourse['course']['courseware_name'])){
+                if($dbCourse['attrs'] != ''){
+                    //2、检查所有属性，看所有属性是否相同,每个属性格式：attr_id:attr_value
+                    $importCourse_Attrs = ArrayHelper::index($importCourse['attr'], 'attr_id');
+                    $mark = true;
+                    foreach(explode(',', $dbCourse['attrs']) as $dbAttr){
+                        $dbAttr_arr = explode(':', $dbAttr);
+                        if(!isset($importCourse_Attrs[$dbAttr_arr[0]]) || $importCourse_Attrs[$dbAttr_arr[0]]['value'] != $dbAttr_arr[1]){
+                            $mark = false;
+                            break;
+                        }
+                    }
+                    //所有属性都相同，说明课程相同
+                    if($mark){
+                        return true;
+                    }
+                }else{
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
     
     /**
