@@ -181,17 +181,18 @@ class DefaultController extends Controller
             }
             
             $courseAttrsItems = ArrayHelper::map($courseAttrs->orderBy('order')->all(), 'id', 'name');
-            
+            rsort($attrs);                                                  //以降序对数组排序
             foreach($attrs as $key => $attr){
+                $attr['attr_id'] = explode('_', $attr['attr_id'])[0];
                 $attrrCopy =  $attrs;
                 unset($attrrCopy[$key]);
                 $attrItems[$courseAttrsItems[$attr['attr_id']]] = [
                     'filter_value' => $attr['attr_value'],
                     'url' => Url::to(array_merge(['index'], array_merge($params ,['attrs' =>$attrrCopy]))),
                 ];
-            }
-            
-           
+                
+               
+            };
         }
         
         $resultItems = array_merge($catItems, $attrItems);

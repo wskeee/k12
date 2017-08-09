@@ -6,20 +6,20 @@ body {
 }
 
 .header {
-    height: 48px;
+    height: 76px;
     background-color: #0a223a;
     padding-top: 0px;
     font-size: 25px;
     color: #ffffff;
     text-align: center;
-    line-height: 48px;
+    line-height: 76px;
 }
 
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: -48px auto -120px;
-    padding: 48px 0 120px;
+    margin: -76px auto -120px;
+    padding: 76px 0 120px;
 }
 
 .wrap > .container {

@@ -55,8 +55,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => Menu::$positionName[$model->position],
             ],
             'sort_order',
-            'created_at:date',
-            'updated_at:date',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

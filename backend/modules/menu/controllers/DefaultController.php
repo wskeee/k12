@@ -66,7 +66,7 @@ class DefaultController extends BaseController
     {
         $model = new Menu();
         $model->loadDefaultValues();
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -86,7 +86,6 @@ class DefaultController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

@@ -9,7 +9,7 @@ use yii\web\View;
 $this->title = Yii::t('app', 'My Yii Application');
 ?>
 
-<div class="study-default-prompt">
+<div class="study-default-prompt study-prompt">
     
     <div class="body-content">
         <div class="row">

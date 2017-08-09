@@ -4,86 +4,45 @@
 }
 
 .p-wrap {
-    width: 690px;
+    width: 730px;
     margin: 0px auto 10px;
     display: flex;
 }
 
-.page .p-num {
+.page .p-wrap .p-num {
     float: left;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    display: inline-table;
 }
 
-.page .p-num .pn-next.disabled, 
-.page .p-num .pn-prev.disabled {
-    background: 0 0;
+.page .p-num .pn-prev.disabled,
+.page .p-num .pn-next.disabled {
     background: #fff;
     cursor: default;
 }
 
 .page .p-num a {
     color: #666;
-    border: 1px solid #ddd;
-    /*background-color: #f7f7f7;
-    background-repeat: repeat-x;
-    background-image: -moz-linear-gradient(top,#f7f7f7,#f2f2f2);
-    background-image: -webkit-linear-gradient(top,#f7f7f7,#f2f2f2);
-    background-image: -o-linear-gradient(top,#f7f7f7,#f2f2f2);
-    background-image: linear-gradient(top,#f7f7f7,#f2f2f2);*/
-}
-
-.page .p-num a, 
-.page .p-num b {
-    float: left;
-    height: 36px;
-    line-height: 36px;
     padding: 0 14px;
-    margin-right: 3px;
-    font-size: 14px;
+    border: 1px solid #ddd;
 }
 
-.page .pagination > .active > a, 
-.page .pagination > .active > span, 
-.page .pagination > .active > a:hover, 
-.page .pagination > .active > span:hover, 
-.page .pagination > .active > a:focus, 
-.page .pagination > .active > span:focus {
-    border-color: #337ab7;
+.page .p-num .pagination > .active > a {
     color: #fff;
-}
-/*.page .p-num li.active {
-    margin-left: 0px;
-    border: 1px solid;
+    border-color: #3aa9db;
     background-color: #3aa9db;
-    background-image: -moz-linear-gradient(top,#3aa9db,#3aa9db);
-    background-image: -webkit-linear-gradient(top,#3aa9db,#3aa9db);
-    background-image: -o-linear-gradient(top,#3aa9db,#3aa9db);
-    background-image: linear-gradient(top,#3aa9db,#3aa9db); 
-    color: #fff;
-    filter: none;
-    cursor: default;
-}*/
+}
 
 .page .p-skip {
-    float: left;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    float: right;
     margin-left: 5px;
-    font-size: 14px;
     line-height: 34px;
-    display: inline-table;
 }
 
 .page .p-skip .input-txt {
-    width: 30px;
+    width: 50px;
     height: 34px;
     margin: 0 3px;
-    line-height: 34px;
     text-align: center;
 }
-
 .clearfix:after {
     content: ".";
     display: block;
@@ -94,4 +53,16 @@
 
 .clearfix {
     *zoom: 1
+}
+/*********************************相同样式部分**********************************/
+.page .p-wrap .p-num, 
+.page .p-wrap .p-skip {
+    font-size: 14px;
+}
+
+.page .p-num a, 
+.page .p-skip b {
+    height: 34px;
+    margin: 0px 1.5px;
+    line-height: 34px;
 }

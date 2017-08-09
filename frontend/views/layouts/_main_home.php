@@ -27,11 +27,15 @@ AppAsset::register($this);
 <?php 
     $params = [
         [
+            'label' => Html::img(['/filedata/site/image/logo.png']),
+            'options' => ['class' => 'pull-left'],
+        ],
+        [
             'label' => Html::img(['/filedata/site/image/words.png']),
             'options' => ['class' => 'pull-right'],
             'childs' => [
                 [
-                    'label' => Html::img(['/filedata/site/image/feedback.png'], ['style' => 'margin-left: 10px;']),
+                    'label' => Html::a(Html::img(['/filedata/site/image/feedback.png'], ['style' => 'margin-left: 10px;']), "javascript:;", ['title' => '反馈信息']),
                 ]
             ],
         ],

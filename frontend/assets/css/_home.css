@@ -1,8 +1,3 @@
-body .k12 {
-    margin: -76px auto 0px;
-    padding: 76px 0 0px;
-}
-
 body .k12 > .container {
     padding: 0px 15px 20px;
 }
@@ -11,22 +6,22 @@ body .k12 > .container {
     width: 100%;
 }
 
-.banner .banner-background {
+.site-index .banner .banner-background {
     height: 578px;
     margin-right: -33.466%;
     margin-left: -33.466%;
-    background-image: url("/filedata/site/image/background.jpg");
+    background-image: url("/filedata/site/image/home-background.jpg");
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center 0;
 }
 
-.banner .banner-search {
+.site-index .banner .banner-search {
     position: relative;
     top: -340px;
     margin-bottom: -60px;
 }
-.banner .search-background {
+.site-index .banner .search-background {
     width: 700px;
     margin: 0px auto;
     padding: 5px;
@@ -34,20 +29,21 @@ body .k12 > .container {
     background-repeat: no-repeat;
 }
 
-.banner .search-form {
+.site-index .banner .search-form {
     position: relative;
 }
 
-.search-form .search-input{
+.site-index .search-form .search-input{
     width: 630px;
 }
-.search-input .form-control{
+
+.site-index .search-input .form-control{
     height: 50px;
     font-size: 16px;
     border-radius: 0px;
 }
 
-.search-form .search-button{
+.site-index .search-form .search-button{
     width: 60px;
     height: 50px;
     position: absolute;
@@ -59,7 +55,7 @@ body .k12 > .container {
     background-repeat: no-repeat;
 }
 
-.search-form .search-button:hover {
+.site-index .search-form .search-button:hover {
     cursor:pointer;
 }
 
@@ -69,23 +65,27 @@ body .k12 > .container {
     min-height: 578px
 }*/
 
-.body-content {
+.site-index h1 {
+    font-family: '方正兰亭纤黑_GBK_1';
+}
+
+.site-index .body-content {
     width: 100%;
     position: relative;
     top: 0px;
 }
 
-.body-content .row {
-    margin-right: -35.9px;
+.site-index .body-content .row {
+    margin-right: -36px;
     margin-left: -32px;
 }
 
-.body-memu {
-    width: 236.2px;
+.site-index .body-memu {
+    width: 236px;
     position: relative;
     padding-right: 0px;
     padding-left: 0px;
-    margin-right: 5.4px;
+    margin-right: 5.5px;
     margin-bottom: 22px;
 }
 
@@ -99,27 +99,27 @@ body .k12 > .container {
     height: 71px;
 }*/
 
-.body-memu-1 {
+.site-index .body-memu-1 {
     background-color: #ffb400;
 }
 
-.body-memu-2 {
+.site-index .body-memu-2 {
     background-color: #74b749;
 }
 
-.body-memu-3 {
+.site-index .body-memu-3 {
     background-color: #00a489;
 }
 
-.body-memu-4 {
+.site-index .body-memu-4 {
     background-color: #847cc5;
 }
 
-.body-memu-5 {
+.site-index .body-memu-5 {
     background-color: #ab8465;
 }
 
-.memu-leave {
+.site-index .memu-leave {
     opacity: 1;
 }
 
@@ -135,7 +135,7 @@ body .k12 > .container {
     color: #fff;
 }*/
 
-.memu-hover {
+.site-index .memu-hover {
     position: absolute;
     top: 0;
     opacity: 0;
@@ -172,3 +172,11 @@ body .k12 > .container {
 .hover-more-5 {
     background-color: #6c523d;
 }*/
+
+@font-face{
+    font-family: '方正兰亭纤黑_GBK_1';
+    src: url('/filedata/site/font/FangzhengLantingPavilionblack.ttf') format('ttf'),
+         url('/filedata/site/font/FangzhengLantingPavilionblack.svg') format('svg'),
+         url('/filedata/site/font/FangzhengLantingPavilionblack.woff') format('woff'),
+         url('/filedata/site/font/FangzhengLantingPavilionblack.eot') format('eot');
+}

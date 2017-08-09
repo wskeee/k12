@@ -13,19 +13,21 @@ use yii\widgets\ActiveForm;
 
 $prompt = Yii::t('app', 'Select Placeholder');
 
-$isNew = $model->getIsNewRecord();
-
 ?>
 
 <div class="menu-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'enctype' => 'multipart/form-data',
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'parent_id')->dropDownList($parents, ['prompt' => $prompt]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'alias')->textInput(['value' => 'study', 'maxlength' => true]) ?>
+    <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'module')->textInput(['maxlength' => true]) ?>
 

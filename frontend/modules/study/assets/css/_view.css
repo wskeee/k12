@@ -1,37 +1,33 @@
-.study-default-view 
-.body-content {
+._view .body-content {
     width: 100%;
     height: 100%;
     margin-top: 34px;
 }
 
-.study-default-view 
-.crumbs-bar {
+._view .crumbs-bar {
     width: 100%;
     padding: 0px 20px;
     background-color: #f0f0f0;
 }
 
-.study-default-view 
-.crumbs-bar .cb-nav {
+._view .crumbs-bar .cb-nav {
     height: 45px;
 }
 
-.cn-icon {
+._view .crumbs-bar .cbn-icon {
     float: left;
     padding: 7px 0px;
     margin-right: 18px;
 }
 
-.cn-icon .icon {
+._view .crumbs-bar 
+.cbn-icon .icon {
     width: 41px;
     height: 31px;
     display: block;
 }
 
-.study-default-view 
-.crumbs-bar .cb-nav 
-.cn-item {
+._view .crumbs-bar .cbn-item {
     float: left;
     margin-right: 5px;
     font-size: 14px;
@@ -39,8 +35,9 @@
     line-height: 45px;
 }
 
-.cn-item a, 
-.cn-item i {
+._view .crumbs-bar
+.cbn-item i {
+    margin-left: 2.5px;
     font-style: normal;
 }
 

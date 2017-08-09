@@ -7,6 +7,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "{{%menu}}".
@@ -79,6 +80,22 @@ class Menu extends ActiveRecord
         if(parent::beforeSave($insert)){
             //设置等级
             $this->level = $this->parent_id == 0 ?  1 : 2;
+            //图片上传
+            $upload = UploadedFile::getInstance($this, 'image');
+            if($upload != null)
+            {
+                $string = $upload->name;
+                $array = explode('.',$string);
+                //获取后缀名，默认为 jpg 
+                $ext = count($array) == 0 ? 'jpg' : $array[count($array)-1];
+                $uploadpath = $this->fileExists(Yii::getAlias('@filedata').'/site/memu/image/');
+                $upload->saveAs($uploadpath.$this->alias.'.'.$ext);
+                $this->image = '/filedata/site/memu/image/'.$this->alias.'.'.$ext;
+            }
+            
+            if(trim($this->image) == '')
+                  $this->image = $this->getOldAttribute ('image');
+            
             return true;
         }
         return false;
@@ -122,5 +139,18 @@ class Menu extends ActiveRecord
      */
     public static function getCats($condition){
         return ArrayHelper::map(Menu::find()->orFilterWhere($condition)->all(), 'id', 'name');
+    }
+    
+    /**
+     * 检查目标路径是否存在，不存即创建目标
+     * @param string $uploadpath    目录路径
+     * @return string
+     */
+    private function fileExists($uploadpath) {
+
+        if (!file_exists($uploadpath)) {
+            mkdir($uploadpath);
+        }
+        return $uploadpath;
     }
 }

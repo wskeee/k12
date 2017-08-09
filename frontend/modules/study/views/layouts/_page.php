@@ -25,7 +25,7 @@ use yii\widgets\LinkPager;
                 'nextPageCssClass' => 'pn-next',
                 'prevPageLabel' => '<i>&lt;</i>'.Yii::t('app', 'Prev Page'),
                 'nextPageLabel' => Yii::t('app', 'Prev Page').'<i>&gt;</i>',
-                'maxButtonCount' => 8,
+                'maxButtonCount' => 5,
             ]); ?>
         </div>
         <div class="p-skip">

@@ -22,22 +22,20 @@ if(substr($coursePlath, -1, 1) != '/'){
 }
 ?>
 
-<div class="study-default-view">
+<div class="study-default-view _view">
     
     <div class="body-content">
         
         <div class="crumbs-bar">
             <div class="cb-nav">
                 
-                <div class="cn-icon"><i class="icon icon-book"></i></div>
+                <div class="cbn-icon"><i class="icon icon-book"></i></div>
                 
-                <div class="cn-item"><span class="position">所在位置：</span></div>
+                <div class="cbn-item"><span class="position">所在位置：</span></div>
                 
-                <div class="cn-item">
-                    <?= Html::a($menu->name, ['/'.$menu->module.$menu->link]) ?><i>&gt;</i>
-                </div>
+                <div class="cbn-item"><?= Html::a($menu->name, ['/'.$menu->module.$menu->link]) ?><i>&gt;</i></div>
                 
-                <div class="cn-item"><span><?= Html::encode($this->title) ?></span></div>
+                <div class="cbn-item"><span><?= Html::encode($this->title) ?></span></div>
                 
             </div>
         </div>
