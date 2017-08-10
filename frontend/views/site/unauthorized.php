@@ -16,7 +16,7 @@ $this->title = Yii::t('app', 'My Yii Application');
         
             <div class="unauthorized">
                 <div class="unauthorized-prompt">
-                    <span>该IP（<?= $ip; ?>）为授权！</span>
+                    <span>该IP（<?= $ip; ?>）未授权！</span>
                 </div>
             </div>
             
@@ -33,7 +33,7 @@ $js = <<<JS
     var subjectArray = new Array("sites", "yellow", "green", "blue", "purple", "brown");
     $("body").addClass(subjectArray[$subject]);
 JS;
-    $this->registerJs($js, View::POS_READY);
+    //$this->registerJs($js, View::POS_READY);
 ?>
 
 <?php 

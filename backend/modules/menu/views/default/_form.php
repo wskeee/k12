@@ -78,6 +78,8 @@ $prompt = Yii::t('app', 'Select Placeholder');
     <?= $form->field($model, 'position')->dropDownList(Menu::$positionName, ['prompt' => $prompt]) ?>
 
     <?= $form->field($model, 'sort_order')->textInput() ?>
+    
+    <?= $form->field($model, 'des')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -24,8 +24,9 @@ use yii\web\UploadedFile;
  * @property integer $level                 等级
  * @property string $position               菜单位置
  * @property integer $sort_order            排序索引
- * @property string $created_at             
- * @property string $updated_at            
+ * @property string $des                    菜单描述
+ * @property integer $created_at             
+ * @property integer $updated_at            
  * 
  * @property Menu $parent                   分类 
  */
@@ -73,6 +74,7 @@ class Menu extends ActiveRecord
             [['parent_id', 'is_show', 'is_jump', 'level', 'sort_order', 'created_at', 'updated_at'], 'integer'],
             [['name', 'alias', 'module', 'position'], 'string', 'max' => 60],
             [['link', 'image'], 'string', 'max' => 255],
+            [['des'], 'string'],
         ];
     }
     
@@ -119,6 +121,7 @@ class Menu extends ActiveRecord
             'level' => Yii::t('app', 'Level'),
             'position' => Yii::t('app', 'Position'),
             'sort_order' => Yii::t('app', 'Sort Order'),
+            'des' => Yii::t('app', 'Des'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

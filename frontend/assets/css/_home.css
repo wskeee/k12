@@ -2,26 +2,72 @@ body .k12 > .container {
     padding: 0px 15px 20px;
 }
 
-.site-index .banner {
-    width: 100%;
+.site-index .none-margin {
+    margin-right: 0px !important;
 }
 
-.site-index .banner .banner-background {
+.site-index h1 {
+    font-family: '方正兰亭纤黑_GBK_1';
+}
+/***********************************banner样式**********************************/
+.site-index .banner {
+    width: 100%;
     height: 578px;
-    margin-right: -33.466%;
-    margin-left: -33.466%;
-    background-image: url("/filedata/site/image/home-background.jpg");
+    font-size: 0px;
+}
+
+.site-index .banner 
+.banner-background {
+    height: 556px;
+    margin: 0px -33.466%;
+    background-image: url("/filedata/site/image/home-background.png");
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center 0;
 }
 
-.site-index .banner .banner-search {
+.site-index .banner 
+.banner-vertical {
+    margin: 0px -15px -556px;
+    position: relative;
+    top: -556px;
+}
+
+.site-index .banner
+.vertical {
+    width: 236px;
+    height: 578px;
+    margin-right: 5px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center 0;
+}
+/***********************************垂直背景图**********************************/
+.site-index .vertical-background-1 {
+    background-image: url("/filedata/site/memu/image/vertical-background-1.png");
+}
+.site-index .vertical-background-2 {
+    background-image: url("/filedata/site/memu/image/vertical-background-2.png");
+}
+.site-index .vertical-background-3 {
+    background-image: url("/filedata/site/memu/image/vertical-background-3.png");
+}
+.site-index .vertical-background-4 {
+    background-image: url("/filedata/site/memu/image/vertical-background-4.png");
+}
+.site-index .vertical-background-5 {
+    background-image: url("/filedata/site/memu/image/vertical-background-5.png");
+}
+/***********************************搜索框**************************************/
+.site-index .banner 
+.banner-search {
+    margin-bottom: -60px;
     position: relative;
     top: -340px;
-    margin-bottom: -60px;
 }
-.site-index .banner .search-background {
+.site-index .banner 
+.search-background {
     width: 700px;
     margin: 0px auto;
     padding: 5px;
@@ -29,21 +75,25 @@ body .k12 > .container {
     background-repeat: no-repeat;
 }
 
-.site-index .banner .search-form {
+.site-index .banner 
+.search-form {
     position: relative;
 }
 
-.site-index .search-form .search-input{
+.site-index .search-form 
+.search-input{
     width: 630px;
 }
 
-.site-index .search-input .form-control{
+.site-index .search-input 
+.form-control{
     height: 50px;
     font-size: 16px;
     border-radius: 0px;
 }
 
-.site-index .search-form .search-button{
+.site-index .search-form 
+.search-button{
     width: 60px;
     height: 50px;
     position: absolute;
@@ -55,7 +105,8 @@ body .k12 > .container {
     background-repeat: no-repeat;
 }
 
-.site-index .search-form .search-button:hover {
+.site-index .search-form 
+.search-button:hover {
     cursor:pointer;
 }
 
@@ -64,114 +115,125 @@ body .k12 > .container {
     height: 100%;
     min-height: 578px
 }*/
-
-.site-index h1 {
-    font-family: '方正兰亭纤黑_GBK_1';
-}
-
+/***********************************内容区域************************************/
 .site-index .body-content {
     width: 100%;
     position: relative;
     top: 0px;
+    font-size: 0px;
 }
 
-.site-index .body-content .row {
-    margin-right: -36px;
-    margin-left: -32px;
-}
-
-.site-index .body-memu {
+.site-index .body-content
+.body-memu {
     width: 236px;
-    position: relative;
-    padding-right: 0px;
-    padding-left: 0px;
-    margin-right: 5.5px;
+    height: 150px;
+    margin-right: 5px;
     margin-bottom: 22px;
+    position: relative;
+    display: inline-block;
+    font-family: '方正兰亭纤黑_GBK_1';
 }
 
-/*.icon-small {
-    width: 40px;
-    height: 32px;
-}
-
-.icon-big {
-    width: 89px;
-    height: 71px;
-}*/
-
-.site-index .body-memu-1 {
-    background-color: #ffb400;
-}
-
-.site-index .body-memu-2 {
-    background-color: #74b749;
-}
-
-.site-index .body-memu-3 {
-    background-color: #00a489;
-}
-
-.site-index .body-memu-4 {
-    background-color: #847cc5;
-}
-
-.site-index .body-memu-5 {
-    background-color: #ab8465;
-}
-
-.site-index .memu-leave {
+.site-index .body-memu
+.memu-leave {
+    width: 100%;
     opacity: 1;
 }
 
-/*.memu-leave-icon {
+.site-index .body-memu
+.memu-leave-icon {
     padding-top: 26px;
     padding-left: 22px;
     padding-bottom: 15px;
 }
 
+.site-index .body-memu 
+.icon-big {
+    width: 89px;
+    height: 71px;
+}
+
+.site-index .body-memu
 .memu-leave-name {
     padding-left: 22px;
     font-size: 20px;
     color: #fff;
-}*/
+}
 
-.site-index .memu-hover {
+.site-index .body-memu 
+.memu-hover {
     position: absolute;
     top: 0;
+    right: 0;
+    left: 0;
     opacity: 0;
 }
 
-/*.memu-hover-des {
+.site-index .body-memu 
+.icon-small {
+    width: 40px;
+    height: 32px;
+}
+
+.site-index .body-memu 
+.memu-hover-des {
     height: 107px;
     padding-top: 29px;
     font-size: 20px;
-    color: #4b3100;
     text-align: center;
 }
 
+.site-index .body-memu 
 .memu-hover-more {
     height: 43px;
     padding-top: 6px;
     padding-left: 20px;
     font-size: 16px;
     color: #fff;
+    background-color: rgba(0, 0, 0, .25);
 }
 
-.hover-more-1 {
-    background-color: #b87900;
+/********************************鼠标离开背景色*********************************/
+.site-index .memu-background-1 {
+    background-color: #ffb400;
 }
-.hover-more-2 {
-    background-color: #4c7f2b;
+
+.site-index .memu-background-2 {
+    background-color: #74b749;
 }
-.hover-more-3 {
-    background-color: #00715e;
+
+.site-index .memu-background-3 {
+    background-color: #00a489;
 }
-.hover-more-4 {
-    background-color: #585288;
+
+.site-index .memu-background-4 {
+    background-color: #847cc5;
 }
-.hover-more-5 {
-    background-color: #6c523d;
-}*/
+
+.site-index .memu-background-5 {
+    background-color: #ab8465;
+}
+/********************************鼠标经过背景色*********************************/
+.site-index .hover-more-1 {
+    color: #895a00;
+    background-color: #ffa800;
+}
+.site-index .hover-more-2 {
+    color: #305913;
+    background-color: #69b03b;
+}
+.site-index .hover-more-3 {
+    color: #002620;
+    background-color: #009c82;
+}
+.site-index .hover-more-4 {
+    color: #302b5d;
+    background-color: #7a72bc;
+}
+.site-index .hover-more-5 {
+    color: #4d3522;
+    background-color: #967154;
+}
 
 @font-face{
     font-family: '方正兰亭纤黑_GBK_1';

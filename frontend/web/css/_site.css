@@ -5,6 +5,10 @@ body {
     font-size: 16px;
 }
 
+body .container {
+    width: 1200px;
+}
+
 .header {
     height: 76px;
     background-color: #0a223a;
@@ -23,7 +27,6 @@ body {
 }
 
 .wrap > .container {
-    width: 1200px !important;
     padding: 70px 15px 20px;
 }
 
