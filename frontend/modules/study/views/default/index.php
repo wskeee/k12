@@ -19,7 +19,7 @@ $this->title = Yii::t('app', 'My Yii Application');
         </div>
     </div>
 
-    <div class="body-content">
+    <div id="scroll" class="body-content">
         <div class="row">
             <!--面包屑-->
             <div class="crumbs-bar">
@@ -50,7 +50,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                         <div class="sc-value">
                             <ul>
                                 <?php foreach ($result['cats'] as $cat): ?>
-                                    <li><?= Html::a($cat['name'], Url::to(array_merge(['index'], array_merge($filter, ['cat_id' => $cat['id']])))) ?></li>
+                                    <li><?= Html::a($cat['name'], Url::to(array_merge(['index'], array_merge($filter, ['cat_id' => $cat['id'], 'page' => 1])))) ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -72,8 +72,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                                         //合并之前已选择的属性过滤条件
                                         $attrs = array_merge(isset($filter['attrs']) ? $filter['attrs'] : [] , [['attr_id' => $attr_arr['attr_id'], 'attr_value' => $attr_label]]);
                                         //过滤之前已选择过滤条件
-                                        $params = array_merge($filter,['attrs' => $attrs]);
-
+                                        $params = array_merge($filter,['attrs' => $attrs, 'page' => 1]);
                                         echo Html::a($attr_label, Url::to(array_merge(['index'], $params)))
                                     ?>
                                     </li>
@@ -115,12 +114,14 @@ $this->title = Yii::t('app', 'My Yii Application');
 </div>
 
 <?php
-$params = Yii::$app->request->queryParams;
-$subject = ArrayHelper::getValue($params, 'parent_cat_id');
+$subject = ArrayHelper::getValue($filter, 'parent_cat_id');
+$scroll = isset($filter['cat_id']) || isset($filter['attrs']) || isset($filter['page']) ? 1 : 0;
 $js = <<<JS
-    
     var subjectArray = new Array("sites", "yellow", "green", "blue", "purple", "brown");
     $("body").addClass(subjectArray[$subject]);
+        
+    if($scroll) 
+        window.location.hash = "#scroll"; 
 JS;
     $this->registerJs($js, View::POS_READY);
 ?>

@@ -181,7 +181,7 @@ class DefaultController extends Controller
             }
             
             $courseAttrsItems = ArrayHelper::map($courseAttrs->orderBy('order')->all(), 'id', 'name');
-            rsort($attrs);                                                  //以降序对数组排序
+            sort($attrs);                                                  //以升序对数组排序
             foreach($attrs as $key => $attr){
                 $attr['attr_id'] = explode('_', $attr['attr_id'])[0];
                 $attrrCopy =  $attrs;

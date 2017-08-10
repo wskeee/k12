@@ -40,7 +40,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                             'method' => 'get'
                         ]) ?>
                         
-                        <?= Html::textInput('keyword', null, ['class' => 'form-control', 'placeholder' => '请输入你想搜索的关键词', 'keyDown' => "submit($(this));"]) ?>
+                        <?= Html::textInput('keyword', null, ['class' => 'form-control', 'placeholder' => '请输入你想搜索的关键词']) ?>
                         
                         <?php ActiveForm::end(); ?>
                         
@@ -90,11 +90,19 @@ $this->title = Yii::t('app', 'My Yii Application');
 $js = <<<JS
     
     /** 单击提交表单 */
-    window.submit = function(elem){
-        var value = $(elem).val();
+    window.submit = function(){
+        var value = $("#search-form .form-control").val();
         if(value == '')  return false; 
         $('#search-form').submit();
     }
+    
+    /** 回车提交表单 */
+    $("#search-form .form-control").keydown(function(event) {  
+         if (event.keyCode == 13) { 
+            if($(this).val() == '') return false; 
+            $('#search-form').submit();
+         }  
+     }) 
         
     /** 鼠标经过换图标背景颜色 */      
     $('.body-content .row .body-memu').each(function(){

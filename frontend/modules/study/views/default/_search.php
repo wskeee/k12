@@ -25,9 +25,9 @@ $this->title = Yii::t('app', 'My Yii Application');
             <!--过滤器-->
 
             <div class="goods-column">
-               <?php foreach ($result['courses'] as $course): ?>
+               <?php foreach ($result['courses'] as $index => $course): ?>
                 
-                <div class="gc-item">
+                <div class="<?= ($index % 5 == 4 ) ? 'none-margin' : 'gc-item'; ?>">
                     <?= Html::a('<div class="gc-img">'.Html::img([$course['img']], ['width' => '100%']).'</div>', ['view', 'parent_cat_id' => $course['parent_cat_id'], 'cat_id' => $course['cat_id'], 'id' => $course['id']]) ?>
                     <div class="gc-name course-name"><?= $course['courseware_name'] ?></div>
                     <div class="gc-see">

@@ -12,7 +12,7 @@ use yii\web\View;
 /* @var $menu Menu */
 /* @var $model Course */
 
-$this->title = $model->name;
+$this->title = $model->courseware_name;
 $coursePlath = trim($model->path);
 if(substr($coursePlath, 0, 1) != '/'){
     $coursePlath = '/'.$coursePlath;

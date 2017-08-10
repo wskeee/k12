@@ -75,7 +75,7 @@ class CourseListSearch {
                     "CourseAtt_{$key}.value" => $attr_arrs['attr_value']
                 ]);
                 //合并所有已经选择的属性id
-                $attr_has_filter_ids = array_merge($attr_has_filter_ids,explode('_', $attr_arrs['attr_id']));
+                //$attr_has_filter_ids = array_merge($attr_has_filter_ids,explode('_', $attr_arrs['attr_id']));
             }
         }
         
