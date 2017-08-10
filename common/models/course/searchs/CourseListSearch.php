@@ -84,7 +84,7 @@ class CourseListSearch {
         $totalCount = $query->all();      //查总数量
         
         $query->addSelect([ 'Course.parent_cat_id','Course.img', 'Course.courseware_name as name', 'Course.play_count']);
-        $query->orderBy("Course.$sort_order DESC");               
+        $query->orderBy("Course.$sort_order ".($sort_order != 'order' ? 'DESC' : 'ASC'));               
         $query->offset(($page-1)*$limit)->limit($limit);
         
         $pages = new Pagination(['totalCount' => count($totalCount), 'defaultPageSize' => $limit]);
