@@ -19,7 +19,6 @@ $config = [
     'as access' => [
         'class' => 'frontend\components\AccessControl',
         'allowActions' => [
-            'site/*',
             'gii/*',
             'debug/*',
             'site/unauthorized',    //未授权页面

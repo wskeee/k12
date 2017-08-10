@@ -108,7 +108,6 @@ class Buyunit extends ActiveRecord
                 ->leftJoin(['BuyunityIP' => self::BUYUNITY_IP_TABLE_NAME], 'Buyunity.id = BuyunityIP.unit_user_id')
                 ->where(['Buyunity.delete_flag' => '0','BuyunityIP.delete_flag' => 0])
                 ->all();
-        
         foreach($buyunity_result as $iprow){
             if(self::ipInNetwork($ip,$iprow['start_ip'],$iprow['end_ip'])){
                 return array_merge($iprow,['subjects' => self::getBuyunitySubject($iprow['buyunity_id'])]);
@@ -131,7 +130,7 @@ class Buyunit extends ActiveRecord
                     'BuyunityInfo.buyunit_user_id' => $id,                  
                     'BuyunityInfo.delete_flag' => '0',                      //未删除
                     'BuyunityInfo.audit_flag' => '1',])                     //审核通过
-                ->andWhere(['<=','BuyunityInfo.expire_date', time()])      //未过期
+                ->andWhere(['>=','BuyunityInfo.expire_date', date('Y-m-d H:i:s',time())])      //未过期
                 ->all();
         return ArrayHelper::getColumn($buyunity_info_result, 'subject_id');
     }

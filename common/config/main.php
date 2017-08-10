@@ -7,9 +7,9 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'session'=>array(
+        'session'=>[
             'timeout'=>0,
-        ),
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
