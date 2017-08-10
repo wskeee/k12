@@ -69,13 +69,13 @@ class CourseListSearch {
         //添加属性过滤条件
         if(count($attrs)>0){
             foreach ($attrs as $key => $attr_arrs){
-                $query->leftJoin(['CourseAtt_'.$key => CourseAttr::tableName()], "CourseAtt_{$key}.course_id = Course.id");
-                $query->andFilterWhere([
-                    "CourseAtt_{$key}.attr_id" => $attr_arrs['attr_id'], 
-                    "CourseAtt_{$key}.value" => $attr_arrs['attr_value']
-                ]);
                 //合并所有已经选择的属性id
                 //$attr_has_filter_ids = array_merge($attr_has_filter_ids,explode('_', $attr_arrs['attr_id']));
+                $query->leftJoin(['CourseAtt_'.$key => CourseAttr::tableName()], "CourseAtt_{$key}.course_id = Course.id");
+                $query->andFilterWhere([
+                    "CourseAtt_{$key}.attr_id" => explode('_', $attr_arrs['attr_id']), 
+                    "CourseAtt_{$key}.value" => $attr_arrs['attr_value']
+                ]);
             }
         }
         
