@@ -33,12 +33,12 @@ $link = Url::to(['index', 'parent_cat_id' => ArrayHelper::getValue(Yii::$app->re
         $menuItems[] = $item;
     }
     
-    $menuItems[] = [
+    /*$menuItems[] = [
         'label' => Html::img(['/filedata/site/image/feedback.png']), 
         'url' => '',
         'options' => ['class' => 'navbar-right'],
         'linkOptions' => ['class' => 'feedback', 'title' => '反馈信息']
-    ];
+    ];*/
 
     /*if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

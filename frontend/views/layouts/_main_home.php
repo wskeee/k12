@@ -33,11 +33,11 @@ AppAsset::register($this);
         [
             'label' => '中小学数字化资源云平台',
             'options' => ['class' => 'pull-right', 'style' => 'margin: 15px 0 0; font-size: 16px'],
-            'childs' => [
+            /*'childs' => [
                 [
                     'label' => Html::a(Html::img(['/filedata/site/image/feedback.png'], ['style' => 'margin-left: 10px;']), "javascript:;", ['title' => '反馈信息']),
                 ]
-            ],
+            ],*/
         ],
     ];
     
