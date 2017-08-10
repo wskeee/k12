@@ -90,14 +90,14 @@ $this->title = Yii::t('app', 'My Yii Application');
             <!--过滤器-->
             <!--课程课件-->
             <div class="goods-column">
-                <?php foreach ($result['courses'] as $index => $course): ?>
+                <?php foreach ($result['courses'] as $index => $course):?>
                 
                 <div class="<?= ($index % 5 == 4 ) ? 'none-margin' : 'gc-item'; ?>">
                     <?= Html::a('<div class="gc-img">'.Html::img([$course['img']], ['width' => '100%']).'</div>', ['view', 'parent_cat_id' => $course['parent_cat_id'], 'cat_id' => $course['cat_id'], 'id' => $course['id']]) ?>
                     <div class="gc-name course-name"><?= $course['name'] ?></div>
                     <div class="gc-see">
                         <i class="glyphicon glyphicon-play-circle"></i>
-                        <span><?= $course['play_count'] ?></span>
+                        <span><?= $course['play_count'] < 1000 ? number_format($course['play_count']) : substr(number_format((($course['play_count']/10000)*10)/10, 4),0,-3).'万'; ?></span>
                     </div>
                 </div>
                 <?php endforeach; ?>
