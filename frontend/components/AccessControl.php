@@ -74,6 +74,7 @@ class AccessControl extends ActionFilter {
         if($session->get($session_key)){
             return true;
         }
+        
         $buyunit = Buyunit::searchByIp($ip);
         if($buyunit == null){
             return \Yii::$app->getResponse()->redirect(['/site/unauthorized','ip' => $ip]);
