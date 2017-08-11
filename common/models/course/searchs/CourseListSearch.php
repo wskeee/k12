@@ -83,8 +83,11 @@ class CourseListSearch {
         $queryCopy = clone $query;
         $totalCount = $query->all();      //查总数量
         
-        $query->addSelect([ 'Course.parent_cat_id','Course.img', 'Course.courseware_name as name', 'Course.play_count']);
-        $query->orderBy("Course.$sort_order ".($sort_order != 'order' ? 'DESC' : 'ASC'));               
+        $query->addSelect([ 'Course.parent_cat_id','Course.img', 'Course.unit', 'Course.courseware_name as name', 'Course.play_count']);
+        if($sort_order == 'order')
+            $query->orderBy(['Course.cat_id' => SORT_ASC, 'Course.unit' => SORT_ASC, 'Course.course_order' => SORT_ASC, "Course.$sort_order" => SORT_ASC]);               
+        else
+            $query->orderBy(["Course.$sort_order" => SORT_DESC]);
         $query->offset(($page-1)*$limit)->limit($limit);
         
         $pages = new Pagination(['totalCount' => count($totalCount), 'defaultPageSize' => $limit]);

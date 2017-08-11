@@ -17,6 +17,7 @@ use yii\db\ActiveRecord;
  * @property string $cat_id                     学科
  * @property string $template_sn                模板编号：s_00、s_01...
  * @property integer $type                      课件类型：flash、视频、实训
+ * @property string $unit                       单元
  * @property string $name                       课程名称
  * @property string $courseware_name            课件名称
  * @property string $img                        课件图片
@@ -28,6 +29,7 @@ use yii\db\ActiveRecord;
  * @property integer $is_recommend              是否推荐
  * @property integer $is_publish                是否发布
  * @property string $content                    详细内容
+ * @property integer $course_order              课程序号
  * @property integer $order                     排序
  * @property string $play_count                 播放次数
  * @property string $zan_count                  点赞数
@@ -68,8 +70,8 @@ class Course extends ActiveRecord
     public function rules()
     {
         return [
-            [['parent_cat_id','cat_id', 'type', 'teacher_id', 'is_recommend', 'is_publish', 'order', 'play_count', 'zan_count', 'favorites_count', 'comment_count', 'publish_time', 'created_at', 'updated_at', 'course_model_id'], 'integer'],
-            [['learning_objectives', 'introduction','courseware_name','synopsis','content','publisher_id', 'create_by','template_sn'], 'string'],
+            [['parent_cat_id','cat_id', 'type', 'teacher_id', 'is_recommend', 'is_publish', 'course_order', 'order', 'play_count', 'zan_count', 'favorites_count', 'comment_count', 'publish_time', 'created_at', 'updated_at', 'course_model_id'], 'integer'],
+            [['learning_objectives', 'introduction', 'unit', 'courseware_name','synopsis','content','publisher_id', 'create_by','template_sn'], 'string'],
             [['name', 'img', 'path', 'keywords'], 'string', 'max' => 255],
         ];
     }
@@ -91,6 +93,7 @@ class Course extends ActiveRecord
             'cat_id' => Yii::t('app', 'Cat'),
             'template_sn' => Yii::t('app', 'Template'),
             'type' => Yii::t('app', 'Type'),
+            'unit' => Yii::t('app', 'Unit'),
             'name' => Yii::t('app', 'Course Name'),
             'courseware_name' => Yii::t('app', 'Courseware Name'),
             'img' => Yii::t('app', 'Course Img'),
@@ -102,6 +105,7 @@ class Course extends ActiveRecord
             'is_recommend' => Yii::t('app', 'Is Recommend'),
             'is_publish' => Yii::t('app', 'Is Publish'),
             'content' => Yii::t('app', 'Content'),
+            'course_order' => Yii::t('app', 'Course Order'),
             'order' => Yii::t('app', 'Order'),
             'play_count' => Yii::t('app', 'Play Count'),
             'zan_count' => Yii::t('app', 'Zan Count'),

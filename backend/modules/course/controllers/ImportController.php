@@ -142,8 +142,8 @@ class ImportController extends Controller
             //检查是否存在课件名，为空时指向课程名
             if($course['course']['courseware_name'] == null)
                 $course['course']['courseware_name'] = $course['course']['name'];
-            //cat_id__name__courseware_name__attr_name:attr_value
-            $keyName = $course['course']['cat_id'].'__'.$course['course']['name'].'__'.$course['course']['courseware_name'];
+            //cat_id__unit__name__courseware_name__attr_name:attr_value
+            $keyName = $course['course']['cat_id'].'__'.$course['course']['unit'].'__'.$course['course']['name'].'__'.$course['course']['courseware_name'];
             foreach ($course['attr'] as $attr_name => $attr_value){
                 $keyName .= '__'.$attr_name.':'.$attr_value;
             }
@@ -270,7 +270,7 @@ class ImportController extends Controller
         // ['id','cat_id','name','courseware_name','attrs'=>'attr_id:attr_value,...']
         //
         $hasExits = (new Query())
-                ->select(['Course.id','Course.cat_id','Course.name','Course.courseware_name','GROUP_CONCAT(CourseAttr.attr_id,\':\',CourseAttr.value SEPARATOR \',\') as attrs'])
+                ->select(['Course.id','Course.cat_id','Course.unit','Course.name','Course.courseware_name','GROUP_CONCAT(CourseAttr.attr_id,\':\',CourseAttr.value SEPARATOR \',\') as attrs'])
                 ->from(['Course' => Course::tableName()])
                 ->leftJoin(['CourseAttr' => CourseAttr::tableName()], 'CourseAttr.course_id = Course.id')
                 ->where(['Course.courseware_name' => array_unique(ArrayHelper::getColumn($courses, 'course.courseware_name')),'cat_id' => array_unique(ArrayHelper::getColumn($courses, 'course.cat_id'))])
@@ -295,6 +295,7 @@ class ImportController extends Controller
                 $course['course']['is_publish'] = 1;
                 $course['course']['publish_time'] = $now;
                 $course['course']['publisher_id'] = Yii::$app->user->id;;
+                $course['course']['course_order'] = !isset($course['course']['course_order']) || $course['course']['course_order'] == '' ? 0 : $course['course']['course_order'];
                 $course['course']['order'] = $course['course']['order'] == '' ? 0 : $course['course']['order'];
                 $rows [] = $course['course'];
             }else{
@@ -339,13 +340,14 @@ class ImportController extends Controller
     
     /**
      * 检查课程是否已经录入
-     * @param type $dbCourses            [['id','cat_id','name','courseware_name','attrs' => 'attr_id:attr_value,...']]
-     * @param type $importCourse        ['course'=>['cat_id','name','courseware_name'],attrs =>['attr_id','value']
+     * @param type $dbCourses            [['id','cat_id','unit','name','courseware_name','attrs' => 'attr_id:attr_value,...']]
+     * @param type $importCourse        ['course'=>['cat_id','unit,'name','courseware_name'],attrs =>['attr_id','value']
      */
     private function hasExit($dbCourses,$importCourse){
         foreach($dbCourses as $dbCourse){
-            //1、学科、课程名、课件名相同
-            if($dbCourse['cat_id'] == $importCourse['course']['cat_id']
+            //1、学科、单元、课程名、课件名相同
+            if($dbCourse['cat_id'] == $importCourse['course']['cat_id'] 
+                    && $dbCourse['unit'] == $importCourse['course']['unit']
                     && (!isset($importCourse['course']['name']) || $dbCourse['name'] == $importCourse['course']['name'])
                     && ($dbCourse['courseware_name'] == $importCourse['course']['courseware_name'])){
                 if($dbCourse['attrs'] != ''){
