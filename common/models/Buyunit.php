@@ -97,6 +97,7 @@ class Buyunit extends ActiveRecord
      * @return array 采购商信息 [<br/>
      *  'buyunity_id',                      //{string}采购商ID<br/>
      *  'buyunity_name',                    //{string}采购商名称<br/>
+     *  'buyunity_logo',                    //{string}采购商Logo<br/>
      *  'start_ip',                         //{string}起始IP<br/>
      *  'end_ip',                           //{string}结束IP<br/>
      *  'subjects' => [subject_id,...],     //{array}购买的学科<br/>
@@ -105,7 +106,7 @@ class Buyunit extends ActiveRecord
     public static function searchByIp($ip){
         //查出所有采购商
         $buyunity_result = (new Query())
-                ->select(['Buyunity.id as buyunity_id','Buyunity.name as buyunity_name','Buyunity.logo_path as buyunity_logo','Buyunity.name as buyunity_name','BuyunityIP.start_ip' ,'BuyunityIP.end_ip'])
+                ->select(['Buyunity.id as buyunity_id','Buyunity.name as buyunity_name','Buyunity.logo_path as buyunity_logo','BuyunityIP.start_ip' ,'BuyunityIP.end_ip'])
                 ->from(['Buyunity' => self::BUYUNITY_TABLE_NAME])
                 ->leftJoin(['BuyunityIP' => self::BUYUNITY_IP_TABLE_NAME], 'Buyunity.id = BuyunityIP.unit_user_id')
                 ->where(['Buyunity.delete_flag' => '0','BuyunityIP.delete_flag' => 0])
@@ -118,6 +119,27 @@ class Buyunit extends ActiveRecord
         }
         
         return null;
+    }
+    /**
+     * 获取当前 IP 对应的采购商
+     * @return array 采购商信息 [<br/>
+     *  'buyunity_id',                      //{string}采购商ID<br/>
+     *  'buyunity_name',                    //{string}采购商名称<br/>
+     *  'buyunity_logo',                    //{string}采购商Logo<br/>
+     *  'start_ip',                         //{string}起始IP<br/>
+     *  'end_ip',                           //{string}结束IP<br/>
+     *  'subjects' => [subject_id,...],     //{array}购买的学科<br/>
+     * ]<br/>
+     */
+    public static function getCurrentBuyunit(){
+        $session = Yii::$app->session;
+        $ip = Yii::$app->request->userIP;
+        $session_key = md5(sprintf("%s&%s", \Yii::$app->name, $ip));
+        $buyunit = $session->get($session_key);
+        if($buyunit == null){
+            $buyunit = self::searchByIp($ip);
+        }
+        return $buyunit;
     }
     
     /**
