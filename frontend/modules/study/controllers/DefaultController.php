@@ -76,7 +76,7 @@ class DefaultController extends Controller
     {
         $params = Yii::$app->request->queryParams;
         $cat_id = ArrayHelper::getValue($params, 'cat_id');
-        $isBuy = true;//Buyunit::checkAuthorize($cat_id);
+        $isBuy = Buyunit::checkAuthorize($cat_id);
         if($isBuy){
             $parent_cat_id = ArrayHelper::getValue($params, 'parent_cat_id');
             $id = ArrayHelper::getValue($params, 'id');
