@@ -37,6 +37,8 @@ class Buyunit extends ActiveRecord
     const BUYUNITY_INFO_TABLE_NAME = 'agent_buyunit_info';
     /* 采购产品 表名 */
     const BUYUNITY_SUBJECT_REL_TABLE_NAME = 'agent_buyunit_subject_rel';
+    /* logo所在服务器 */
+    const LOGO_WEB_ROOT = 'http://wph.tt.eenet.com';
     
     
     /**
@@ -103,13 +105,14 @@ class Buyunit extends ActiveRecord
     public static function searchByIp($ip){
         //查出所有采购商
         $buyunity_result = (new Query())
-                ->select(['Buyunity.id as buyunity_id','Buyunity.name as buyunity_name','BuyunityIP.start_ip' ,'BuyunityIP.end_ip'])
+                ->select(['Buyunity.id as buyunity_id','Buyunity.name as buyunity_name','Buyunity.logo_path as buyunity_logo','Buyunity.name as buyunity_name','BuyunityIP.start_ip' ,'BuyunityIP.end_ip'])
                 ->from(['Buyunity' => self::BUYUNITY_TABLE_NAME])
                 ->leftJoin(['BuyunityIP' => self::BUYUNITY_IP_TABLE_NAME], 'Buyunity.id = BuyunityIP.unit_user_id')
                 ->where(['Buyunity.delete_flag' => '0','BuyunityIP.delete_flag' => 0])
                 ->all();
         foreach($buyunity_result as $iprow){
             if(self::ipInNetwork($ip,$iprow['start_ip'],$iprow['end_ip'])){
+                $iprow['buyunity_logo'] = self::LOGO_WEB_ROOT.$iprow['buyunity_logo'];
                 return array_merge($iprow,['subjects' => self::getBuyunitySubject($iprow['buyunity_id'])]);
             }
         }
