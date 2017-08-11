@@ -6,9 +6,6 @@ body .k12 > .container {
     margin-right: 0px !important;
 }
 
-.site-index h1 {
-    font-family: '方正兰亭纤黑_GBK_1';
-}
 /***********************************banner样式**********************************/
 .site-index .banner {
     width: 100%;
@@ -141,8 +138,18 @@ body .k12 > .container {
 }
 
 .site-index .body-memu
+.memu-leave-number {
+    width: 100%;
+    height: 26px;
+    padding: 3px 4px;
+    display: inline-block;
+    font-size: 18px;
+    color: #fff;
+    text-align: right;
+}
+
+.site-index .body-memu
 .memu-leave-icon {
-    padding-top: 26px;
     padding-left: 22px;
     padding-bottom: 15px;
 }
@@ -233,6 +240,23 @@ body .k12 > .container {
 .site-index .hover-more-5 {
     color: #4d3522;
     background-color: #967154;
+}
+
+
+.site-unauthorized .unauthorized {
+    width: 100%;
+    height: 660px;
+    font-size: 40px;
+    color: #4abaf9;
+    background-image: url("/filedata/site/image/error-background.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center 0;
+}
+
+.site-unauthorized .unauthorized-prompt {
+    float: right;
+    line-height: 660px;
 }
 
 @font-face{

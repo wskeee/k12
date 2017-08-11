@@ -84,8 +84,9 @@ class CourseListSearch {
         $totalCount = $query->all();      //查总数量
         
         $query->addSelect([ 'Course.parent_cat_id','Course.img', 'Course.unit', 'Course.courseware_name as name', 'Course.play_count']);
+        $query->leftJoin(['Category' => CourseCategory::tableName()], 'Category.id = Course.cat_id');
         if($sort_order == 'order')
-            $query->orderBy(['Course.cat_id' => SORT_ASC, 'Course.unit' => SORT_ASC, 'Course.course_order' => SORT_ASC, "Course.$sort_order" => SORT_ASC]);               
+            $query->orderBy(['Category.sort_order' => SORT_ASC, 'Course.course_order' => SORT_ASC, "Course.$sort_order" => SORT_ASC]);               
         else
             $query->orderBy(["Course.$sort_order" => SORT_DESC]);
         $query->offset(($page-1)*$limit)->limit($limit);
@@ -101,6 +102,7 @@ class CourseListSearch {
                 ->select(['id','name'])
                 ->from(CourseCategory::tableName())
                 ->where(['id' => $cat_ids, 'is_show' => 1])
+                ->orderBy('sort_order')
                 ->all();
         
         //查找过滤后的课程属性
@@ -122,7 +124,7 @@ class CourseListSearch {
                 ->leftJoin(['Attribute' => CourseAttribute::tableName()],'CourseAttr.attr_id = Attribute.id')
                 ->andFilterWhere(['Attribute.index_type' => 1])                 //只查询添加筛选的属性
                 ->groupBy('Attribute.name')
-                ->orderBy('CourseAttr.sort_order DESC');
+                ->orderBy('CourseAttr.sort_order');
         //添加已经过滤的属性条件
         foreach($attrs as $attr){
             $query->andFilterWhere(['not in','CourseAttr.attr_id',explode('_', $attr['attr_id'])]);

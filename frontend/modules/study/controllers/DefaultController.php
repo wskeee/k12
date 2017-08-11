@@ -2,14 +2,12 @@
 
 namespace frontend\modules\study\controllers;
 
-use common\models\Buyunit;
 use common\models\course\Course;
+use common\models\course\CourseAttr;
 use common\models\course\CourseAttribute;
 use common\models\course\CourseCategory;
 use common\models\course\searchs\CourseListSearch;
-use common\models\Menu;
 use common\models\SearchLog;
-use frontend\components\MenuUtil;
 use Yii;
 use yii\db\Query;
 use yii\filters\AccessControl;
@@ -75,20 +73,16 @@ class DefaultController extends Controller
     public function actionView()
     {
         $params = Yii::$app->request->queryParams;
-        $cat_id = ArrayHelper::getValue($params, 'cat_id');
-        $isBuy = Buyunit::checkAuthorize($cat_id);
+        $model = $this->findModel(ArrayHelper::getValue($params, 'id'));
+        $isBuy = true;//Buyunit::checkAuthorize($model->cat_id);
         if($isBuy){
-            $parent_cat_id = ArrayHelper::getValue($params, 'parent_cat_id');
-            $id = ArrayHelper::getValue($params, 'id');
-            $model = $this->findModel($id);
             $model->play_count += 1;
             $model->save(false, ['play_count']);
-            $link = Url::to(['index', 'parent_cat_id' => $parent_cat_id]);
-            $controllerId = '/'.Yii::$app->controller->id;
             
             return $this->render('view', [
                 'model' => $model,
-                'menu' => MenuUtil::getMenus(Menu::POSITION_FRONTEND)->where(['link' => strstr($link, $controllerId)])->one(),
+                'filter' => $params,
+                'attrs' => $this->getCourseAttr($model->id)
             ]);
         }else{
             $this->layout = '@frontend/modules/study/views/layouts/_main';
@@ -199,6 +193,22 @@ class DefaultController extends Controller
         return $resultItems;
     }
     
+    /**
+     * 获取该课件下的所有属性
+     * @param integer $course_id               课件id
+     * @return type
+     */
+    public function getCourseAttr($course_id)
+    {
+        return (new Query())
+            ->select(['CourseAttr.value'])
+            ->from(['CourseAttr' => CourseAttr::tableName()])
+            ->leftJoin(['Attribute' => CourseAttribute::tableName()], 'Attribute.id = CourseAttr.attr_id')
+            ->where(['CourseAttr.course_id' => $course_id, 'Attribute.index_type' => 1])
+            ->orderBy(['CourseAttr.sort_order' => SORT_DESC])
+            ->all();
+    }
+
     /**
      * 保存搜索日志数据
      * @param array $params

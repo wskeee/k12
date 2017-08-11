@@ -1,6 +1,6 @@
 <?php
 
-use frontend\modules\study\assets\StudyAsset;
+use frontend\assets\HomeAsset;
 use yii\helpers\ArrayHelper;
 use yii\web\View;
 
@@ -37,5 +37,5 @@ JS;
 ?>
 
 <?php 
-    StudyAsset::register($this);
+    HomeAsset::register($this);
 ?>

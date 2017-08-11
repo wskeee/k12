@@ -1,10 +1,10 @@
 <?php
 
+use common\models\Buyunit;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\web\View;
-use yii\widgets\Breadcrumbs;
 
 /* @var $this View */
 /* @var $content string */
@@ -26,10 +26,11 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<?php 
+<?php
+    //$buyunit = Buyunit::getCurrentBuyunit();
     $params = [
         [
-            'label' => Html::img(['/filedata/site/image/logo.png']),
+            'label' => Html::img(['/filedata/site/image/logo-1.png']),//Html::img("{$buyunit['buyunity_logo']}"),
             'options' => ['class' => 'pull-left'],
         ],
     ];

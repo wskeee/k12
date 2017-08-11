@@ -14,8 +14,6 @@ $this->title = Yii::t('app', 'My Yii Application');
 
 <div class="site-index">
     
-    <h1>欢迎使用中山大学电教馆资源</h1>
-    
     <div class="banner">
         <div class="banner-background">
             <?php //echo Html::img(['/filedata/site/image/background.jpg'], ['class' => 'background-img']) ?>
@@ -62,6 +60,10 @@ $this->title = Yii::t('app', 'My Yii Application');
             <a href="/<?= $item->module.$item->link ?>">
             <div class="body-memu <?= $index % 5 == 4 ? "memu-background-{$item->id} none-margin" : "memu-background-{$item->id}"?>">
                 <div class="memu-leave">
+                    <div class="memu-leave-number">
+                        <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;
+                        <span><?= $totalCount[$item->id] <= 10000 ? number_format($totalCount[$item->relate_id]) : substr(number_format((($totalCount[$item->relate_id]/10000)*10)/10, 4), 0, -2).'万' ?></span>
+                    </div>
                     <div class="memu-leave-icon">
                         <?= Html::img(["/filedata/site/memu/icon/memu-icon-{$item->id}.png"], ['class' => 'icon-big']) ?>
                     </div>

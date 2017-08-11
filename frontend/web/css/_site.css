@@ -19,6 +19,10 @@ body .container {
     line-height: 76px;
 }
 
+.header p {
+    margin: 0px;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
@@ -28,6 +32,10 @@ body .container {
 
 .wrap > .container {
     padding: 70px 15px 20px;
+}
+
+.k12 > .container h3 {
+    font-family: '方正兰亭纤黑_GBK_1';
 }
 
 .footer {
