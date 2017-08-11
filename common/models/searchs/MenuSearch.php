@@ -19,7 +19,7 @@ class MenuSearch extends Menu
     {
         return [
             [['id', 'parent_id', 'is_show', 'is_jump', 'level', 'sort_order', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'alias', 'module', 'link', 'image', 'position'], 'safe'],
+            [['name', 'alias', 'module', 'link', 'image', 'position', 'des'], 'safe'],
         ];
     }
 
@@ -74,7 +74,8 @@ class MenuSearch extends Menu
             ->andFilterWhere(['like', 'module', $this->module])
             ->andFilterWhere(['like', 'link', $this->link])
             ->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'position', $this->position]);
+            ->andFilterWhere(['like', 'position', $this->position])
+            ->andFilterWhere(['like', 'des', $this->des]);
 
         return $dataProvider;
     }

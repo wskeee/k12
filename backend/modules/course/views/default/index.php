@@ -41,7 +41,7 @@ $this->title = Yii::t('app', '{Course}{List}', [
             ],
             [
                 'attribute' => 'parent_cat_id',
-                'options' => ['style' => ['width' => '120px']],
+                'options' => ['style' => ['width' => '80px']],
                 'value' => function($model) {
                     return $model->parentCategory->name;
                 },
@@ -49,15 +49,19 @@ $this->title = Yii::t('app', '{Course}{List}', [
             ],
             [
                 'attribute' => 'cat_id',
-                'options' => ['style' => ['width' => '120px']],
+                'options' => ['style' => ['width' => '80px']],
                 'value' => function($model) {
                     return $model->category->name;
                 },
             ],
-            'courseware_name',
+            [
+                'attribute' => 'courseware_name',
+                'options' => ['style' => ['width' => '130px']],
+            ],
             [
                 'attribute' => 'path',
                 'class' => GridViewChangeSelfColumn::className(),
+                'options' => ['style' => ['width' => '120px']],
                 'plugOptions' => [
                     'type' => 'input',
                 ]
@@ -65,6 +69,7 @@ $this->title = Yii::t('app', '{Course}{List}', [
             [
                 'attribute' => 'keywords',
                 'class' => GridViewChangeSelfColumn::className(),
+                'options' => ['style' => ['width' => '120px']],
                 'plugOptions' => [
                     'type' => 'input',
                 ]
@@ -88,16 +93,24 @@ $this->title = Yii::t('app', '{Course}{List}', [
             ],
             // 'content:ntext',
             [
+                'attribute' => 'course_order',
+                'class' => GridViewChangeSelfColumn::className(),
+                'options' => ['style' => ['width' => '40px']],
+                'plugOptions' => [
+                    'type' => 'input',
+                ]
+            ],
+            [
                 'attribute' => 'order',
                 'class' => GridViewChangeSelfColumn::className(),
-                'options' => ['style' => ['width' => '70px']],
+                'options' => ['style' => ['width' => '40px']],
                 'plugOptions' => [
                     'type' => 'input',
                 ]
             ],
             [
                 'attribute' => 'play_count',
-                'options' => ['style' => ['width' => '70px']],
+                'options' => ['style' => ['width' => '75px']],
             ],            
             // 'zan_count',
             // 'favorites_count',

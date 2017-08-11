@@ -66,6 +66,7 @@ class CourseSearch extends Course
             'teacher_id' => $this->teacher_id,
             'is_recommend' => $this->is_recommend,
             'is_publish' => $this->is_publish,
+            'course_order' => $this->course_order,
             'order' => $this->order,
             'play_count' => $this->play_count,
             'zan_count' => $this->zan_count,

@@ -45,6 +45,8 @@ $isNew = $model->getIsNewRecord();
 
     </div>
     
+    <?= $form->field($model, 'unit')->textInput(['maxlength' => true]) ?>
+    
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     
     <?= $form->field($model, 'courseware_name')->textInput(['maxlength' => true]) ?>
@@ -81,11 +83,13 @@ $isNew = $model->getIsNewRecord();
 
     <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'course_order')->textInput() ?>
+    
     <?= $form->field($model, 'order')->textInput() ?>
 
-        <?= $form->field($model, 'path')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'path')->textInput(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'keywords')->textInput(['maxlength' => true,]) ?>
+    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true,]) ?>
 
     <div class="form-group">
 <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
