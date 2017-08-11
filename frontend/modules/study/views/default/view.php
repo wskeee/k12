@@ -71,6 +71,7 @@ JS;
 	var templetNetPath = encodeURIComponent(domain+"<?= trim($model->template->path) ?>")         //课程资源网络路径
 	var webserver = encodeURIComponent("x")                                                 //webservice 服务路径
         var player = domain + "<?= trim($model->template->player) ?>";                                //播放器路径 
+        var version = "<?= trim($model->template->version) ?>";
 	//======================    
 	// 课件变量
 			/*获取学习记录的接口:/nes/course/nesCourseStudyrecord/getStudyStatusJson.ee?formMap.courseId=df935ae658a1461aaebf067b47db209d&formMap.memberId=05fc37ce2c6*04e689f8cb5af4f50a2aa&formMap.termId=2bac580b58a64760b9f15dd8cde69b04
@@ -79,7 +80,7 @@ JS;
 	    //提交时一定需要的参数每一个健值使用|隔开
 	    var staticFormField = encodeURIComponent("courseId=1") 
 					
-	    var flashvars = '?id='+id+'&name='+name+'&netpath='+netpath+'&templetNetPath='+templetNetPath+'&webserver='+webserver+'&staticFormField='+staticFormField+"&debug=true";
+	    var flashvars = '?id='+id+'&name='+name+'&netpath='+netpath+'&templetNetPath='+templetNetPath+'&webserver='+webserver+'&staticFormField='+staticFormField+"&debug=true&version="+version;
             var params = {allowFullScreen:"true",allowScriptAccess:"always"};
             swfobject.embedSWF(player+flashvars, "main", "1000", "574", "9.0.0", "expressInstall.swf",null,params);
 	};
