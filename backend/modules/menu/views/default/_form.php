@@ -24,6 +24,8 @@ $prompt = Yii::t('app', 'Select Placeholder');
     ]); ?>
 
     <?= $form->field($model, 'parent_id')->dropDownList($parents, ['prompt' => $prompt]) ?>
+    
+    <?= $form->field($model, 'relate_id')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

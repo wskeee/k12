@@ -97,7 +97,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                     <div class="gc-name course-name"><?= "【{$course['unit']}】{$course['name']}" ?></div>
                     <div class="gc-see">
                         <i class="glyphicon glyphicon-play-circle"></i>
-                        <span><?= $course['play_count'] < 1000 ? number_format($course['play_count']) : substr(number_format((($course['play_count']/10000)*10)/10, 4),0,-3).'万'; ?></span>
+                        <span><?= $course['play_count'] <= 1000 ? number_format($course['play_count']) : substr(number_format((($course['play_count']/10000)*10)/10, 4),0,-3).'万'; ?></span>
                     </div>
                 </div>
                 <?php endforeach; ?>

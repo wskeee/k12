@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\course\Course;
 use common\models\LoginForm;
 use common\models\Menu;
 use frontend\components\MenuUtil;
@@ -10,8 +11,10 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use const YII_ENV_TEST;
@@ -78,9 +81,15 @@ class SiteController extends Controller
         $this->layout = '@app/views/layouts/_main_home';
         
         $menuUtil = MenuUtil::getInstance();
-        
+        $totalCount = (new Query())
+                ->select(['Course.parent_cat_id AS category', 'COUNT(Course.id) AS total'])
+                ->from(['Course' => Course::tableName()])
+                ->where(['Course.is_publish' => 1])
+                ->groupBy('Course.parent_cat_id')->all();
+
         return $this->render('index', [
             'menus' => $menuUtil::getMenus(Menu::POSITION_FRONTEND)->all(),
+            'totalCount' => ArrayHelper::map($totalCount, 'category', 'total'),
         ]);
     }
 
@@ -169,7 +178,7 @@ class SiteController extends Controller
      */
     public function actionUnauthorized($ip)
     {
-        $this->layout = '';
+        $this->layout = '@app/views/layouts/_unauthorized';
         return $this->render('unauthorized', ['ip' => $ip]);
     }
 

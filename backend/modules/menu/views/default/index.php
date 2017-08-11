@@ -40,6 +40,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => Menu::getCats(['level' => 1]),
             ],
             [
+                'attribute' => 'relate_id',
+                'class' => GridViewChangeSelfColumn::className(),
+                'options' => ['style' => ['width' => '40px']],
+                'contentOptions' => ['style' => ['padding-top' => '0px', 'padding-bottom' => '0px;']],
+                'plugOptions' => [
+                    'type' => 'input',
+                ]
+            ],
+            [
                 'attribute' => 'name',
                 'options' => ['style' => ['width' => '140px']],
             ],
@@ -93,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'sort_order',
                 'class' => GridViewChangeSelfColumn::className(),
-                'options' => ['style' => ['width' => '70px']],
+                'options' => ['style' => ['width' => '40px']],
                 'contentOptions' => ['style' => ['padding-top' => '0px', 'padding-bottom' => '0px;']],
                 'plugOptions' => [
                     'type' => 'input',

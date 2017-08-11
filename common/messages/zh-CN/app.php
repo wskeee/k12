@@ -79,6 +79,7 @@ return [
     
     //菜单管理
     'Menus' => '菜单',
+    'Relate ID' => '关联id',
     'Alias' => '别名',
     'Module' => '模块',
     'Is Jump' => '是否跳转',

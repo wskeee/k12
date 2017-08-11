@@ -14,6 +14,7 @@ use yii\web\UploadedFile;
  *
  * @property string $id                     id
  * @property string $parent_id              父级id
+ * @property string $relate_id              关联id
  * @property string $name                   菜单名
  * @property string $alias                  别名
  * @property string $module                 所属模块
@@ -71,7 +72,7 @@ class Menu extends ActiveRecord
     {
         return [
             [['name', 'alias', 'module', 'link'], 'required'],
-            [['parent_id', 'is_show', 'is_jump', 'level', 'sort_order', 'created_at', 'updated_at'], 'integer'],
+            [['parent_id', 'relate_id', 'is_show', 'is_jump', 'level', 'sort_order', 'created_at', 'updated_at'], 'integer'],
             [['name', 'alias', 'module', 'position'], 'string', 'max' => 60],
             [['link', 'image'], 'string', 'max' => 255],
             [['des'], 'string'],
@@ -111,6 +112,7 @@ class Menu extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'parent_id' => Yii::t('app', 'Parent ID'),
+            'relate_id' => Yii::t('app', 'Relate ID'),
             'name' => Yii::t('app', 'Name'),
             'alias' => Yii::t('app', 'Alias'),
             'module' => Yii::t('app', 'Module'),

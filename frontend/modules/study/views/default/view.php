@@ -30,12 +30,13 @@ if(substr($coursePlath, -1, 1) != '/'){
             <div class="cb-nav">
                 
                 <div class="cbn-icon"><i class="icon icon-book"></i></div>
-                
                 <div class="cbn-item"><span class="position">所在位置：</span></div>
-                
-                <div class="cbn-item"><?= Html::a($menu->name, ['/'.$menu->module.$menu->link]) ?><i>&gt;</i></div>
-                
-                <div class="cbn-item"><span><?= Html::encode($this->title) ?></span></div>
+                <div class="cbn-item"><?= Html::a($model->parentCategory->name, ['index', 'parent_cat_id' => $filter['parent_cat_id']]) ?><i>&gt;</i></div>
+                <div class="cbn-item"><span><?= Html::encode($model->category->name) ?></span><i style="color: #8a8a8a;">&gt;</i></div>
+                <?php foreach ($attrs as $attr_value): ?>
+                <div class="cbn-item"><span><?= Html::encode($attr_value['value']) ?></span><i style="color: #8a8a8a;">&gt;</i></div>
+                <?php endforeach; ?>
+                <div class="cbn-item"><span><?= Html::encode("【{$model->unit}】{$this->title}") ?></span></div>
                 
             </div>
         </div>
@@ -53,8 +54,7 @@ if(substr($coursePlath, -1, 1) != '/'){
 </div>
 
 <?php
-$params = Yii::$app->request->queryParams;
-$subject = ArrayHelper::getValue($params, 'parent_cat_id');
+$subject = ArrayHelper::getValue($filter, 'parent_cat_id');
 $js = <<<JS
     
     var subjectArray = new Array("sites", "yellow", "green", "blue", "purple", "brown");

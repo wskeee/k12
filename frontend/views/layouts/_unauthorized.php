@@ -30,10 +30,6 @@ AppAsset::register($this);
             'label' => Html::img(['/filedata/site/image/logo-1.png']),
             'options' => ['class' => 'pull-left'],
         ],
-        /*[
-            'label' => Html::img(['/filedata/site/image/logo-2.png']),
-            'options' => ['class' => 'pull-right'],
-        ],*/
     ];
     
     echo $this->render('_header', ['params' => $params]); 
@@ -43,7 +39,6 @@ AppAsset::register($this);
         
     <div class="container">
         <?= Alert::widget() ?>
-        <!--<h3>欢迎使用数字化资源云平台</h3>-->
         <?= $content ?>
     </div>
 </div>
