@@ -133,12 +133,13 @@ body .k12 > .container {
 }
 
 ._index .goods-column .gc-name {
-    width: 154px;
+    width: 170px;
     float: left;
+    text-indent: -5px;
 }
 
 ._index .goods-column .gc-see {
-    width: 76px;
+    width: 60px;
     float: right;
     font-size: 12px;
     text-align: right;

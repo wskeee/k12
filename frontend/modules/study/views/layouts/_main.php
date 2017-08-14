@@ -3,6 +3,7 @@
 /* @var $this View */
 /* @var $content string */
 
+use common\models\Buyunit;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
@@ -24,10 +25,15 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <?php 
+    $buyunit = Buyunit::getCurrentBuyunit();
     $params = [
         [
-            'label' => Html::img(['/filedata/site/image/logo.png']),
+            'label' => $buyunit['is_experience'] ? Html::img(['/filedata/site/image/logo-1.png']) : Html::img("{$buyunit['buyunity_logo']}"),
             'options' => ['class' => 'pull-left'],
+        ],
+        [
+            'label' => !$buyunit['is_experience'] ? '中小学数字化资源云平台' : '',
+            'options' => ['class' => 'pull-right'],
         ],
     ];
     

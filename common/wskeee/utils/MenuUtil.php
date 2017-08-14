@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace frontend\components;
+namespace common\wskeee\utils;
 
 use common\models\Menu;
 

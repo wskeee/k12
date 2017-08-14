@@ -1,11 +1,10 @@
 <?php
 
 use common\models\Menu;
-use frontend\components\MenuUtil;
+use common\wskeee\utils\MenuUtil;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
 

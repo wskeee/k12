@@ -4,7 +4,7 @@ namespace frontend\controllers;
 use common\models\course\Course;
 use common\models\LoginForm;
 use common\models\Menu;
-use frontend\components\MenuUtil;
+use common\wskeee\utils\MenuUtil;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;

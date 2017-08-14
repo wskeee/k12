@@ -205,7 +205,7 @@ class DefaultController extends Controller
             ->from(['CourseAttr' => CourseAttr::tableName()])
             ->leftJoin(['Attribute' => CourseAttribute::tableName()], 'Attribute.id = CourseAttr.attr_id')
             ->where(['CourseAttr.course_id' => $course_id, 'Attribute.index_type' => 1])
-            ->orderBy(['CourseAttr.sort_order' => SORT_DESC])
+            ->orderBy(['Attribute.order' => SORT_ASC])
             ->all();
     }
 
@@ -215,12 +215,13 @@ class DefaultController extends Controller
      */
     public function saveSearchLog($params)
     {
-        $Logs = [
+        $searchLogs = [
             'keyword' => ArrayHelper::getValue($params, 'keyword'),
             'created_at' => time(),
             'updated_at' => time()
         ];
         /** 添加$Logs数组到表里 */
-        Yii::$app->db->createCommand()->insert(SearchLog::tableName(), $Logs)->execute();
+        if($searchLogs != null)
+            Yii::$app->db->createCommand()->insert(SearchLog::tableName(), $searchLogs)->execute();
     }
 }

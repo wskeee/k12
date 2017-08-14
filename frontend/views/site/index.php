@@ -62,7 +62,7 @@ $this->title = Yii::t('app', 'My Yii Application');
                 <div class="memu-leave">
                     <div class="memu-leave-number">
                         <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;
-                        <span><?= $totalCount[$item->id] <= 10000 ? number_format($totalCount[$item->relate_id]) : substr(number_format((($totalCount[$item->relate_id]/10000)*10)/10, 4), 0, -2).'万' ?></span>
+                        <span><?= $totalCount[$item->id] <= 99999 ? number_format($totalCount[$item->relate_id]) : substr(number_format((($totalCount[$item->relate_id]/10000)*10)/10, 4), 0, -2).'万' ?></span>
                     </div>
                     <div class="memu-leave-icon">
                         <?= Html::img(["/filedata/site/memu/icon/memu-icon-{$item->id}.png"], ['class' => 'icon-big']) ?>

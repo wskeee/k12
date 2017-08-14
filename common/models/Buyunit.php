@@ -126,6 +126,7 @@ class Buyunit extends ActiveRecord
             if($experience && $experience->create_date){
                 return [
                     'is_experience' => true,
+                    'experience_id' => $experience->id,
                     'experience_code' => $experience_code,
                     'experience_unit' => $experience->unit_name,
                 ];

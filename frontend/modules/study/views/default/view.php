@@ -31,6 +31,7 @@ if(substr($coursePlath, -1, 1) != '/'){
                 
                 <div class="cbn-icon"><i class="icon icon-book"></i></div>
                 <div class="cbn-item"><span class="position">所在位置：</span></div>
+                <div class="cbn-item"><?= Html::a('首页', ['/site/index']) ?><i>&gt;</i></div>
                 <div class="cbn-item"><?= Html::a($model->parentCategory->name, ['index', 'parent_cat_id' => $filter['parent_cat_id']]) ?><i>&gt;</i></div>
                 <div class="cbn-item"><span><?= Html::encode($model->category->name) ?></span><i style="color: #8a8a8a;">&gt;</i></div>
                 <?php foreach ($attrs as $attr_value): ?>

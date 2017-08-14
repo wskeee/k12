@@ -80,13 +80,14 @@ body .navbar-inverse .navbar-nav > li:hover {
 }
 
 ._search .goods-column .gc-name {
-    width: 154px;
+    width: 170px;
     float: left;
     font-size: 14px;
+    text-indent: -5px;
 }
 
 ._search .goods-column .gc-see {
-    width: 76px;
+    width: 60px;
     float: right;
     font-size: 12px;
     text-align: right;

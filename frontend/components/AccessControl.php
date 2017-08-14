@@ -3,7 +3,8 @@
 namespace frontend\components;
 
 use common\models\Buyunit;
-use wskeee\rbac\components\Helper;
+use common\models\BuyunityLog;
+use common\models\ExperienceLog;
 use Yii;
 use yii\base\ActionFilter;
 use yii\base\Module;
@@ -79,6 +80,10 @@ class AccessControl extends ActionFilter {
         if($buyunit == null){
             return \Yii::$app->getResponse()->redirect(['/site/unauthorized','ip' => $ip]);
         }else{
+            if($buyunit['is_experience'])
+                $this->saveExperienceLog($buyunit, $ip);
+            else    
+                $this->saveBuyunityLog($buyunit);
             $session->set($session_key,$buyunit);  //将token存到session变量中  
             return true;
         }
@@ -152,4 +157,40 @@ class AccessControl extends ActionFilter {
         return true;
     }
 
+    /**
+     * 保存购买商登录日志
+     * @param array $logs                  日志
+     */
+    protected function saveBuyunityLog($logs)
+    {
+        $buyunitLogs = [
+            'buyunit_id' => $logs['buyunity_id'],
+            'buyunit_name' => $logs['buyunity_name'],
+            'created_at' => time(),
+            'updated_at' => time(),
+        ];
+        /** 添加$Logs数组到表里 */
+        if($buyunitLogs != null)
+            Yii::$app->db->createCommand()->insert(BuyunityLog::tableName(), $buyunitLogs)->execute();
+    }
+    
+    /**
+     * 保存验证日志
+     * @param array $logs                  日志
+     */
+    protected function saveExperienceLog($logs, $ip)
+    {
+        $experienceLogs = [
+            'experience_id' => $logs['experience_id'],
+            'experience_code' => $logs['experience_code'],
+            'experience_ip' => $ip,
+            'unit_name' => $logs['experience_unit'],
+            'created_at' => time(),
+            'updated_at' => time(),
+        ];
+        /** 添加$Logs数组到表里 */
+        if($experienceLogs != null)
+            Yii::$app->db->createCommand()->insert(ExperienceLog::tableName(), $experienceLogs)->execute();
+    }
+    
 }

@@ -1,6 +1,7 @@
 <?php
 
 use frontend\modules\study\assets\StudyAsset;
+use wskeee\utils\ArrayUtil;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -57,14 +58,14 @@ $this->title = Yii::t('app', 'My Yii Application');
                     </div>
                 <?php endif; ?>
 
-                <?php foreach ($result['attrs'] as $attr_name => $attr_arr): ?>
+                <?php foreach ($result['attrs'] as $attr_name => $attr_arr):?>
                     <div class="sc-attribute">
                         <div class="sc-key">
                             <span><?= $attr_name ?>：</span>
                         </div>
                         <div class="sc-value">
                             <ul>
-                                <?php sort($attr_arr['value']); ?>
+                                <?php $attr_arr['value'] = ArrayUtil::sortCN($attr_arr['value']);?>
                                 <?php foreach ($attr_arr['value'] as $attr_label): ?>
                                     
                                     <li>
@@ -93,11 +94,11 @@ $this->title = Yii::t('app', 'My Yii Application');
                 <?php foreach ($result['courses'] as $index => $course):?>
                 
                 <div class="<?= ($index % 5 == 4 ) ? 'none-margin' : 'gc-item'; ?>">
-                    <?= Html::a('<div class="gc-img">'.Html::img([$course['img']], ['width' => '100%']).'</div>', ['view', 'parent_cat_id' => $course['parent_cat_id'], 'cat_id' => $course['cat_id'], 'id' => $course['id']]) ?>
+                    <?= Html::a('<div class="gc-img">'.Html::img([$course['img']], ['width' => '100%']).'</div>', ['view', 'parent_cat_id' => $course['parent_cat_id'], 'cat_id' => $course['cat_id'], 'id' => $course['id']], ['title' => "【{$course['unit']}】{$course['name']}" ]) ?>
                     <div class="gc-name course-name"><?= "【{$course['unit']}】{$course['name']}" ?></div>
                     <div class="gc-see">
                         <i class="glyphicon glyphicon-play-circle"></i>
-                        <span><?= $course['play_count'] <= 1000 ? number_format($course['play_count']) : substr(number_format((($course['play_count']/10000)*10)/10, 4),0,-3).'万'; ?></span>
+                        <span><?= $course['play_count'] <= 99999 ? number_format($course['play_count']) : substr(number_format((($course['play_count']/10000)*10)/10, 4),0,-3).'万'; ?></span>
                     </div>
                 </div>
                 <?php endforeach; ?>
