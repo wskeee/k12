@@ -114,7 +114,21 @@ class Buyunit extends ActiveRecord
         foreach($buyunity_result as $iprow){
             if(self::ipInNetwork($ip,$iprow['start_ip'],$iprow['end_ip'])){
                 $iprow['buyunity_logo'] = self::LOGO_WEB_ROOT.$iprow['buyunity_logo'];
+                $iprow['is_experience'] = false;
                 return array_merge($iprow,['subjects' => self::getBuyunitySubject($iprow['buyunity_id'])]);
+            }
+        }
+        
+        //检查是否是体验
+        $experience_code = \Yii::$app->getRequest()->getQueryParam('experience_code', null);
+        if($experience_code){
+            $experience = ExperienceCard::findOne(['experience_code' => $experience_code]);
+            if($experience && $experience->create_date){
+                return [
+                    'is_experience' => true,
+                    'experience_code' => $experience_code,
+                    'experience_unit' => $experience->unit_name,
+                ];
             }
         }
         
