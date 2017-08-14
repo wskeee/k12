@@ -77,6 +77,11 @@ class AccessControl extends ActionFilter {
         
         $buyunit = Buyunit::searchByIp($ip);
         if($buyunit == null){
+            
+            $experience_code = \Yii::$app->getRequest()->getQueryParam('experience_code', null);
+            if($experience_code){
+                
+            }
             return \Yii::$app->getResponse()->redirect(['/site/unauthorized','ip' => $ip]);
         }else{
             $session->set($session_key,$buyunit);  //将token存到session变量中  

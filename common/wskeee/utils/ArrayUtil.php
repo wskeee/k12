@@ -15,6 +15,7 @@ namespace wskeee\utils;
  */
 class ArrayUtil {
 
+    private static $hasInit = false;
     private static $sortNames = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '上', '中', '下', '全'];
     /**
      * 针对以下方案排序 <br/>
@@ -31,7 +32,11 @@ class ArrayUtil {
      */
     public static function sortCN($arr) {
         
-        self::$sortNames = array_flip(self::$sortNames);
+        if(!self::$hasInit){
+            self::$hasInit = true;
+            self::$sortNames = array_flip(self::$sortNames);
+        }
+        
         usort($arr, function ($a, $b) {
             if ($a == $b)
                 return 0;
