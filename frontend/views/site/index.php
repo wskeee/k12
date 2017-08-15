@@ -94,14 +94,14 @@ $js = <<<JS
     /** 单击提交表单 */
     window.submit = function(){
         var value = $("#search-form .form-control").val();
-        if(value == '')  return false; 
+        //if(value == '')  return false; 
         $('#search-form').submit();
     }
     
     /** 回车提交表单 */
     $("#search-form .form-control").keydown(function(event) {  
          if (event.keyCode == 13) { 
-            if($(this).val() == '') return false; 
+            //if($(this).val() == '') return false; 
             $('#search-form').submit();
          }  
      }) 

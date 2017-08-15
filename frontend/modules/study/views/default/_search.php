@@ -17,7 +17,7 @@ $this->title = Yii::t('app', 'My Yii Application');
         
             <div class="search-prompt">
                 <div class="sp-result"><i class="icon icon-search"></i><span>搜索结果</span></div>
-                <div class="sp-content">搜索“<?= $filter['keyword'] ?>”得出的结果如下：</div>
+                <div class="sp-content">搜索“<?= $filter['keyword'] == null ? '全部' : $filter['keyword'] ?>”得出的结果如下：</div>
             </div>
 
             <!--过滤器-->
