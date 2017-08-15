@@ -29,7 +29,8 @@ AppAsset::register($this);
     $buyunit = Buyunit::getCurrentBuyunit();
     $params = [
         [
-            'label' => $buyunit['is_experience'] ? Html::img(['/filedata/site/image/logo-1.png']) : Html::img("{$buyunit['buyunity_logo']}"),
+            //'label' => $buyunit['is_experience'] ? Html::img(['/filedata/site/image/logo-1.png']) : Html::img("{$buyunit['buyunity_logo']}"),
+            'label' => Html::img(['/filedata/site/image/logo-1.png']),
             'options' => ['class' => 'pull-left'],
         ],
         [
