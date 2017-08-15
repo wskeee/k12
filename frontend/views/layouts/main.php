@@ -34,10 +34,10 @@ AppAsset::register($this);
             'label' => Html::img(['/filedata/site/image/logo-1.png']),
             'options' => ['class' => 'pull-left'],
         ],
-        [
+        /*[
             'label' => !$buyunit['is_experience'] ? '中小学数字化资源云平台' : '',
             'options' => ['class' => 'pull-right'],
-        ],
+        ],*/
     ];
     
     echo $this->render('_header', ['params' => $params]); 
