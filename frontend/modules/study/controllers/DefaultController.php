@@ -98,10 +98,9 @@ class DefaultController extends Controller
     public function actionSearch()
     {
         $params = Yii::$app->request->queryParams;
-        $keyword = ArrayHelper::getValue($params, 'keyword');
-        $this->saveSearchLog($keyword);
+        $this->saveSearchLog($params);
         
-        return $this->redirect(['search-result', 'keyword' => $keyword]);
+        return $this->redirect(['search-result', 'keyword' => ArrayHelper::getValue($params, 'keyword')]);
     }    
     
     /**
