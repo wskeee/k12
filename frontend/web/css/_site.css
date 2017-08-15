@@ -19,7 +19,7 @@ body .container {
     line-height: 76px;
 }
 
-.header p {
+.header .pull-right{
     margin-bottom: -20px;
     padding-top: 20px;
     font-size: 18px;
