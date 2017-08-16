@@ -1,9 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
+/* @var $this View */
 /* @var $model common\wskeee\rbac\models\AuthGroup */
 
 $this->title = $model->name;

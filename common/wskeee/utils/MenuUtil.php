@@ -9,6 +9,7 @@
 namespace common\wskeee\utils;
 
 use common\models\Menu;
+use Yii;
 
 /**
  * Description of BaseController
@@ -52,11 +53,10 @@ class MenuUtil
                 }else
                     $item['url'] = ["/{$_menu->module}{$_menu->link}"];
                 $item['alias'] = $_menu->alias; 
-                $item['module'] = $_menu->module; 
+                $item['module'] = $_menu->module;                 
                 $menuItems[] = $item;
             }
         }
-        
         return $menuItems;
     }
     

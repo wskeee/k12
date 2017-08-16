@@ -30,14 +30,13 @@ AppAsset::register($this);
     $buyunit = Buyunit::getCurrentBuyunit();
     $params = [
         [
-            //'label' => $buyunit['is_experience'] ? Html::img(['/filedata/site/image/logo-1.png']) : Html::img("{$buyunit['buyunity_logo']}"),
-            'label' => Html::img(['/filedata/site/image/logo-1.png']),
+            'label' => $buyunit['is_experience'] ? Html::img(['/filedata/site/image/logo-1.png']) : Html::img("{$buyunit['buyunity_logo']}"),
             'options' => ['class' => 'pull-left'],
         ],
-        /*[
+        [
             'label' => !$buyunit['is_experience'] ? '中小学数字化资源云平台' : '',
             'options' => ['class' => 'pull-right'],
-        ],*/
+        ],
     ];
     
     echo $this->render('_header', ['params' => $params]); 

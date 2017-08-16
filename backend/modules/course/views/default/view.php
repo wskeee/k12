@@ -37,6 +37,7 @@ $attributes = [
         'attribute' => 'template_sn',
         'value' => $model->template->name . "（ $model->template_sn ）",
     ],
+    'courseware_sn',
     'unit',
     'name',
     'courseware_name',

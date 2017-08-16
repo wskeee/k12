@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @property string $parent_cat_id              分类
  * @property string $cat_id                     学科
  * @property string $template_sn                模板编号：s_00、s_01...
+ * @property string $courseware_sn              课件编号：A01010101010101、A01010101010102、....
  * @property integer $type                      课件类型：flash、视频、实训
  * @property string $unit                       单元
  * @property string $name                       课程名称
@@ -71,7 +72,7 @@ class Course extends ActiveRecord
     {
         return [
             [['parent_cat_id','cat_id', 'type', 'teacher_id', 'is_recommend', 'is_publish', 'course_order', 'order', 'play_count', 'zan_count', 'favorites_count', 'comment_count', 'publish_time', 'created_at', 'updated_at', 'course_model_id'], 'integer'],
-            [['learning_objectives', 'introduction', 'unit', 'courseware_name','synopsis','content','publisher_id', 'create_by','template_sn'], 'string'],
+            [['learning_objectives', 'introduction', 'unit', 'courseware_name','synopsis','content','publisher_id', 'create_by', 'template_sn', 'courseware_sn'], 'string'],
             [['name', 'img', 'path', 'keywords'], 'string', 'max' => 255],
         ];
     }
@@ -92,6 +93,7 @@ class Course extends ActiveRecord
             'parent_cat_id' => Yii::t('app', 'Parent Cat'),
             'cat_id' => Yii::t('app', 'Cat'),
             'template_sn' => Yii::t('app', 'Template'),
+            'courseware_sn' => Yii::t('app', 'Courseware'),
             'type' => Yii::t('app', 'Type'),
             'unit' => Yii::t('app', 'Unit'),
             'name' => Yii::t('app', 'Course Name'),

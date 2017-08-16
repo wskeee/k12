@@ -86,7 +86,7 @@ class CourseListSearch {
         $query->addSelect([ 'Course.parent_cat_id','Course.img', 'Course.unit', 'Course.courseware_name as name', 'Course.play_count']);
         $query->leftJoin(['Category' => CourseCategory::tableName()], 'Category.id = Course.cat_id');
         if($sort_order == 'order')
-            $query->orderBy(['Category.sort_order' => SORT_ASC, 'Course.course_order' => SORT_ASC, "Course.$sort_order" => SORT_ASC]);               
+            $query->orderBy(['Category.sort_order' => SORT_ASC, 'Course.courseware_sn' => SORT_ASC, "Course.$sort_order" => SORT_ASC]);               
         else
             $query->orderBy(["Course.$sort_order" => SORT_DESC]);
         $query->offset(($page-1)*$limit)->limit($limit);

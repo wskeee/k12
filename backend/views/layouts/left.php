@@ -1,9 +1,14 @@
 <?php
 
+use common\models\Menu as MenuModel;
 use common\models\User;
-use common\widgets\Menu;
+use common\widgets\Menu as MenuWidgets;
+use common\wskeee\utils\MenuUtil;
 
 /* @var $user User */
+
+$menus = MenuUtil::__getMenus(MenuModel::POSITION_BACKEND);
+
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
@@ -32,51 +37,31 @@ use common\widgets\Menu;
         </form>
         <!-- /.search form -->
 
-        <?= Menu::widget(
+        <?php
+        $menuItems = [
+            ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+            ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+        ];
+        
+        foreach ($menus as $items) {
+            //var_dump($items['url'][0]);
+            //if(!\Yii::$app->user->can($items['url'][0])) unset($items);
+            $items['icon'] = 'bars';
+            if(isset($items['items'])){
+                foreach ($items['items'] as $index => $item) {
+                    if(!\Yii::$app->user->can($item['url'][0])) unset($items['items'][$index]);
+                    $items['items'][$index]['icon'] = 'circle-o';
+                }
+            }
+            
+            $menuItems[] = $items;
+        }
+        echo MenuWidgets::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
-                'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    ['label' => '菜单管理', 'icon' => 'bars', 'url' => ['/menu/default']],
-                    [
-                        'label' => '权限与用户管理',
-                        'icon' => 'bars',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => '用户角色', 'icon' => 'circle-o', 'url' => ['/rbac/user-role'],],
-                            ['label' => '角色管理', 'icon' => 'circle-o', 'url' => ['/rbac/role'],],
-                            ['label' => '权限管理', 'icon' => 'circle-o', 'url' => ['/rbac/permission'],],
-                            ['label' => '路由管理', 'icon' => 'circle-o', 'url' => ['/rbac/route'],],
-                            ['label' => '分组管理', 'icon' => 'circle-o', 'url' => ['/rbac/auth-group'],],
-                        ],
-                    ],
-                    [
-                        'label' => '课程管理',
-                        'icon' => 'bars',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => '课程分类', 'icon' => 'circle-o', 'url' => ['/course/category'],],
-                            ['label' => '课程列表', 'icon' => 'circle-o', 'url' => ['/course/default'],],
-                            ['label' => '课程模型', 'icon' => 'circle-o', 'url' => ['/course/model'],],
-                            ['label' => '课程属性', 'icon' => 'circle-o', 'url' => ['/course/attribute'],],
-                            ['label' => '模板列表', 'icon' => 'circle-o', 'url' => ['/course/template'],],
-                            ['label' => '教师列表', 'icon' => 'circle-o', 'url' => ['/course/teacher'],],
-                            ['label' => '课程导入', 'icon' => 'circle-o', 'url' => ['/course/import'],],
-                        ],
-                    ],
-                    [
-                        'label' => '销售管理',
-                        'icon' => 'bars',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
-                        ],
-                    ],
-                ],
+                'items' => $menuItems
             ]
         ) ?>
 

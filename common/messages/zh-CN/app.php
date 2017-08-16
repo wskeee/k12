@@ -124,7 +124,8 @@ return [
     'Is Recommend' => '是否推荐',    
     'Is Publish' => '是否发布',    
     'Play Count' => '播放量',  
-    'Course Order' => '课程序号',  
+    'Course Order' => '课程序号', 
+    'Courseware' => '课件编码',
     'Zan Count' => '点赞量',    
     'Favorites Count' => '收藏量',    
     'Comment Count' => '评论量',    
@@ -144,7 +145,7 @@ return [
     
     /****************frontend title***********************/
     //Site <title>
-    'My Yii Application' => '我的Yii应用程序',
+    'My Yii Application' => '中小学数字化资源云平台',
     //Study <title>
     '' => '',
 ];

@@ -41,9 +41,9 @@ $isNew = $model->getIsNewRecord();
     
     <?= $form->field($model, 'template_sn')->dropDownList($templates, ['prompt' => $prompt]) ?>
     
-    <div class="course_att_container">
-
-    </div>
+    <?= $form->field($model, 'courseware_sn')->textInput(['maxlength' => true, 'placeholder' => 'A01010101010101、A01010101010102、....']) ?>
+    
+    <div class="course_att_container"></div>
     
     <?= $form->field($model, 'unit')->textInput(['maxlength' => true]) ?>
     
