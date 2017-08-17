@@ -28,8 +28,8 @@ $this->title = Yii::t('app', 'My Yii Application');
                <?php foreach ($result['courses'] as $index => $course): ?>
                 
                 <div class="<?= ($index % 5 == 4 ) ? 'none-margin' : 'gc-item'; ?>">
-                    <?= Html::a('<div class="gc-img">'.Html::img([$course['img']], ['width' => '100%']).'</div>', ['view', 'parent_cat_id' => $course['parent_cat_id'], 'cat_id' => $course['cat_id'], 'id' => $course['id']]) ?>
-                    <div class="gc-name course-name"><?= $course['courseware_name'] ?></div>
+                    <?= Html::a('<div class="gc-img">'.Html::img([$course['img']], ['width' => '100%']).'</div>', ['view', 'parent_cat_id' => $course['parent_cat_id'], 'cat_id' => $course['cat_id'], 'id' => $course['id']], ['title' => "【{$course['unit']}】{$course['courseware_name']}"]) ?>
+                    <div class="gc-name course-name"><?= "【{$course['unit']}】{$course['courseware_name']}" ?></div>
                     <div class="gc-see">
                         <i class="glyphicon glyphicon-play-circle"></i>
                         <span><?= $course['play_count'] ?></span>

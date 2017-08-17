@@ -246,9 +246,9 @@ body .k12 > .container {
 .site-unauthorized .unauthorized {
     width: 100%;
     height: 660px;
-    font-size: 40px;
+    font-size: 35px;
     color: #4abaf9;
-    background-image: url("/filedata/site/image/error-background.jpg");
+    background-image: url("/filedata/site/image/unauthorized.jpg");
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center 0;
@@ -256,7 +256,63 @@ body .k12 > .container {
 
 .site-unauthorized .unauthorized-prompt {
     float: right;
-    line-height: 660px;
+    display: inline-block;
+    position: relative;
+    top: 250px;
+    right: 200px;
+}
+
+.site-unauthorized .unauthorized-prompt
+.form-label {
+    font-size: 14px; 
+    color: #999; 
+    text-align: left;
+    font-weight: 400;
+}
+
+.site-unauthorized .help-block {
+    height: 34px;
+    margin: 0px;
+    font-size: 14px; 
+    line-height: 34px;
+    font-weight: 400;
+}
+
+.site-unauthorized .help-block
+.hb-icon {
+    width: 31px;
+    height: 30px;
+    float: left;
+    margin-right: 15px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center 0;
+}
+
+.site-unauthorized .help-block 
+.hb-prompt{
+    float: left;
+    display: block;
+}
+
+.site-unauthorized .yes {
+    background-image: url("/filedata/site/image/yes.png");
+}
+
+.site-unauthorized .no {
+    background-image: url("/filedata/site/image/no.png");
+}
+
+.site-unauthorized .unauthorized-prompt
+.experience {
+    width: 183px;
+    height: 53px;
+    display: inline-block;
+    background-image: url("/filedata/site/image/experience.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center 0;
 }
 
 @font-face{
