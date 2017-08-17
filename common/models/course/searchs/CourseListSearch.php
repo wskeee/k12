@@ -183,7 +183,7 @@ class CourseListSearch {
         
         $query->groupBy("Course.id");                                   //分组
         $totalCount = $query->count();
-        $query->addSelect(['Course.parent_cat_id', 'Course.cat_id','Course.img', 'Course.play_count', 'Course.courseware_name']);
+        $query->addSelect(['Course.parent_cat_id', 'Course.cat_id','Course.img', 'Course.unit', 'Course.play_count', 'Course.courseware_name']);
         $query->orderBy("Course.$sort_order DESC");                     //排序
         $query->offset(($page-1)*$limit)->limit($limit);                //每页显示的数量
         $course_result = $query->all();                                 //课程查询结果

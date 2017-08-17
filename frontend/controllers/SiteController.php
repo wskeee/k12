@@ -1,7 +1,9 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Buyunit;
 use common\models\course\Course;
+use common\models\ExperienceCard;
 use common\models\LoginForm;
 use common\models\Menu;
 use common\wskeee\utils\MenuUtil;
@@ -171,15 +173,40 @@ class SiteController extends Controller
         return $this->render('about');
     }
     
-     /**
+    /**
      * Logs out the current user.
      *
      * @return mixed
      */
     public function actionUnauthorized($ip)
     {
-        $this->layout = '@app/views/layouts/_unauthorized';
-        return $this->render('unauthorized', ['ip' => $ip]);
+        if(Yii::$app->request->isAjax){
+            Yii::$app->getResponse()->format = 'json';
+            $is_success = 0;
+            $message = '无效体验码。';
+            $buyunit = Buyunit::searchByIp($ip);
+            if($buyunit != null && $buyunit['is_experience']){
+                 $is_success = 1;
+                 $message = '';
+            }
+            return [
+                'type' => $is_success,
+                'message' => $message,
+            ];
+        }else{
+            $this->layout = '@app/views/layouts/_unauthorized';
+            return $this->render('unauthorized', ['ip' => $ip]);
+        }
+    }
+    
+    /**
+     * Logs out the current user.
+     *
+     * @return mixed
+     */
+    public function actionExperience($experience_code)
+    {
+        return $this->redirect(['site/index', 'experience_code' => $experience_code]);
     }
 
     /**
