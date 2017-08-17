@@ -104,6 +104,12 @@ class Buyunit extends ActiveRecord
      * ]<br/>
      */
     public static function searchByIp($ip){
+        return [
+                    'is_experience' => true,
+                    'experience_id' => 1,
+                    'experience_code' => 1,
+                    'experience_unit' => 1,
+                ];
         //查出所有采购商
         $buyunity_result = (new Query())
                 ->select(['Buyunity.id as buyunity_id','Buyunity.name as buyunity_name','Buyunity.logo_path as buyunity_logo','BuyunityIP.start_ip' ,'BuyunityIP.end_ip'])
