@@ -92,8 +92,20 @@ class RouteController extends Controller
      */
     public function actionRefresh()
     {
+        /**
+         * 手动添加前端模块
+         * 默认情况下，只获取本应用的模块，但为了配置前端路由，必须手动添加
+         */
+        $frontend = \Yii::getAlias('@frontend');
+        $config = require($frontend . '/config/main-local.php');
+        foreach ($config['modules'] as $moduleName => $module){
+            if($moduleName != 'gii' && $moduleName !='debug')//去除重复
+                \Yii::$app->setModule($moduleName, $module);
+        };
+
         $model = new Route();
         $model->invalidate();
+        
         Yii::$app->getResponse()->format = 'json';
         return $model->getRoutes();
     }
