@@ -1,15 +1,14 @@
 <?php
 
-use common\models\MenuBackend as MenuModel;
+use common\models\Menu as MenuModel;
 use common\models\User;
-use common\widgets\MenuBackend as MenuWidgets;
+use common\widgets\Menu as MenuWidgets;
 use common\wskeee\utils\MenuUtil;
-use wskeee\utils\MenuBackendUtil;
 
 /* @var $user User */
 
-//$menus = MenuUtil::__getMenus(MenuModel::POSITION_BACKEND);
-$menus = MenuBackendUtil::__getMenus();
+$menus = MenuUtil::__getMenus(MenuModel::POSITION_BACKEND);
+
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
@@ -31,8 +30,7 @@ $menus = MenuBackendUtil::__getMenus();
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search..."/>
               <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-
-search"></i>
+                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
             </div>
@@ -47,11 +45,20 @@ search"></i>
             ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
         ];
         
-        foreach ($menus as $items) {
-            if(isset($items['items']) && count($items['items']) > 0)
-                $menuItems[] = $items;           
+        $_menus = $menus;
+        foreach ($menus as $index => $items) {
+            $_menus[$index]['icon'] = 'bars';
+            if(isset($_menus[$index]['items'])){
+                foreach ($items['items'] as $key => $value) {
+                    if(!\Yii::$app->user->can($value['url'][0]))
+                        unset ($items['items'][$key]);
+                    else 
+                        $_menus[$index]['items'][$key]['icon'] = 'circle-o';
+                }
+                if(count($items['items']) > 0)
+                    $menuItems[] = $_menus[$index];
+            }
         }
-       
         echo MenuWidgets::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
