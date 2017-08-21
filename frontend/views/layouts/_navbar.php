@@ -1,7 +1,6 @@
 <?php
 
 use common\models\Menu;
-use common\wskeee\utils\MenuUtil;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\ArrayHelper;
@@ -12,7 +11,7 @@ use yii\web\View;
 /* @var $content string */
 
 $moduleId = Yii::$app->controller->module->id;   //模块ID
-$menus = MenuUtil::__getMenus(Menu::POSITION_FRONTEND);
+$menus = Menu::getMenusNavItem(Menu::POSITION_FRONTEND);
 $link = Url::to(['index', 'parent_cat_id' => ArrayHelper::getValue(Yii::$app->request->queryParams, 'parent_cat_id')]);
 ?>
 
