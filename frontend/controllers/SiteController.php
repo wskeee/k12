@@ -3,7 +3,6 @@ namespace frontend\controllers;
 
 use common\models\Buyunit;
 use common\models\course\Course;
-use common\models\ExperienceCard;
 use common\models\LoginForm;
 use common\models\Menu;
 use common\wskeee\utils\MenuUtil;
@@ -82,7 +81,6 @@ class SiteController extends Controller
     {
         $this->layout = '@app/views/layouts/_main_home';
         
-        $menuUtil = MenuUtil::getInstance();
         $totalCount = (new Query())
                 ->select(['Course.parent_cat_id AS category', 'COUNT(Course.id) AS total'])
                 ->from(['Course' => Course::tableName()])
@@ -90,7 +88,7 @@ class SiteController extends Controller
                 ->groupBy('Course.parent_cat_id')->all();
 
         return $this->render('index', [
-            'menus' => $menuUtil::getMenus(Menu::POSITION_FRONTEND)->all(),
+            'menus' => Menu::getMenus(Menu::POSITION_FRONTEND),
             'totalCount' => ArrayHelper::map($totalCount, 'category', 'total'),
         ]);
     }
