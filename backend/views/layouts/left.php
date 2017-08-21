@@ -1,15 +1,13 @@
 <?php
 
-use common\models\MenuBackend as MenuModel;
+use backend\modules\menu\models\MenuBackend;
 use common\models\User;
-use common\widgets\MenuBackend as MenuWidgets;
-use common\wskeee\utils\MenuUtil;
-use wskeee\utils\MenuBackendUtil;
+use dmstr\widgets\Menu as MenuWidgets;
 
 /* @var $user User */
 
 //$menus = MenuUtil::__getMenus(MenuModel::POSITION_BACKEND);
-$menus = MenuBackendUtil::__getMenus();
+$menus = MenuBackend::getBackendMenu();
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
@@ -31,8 +29,7 @@ $menus = MenuBackendUtil::__getMenus();
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search..."/>
               <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-
-search"></i>
+                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
             </div>
@@ -46,12 +43,13 @@ search"></i>
             ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
             ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
         ];
-        
         foreach ($menus as $items) {
-            if(isset($items['items']) && count($items['items']) > 0)
-                $menuItems[] = $items;           
+            if(isset($items['items']) && count($items['items']) > 0){
+                $menuItems[] = $items;  
+            }else if(!isset($items['items'])){
+                $menuItems[] = $items;
+            }
         }
-       
         echo MenuWidgets::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],

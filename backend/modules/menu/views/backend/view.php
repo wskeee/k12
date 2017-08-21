@@ -5,7 +5,7 @@ use yii\web\View;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\MenuBackend */
+/* @var $model backend\models\MenuBackend */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Menu Backends'), 'url' => ['index']];

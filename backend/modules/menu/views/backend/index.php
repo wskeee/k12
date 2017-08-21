@@ -2,11 +2,11 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use common\models\MenuBackend;
+use backend\models\MenuBackend;
 use common\widgets\GridViewChangeSelfColumn;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\searchs\BackendMenuSearch */
+/* @var $searchModel backend\models\searchs\BackendMenuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Menu Backends');

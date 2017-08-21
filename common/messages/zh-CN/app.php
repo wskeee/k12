@@ -84,6 +84,10 @@ return [
     'Module' => '模块',
     'Is Jump' => '是否跳转',
     'Position' => '位置',
+    'Create Menu Backend' => '新增菜单',
+    'Menus Frontend' => '前台菜单',
+    'Menu Backend' => '后台菜单',
+    'Menu Backends' => '后台菜单',
     //课程分类管理
     'Course' => '课程',
     'Courses' => '课程',

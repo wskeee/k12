@@ -12,7 +12,7 @@ use yii\web\View;
 /* @var $searchModel MenuSearch */
 /* @var $dataProvider ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Menus');
+$this->title = Yii::t('app', 'Menus Frontend');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menu-index">
@@ -107,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'plugOptions' => [
                     'type' => 'input',
                 ]
-            ],
+            ],            
             [
                 'class' => 'yii\grid\ActionColumn', 
                 'options' => ['style' => ['width' => '70px']],

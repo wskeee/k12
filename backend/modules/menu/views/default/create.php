@@ -10,7 +10,7 @@ $this->title = Yii::t(null, '{Create}{Menus}', [
     'Create' => Yii::t('app', 'Create'),
     'Menus' => Yii::t('app', 'Menus'),
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Menus'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Menus Frontend'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menu-create">

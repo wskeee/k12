@@ -1,11 +1,11 @@
 <?php
 
-namespace common\models;
+namespace backend\modules\menu\models;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\db\ActiveQuery;
 use \yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -92,4 +92,66 @@ class MenuBackend extends ActiveRecord
     public static function getCats($condition){
         return ArrayHelper::map(MenuBackend::find()->orFilterWhere($condition)->all(), 'id', 'name');
     }
+    
+    /**
+     * 获取所有菜单
+     * @param integer $leve   等级
+     * @return model Menu
+     */
+    public static function getMenus ($level = 1){
+        return MenuBackend::find()->where(['is_show' => true])->andFilterWhere(['level' => $level])->orderBy('sort_order asc');
+    }
+    
+    /**
+     * 组装菜单
+     * @return type
+     */
+    public static function getBackendMenu(){
+        $menus = self::getMenus(null)->all();
+        $menuItems = [];
+        foreach($menus as $_menu){
+            if($_menu->parent_id == null){
+                $children = self::getBacItemChildren($menus,$_menu->id);
+                $item = [
+                    'label' => $_menu->name,
+                ];
+                if(count($children)>0){
+                    $item['url'] = $_menu->link;
+                    $item['items'] = $children;
+                }  else {
+                    $item['url'] = $_menu->link;
+                }
+                $item['icon'] = $_menu->icon;
+                $menuItems[] = $item;
+            }
+        }
+        return $menuItems;    
+    }
+    
+    /**
+     * 获取二级菜单
+     * @param Menu $menu
+     * @param array $allMenus  获取所有菜单
+     * @param type $parnet_id
+     * @return array
+     */
+    private static function getBacItemChildren($allMenus, $parent_id){
+        $items = [];
+        foreach ($allMenus as $menu){
+            /* @var $menu Menu */
+            if($menu->parent_id == $parent_id){
+                if(\Yii::$app->user->can($menu->link)){
+                    $items[] = [
+                        'label' => $menu->name,
+                        'url' => $menu->link,
+                        'icon' => $menu->icon,
+                    ];
+                }
+            }    
+        }
+        
+        return $items; 
+    }
+    
+    
 }
