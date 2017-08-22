@@ -2,7 +2,7 @@
 
 use backend\modules\menu\models\MenuBackend;
 use common\models\User;
-use dmstr\widgets\Menu as MenuWidgets;
+use common\widgets\Menu as MenuWidgets;
 
 /* @var $user User */
 

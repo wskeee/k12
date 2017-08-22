@@ -5,7 +5,7 @@ namespace backend\modules\menu\models\searchs;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\MenuBackend;
+use backend\modules\menu\models\MenuBackend;
 
 /**
  * BackendMenuSearch represents the model behind the search form about `backend\models\MenuBackend`.

@@ -3,12 +3,12 @@
 namespace backend\modules\menu\controllers;
 
 use Yii;
-use backend\models\MenuBackend;
-use backend\models\searchs\BackendMenuSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use backend\modules\menu\models\MenuBackend;
+use backend\modules\menu\models\searchs\BackendMenuSearch;
 
 /**
  * BackendController implements the CRUD actions for MenuBackend model.

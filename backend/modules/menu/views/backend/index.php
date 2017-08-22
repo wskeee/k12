@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use backend\models\MenuBackend;
+use backend\modules\menu\models\MenuBackend;
 use common\widgets\GridViewChangeSelfColumn;
 
 /* @var $this yii\web\View */
