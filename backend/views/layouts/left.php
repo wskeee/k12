@@ -2,11 +2,10 @@
 
 use backend\modules\menu\models\MenuBackend;
 use common\models\User;
-use common\widgets\Menu as MenuWidgets;
+use dmstr\widgets\Menu as MenuWidgets;
 
 /* @var $user User */
 
-//$menus = MenuUtil::__getMenus(MenuModel::POSITION_BACKEND);
 $menus = MenuBackend::getBackendMenu();
 ?>
 <aside class="main-sidebar">
@@ -44,16 +43,16 @@ $menus = MenuBackend::getBackendMenu();
             ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
         ];
         foreach ($menus as $items) {
-            if(isset($items['items']) && count($items['items']) > 0){
+            if(isset($items['items']) && count($items['items']) > 0)//{
                 $menuItems[] = $items;  
-            }else if(!isset($items['items'])){
+            /*}else if(!isset($items['items'])){
                 $menuItems[] = $items;
-            }
+            }*/
         }
         echo MenuWidgets::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
-                'items' => $menuItems
+                'items' => $menuItems,
             ]
         ) ?>
 

@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use backend\modules\menu\models\MenuBackend;
 
 /**
- * BackendMenuSearch represents the model behind the search form about `backend\models\MenuBackend`.
+ * BackendMenuSearch represents the model behind the search form about `backend\modules\menu\models\MenuBackend``.
  */
 class BackendMenuSearch extends MenuBackend
 {

@@ -116,7 +116,7 @@ class MenuBackend extends ActiveRecord
                     'label' => $_menu->name,
                 ];
                 if(count($children)>0){
-                    $item['url'] = [$_menu->link];
+                    $item['url'] = $_menu->link;
                     $item['items'] = $children;
                 }  else {
                     $item['url'] = [$_menu->link];

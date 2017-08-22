@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\widgets\SwitchInput;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\MenuBackend */
+/* @var $model backend\modules\menu\models\MenuBackend */
 /* @var $form yii\widgets\ActiveForm */
 
 $prompt = Yii::t('app', 'Select Placeholder');

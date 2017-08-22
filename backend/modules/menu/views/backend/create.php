@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\MenuBackend */
+/* @var $model backend\modules\menu\models\MenuBackend */
 
 $this->title = Yii::t('app', 'Create Menu Backend');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Menu Backends'), 'url' => ['index']];

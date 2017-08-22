@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\MenuBackend */
+/* @var $model backend\modules\menu\models\MenuBackend */
 
 $this->title = Yii::t('app', '{Update} {modelClass}: ', [
     'Update' =>  Yii::t('app', 'Update'),

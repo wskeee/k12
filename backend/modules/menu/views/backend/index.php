@@ -6,7 +6,7 @@ use backend\modules\menu\models\MenuBackend;
 use common\widgets\GridViewChangeSelfColumn;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\searchs\BackendMenuSearch */
+/* @var $searchModel backend\modules\menu\models\searchs\BackendMenuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Menu Backends');
