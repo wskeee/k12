@@ -116,10 +116,10 @@ class MenuBackend extends ActiveRecord
                     'label' => $_menu->name,
                 ];
                 if(count($children)>0){
-                    $item['url'] = $_menu->link;
+                    $item['url'] = [$_menu->link];
                     $item['items'] = $children;
                 }  else {
-                    $item['url'] = $_menu->link;
+                    $item['url'] = [$_menu->link];
                 }
                 $item['icon'] = $_menu->icon;
                 $menuItems[] = $item;
@@ -143,7 +143,7 @@ class MenuBackend extends ActiveRecord
                 if(\Yii::$app->user->can($menu->link)){
                     $items[] = [
                         'label' => $menu->name,
-                        'url' => $menu->link,
+                        'url' => [$menu->link],
                         'icon' => $menu->icon,
                     ];
                 }
