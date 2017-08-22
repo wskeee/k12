@@ -1,5 +1,6 @@
 <?php
 
+use backend\modules\menu\assets\MenuBackendAsset;
 use backend\modules\menu\models\MenuBackend;
 use common\models\User;
 use dmstr\widgets\Menu as MenuWidgets;
@@ -59,3 +60,7 @@ $menus = MenuBackend::getBackendMenu();
     </section>
 
 </aside>
+
+<?php
+    MenuBackendAsset::register($this);
+?>
