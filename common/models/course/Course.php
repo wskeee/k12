@@ -8,6 +8,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "{{%course}}".
@@ -123,20 +124,44 @@ class Course extends ActiveRecord
         ];
     }
     
+    /**
+     * 图片上传--数据存储加后缀？r . rand(1, 10000)；
+     * @param type $insert
+     * @return boolean
+     */
     public function beforeSave($insert) {
-        if(parent::beforeSave($insert)){
-            if($this->getIsNewRecord()){
-                $this->create_by = Yii::$app->user->id;
+        if (parent::beforeSave($insert)){
+            //图片上传
+            $upload = UploadedFile::getInstance($this, 'img');
+            if($upload !== null){
+                $string = $upload->name;
+                $array = explode('.', $string);
+                //获取后缀名，默认名为.jpg
+                $ext = count($array) == 0 ? 'jpg' : $array[count($array)-1];
+                $uploadpath = $this->fileExists(Yii::getAlias('@filedata').'/courseThumbImg/');
+                $upload->saveAs($uploadpath.$this->courseware_sn.'.'.$ext) ;
+                $this->img = '/filedata/courseThumbImg/'.$this->courseware_sn.'.'.$ext. '?r=' . rand(1, 10000);
             }
-            if($this->is_publish){
-                $this->publisher_id = Yii::$app->user->id;
-                $this->publish_time = time();
+            if(trim($this->img) == ''){
+                $this->img = $this->getOldAttribute('img');
             }
             return true;
         }
         return false;
     }
     
+    /**
+     * 检查目标路径是否存在，不存即创建目标
+     * @param type $uploadpath  目标路径
+     * @return type
+     */
+    private function fileExists($uploadpath){
+        if(!file_exists($uploadpath)){
+            mkdir($uploadpath);
+        }
+        return $uploadpath;
+    }
+
     /**
      * 父级分类
      * @return ActiveQuery

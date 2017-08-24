@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
 use yii\widgets\ActiveForm;
+use kartik\widgets\FileInput;
 
 /* @var $this View */
 /* @var $model Course */
@@ -81,7 +82,29 @@ $isNew = $model->getIsNewRecord();
     ]);
     ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?php
+    echo $form->field($model,'img')->widget(FileInput::classname(),[
+        'options' => [
+            'accept' => 'image/*',
+            'multiple' => false
+        ],
+        'pluginOptions' => [
+            'resizeImages' => true,
+            'showCaption' => false,
+            'showRemove' => false,
+            'showUpload' => false,
+            'browseClass' => 'btn btn-primary btn-block',
+            'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
+            'browseLabel' =>  '选择上传图像...',
+            'initialPreview'=>[
+                $model->isNewRecord ? 
+                    Html::img(Yii::getAlias('@filedata').'/filedata/courseThumbImg/',['class' => 'file-preview-image', 'width' => '100%']) :
+                    Html::img(WEB_ROOT . $model->img,['class' => 'file-preview-image', 'width' => '100%']),
+            ],
+            'overwriteIntital' => true,
+        ],
+    ]);
+    ?>
 
     <?= $form->field($model, 'course_order')->textInput() ?>
     
